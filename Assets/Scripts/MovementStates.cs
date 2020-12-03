@@ -3,7 +3,7 @@
     public enum MovementStates
     {
         Idle,
-        Moving,
         Walking,
+        Jumping
     }
 }
