@@ -36,4 +36,14 @@ public class InputSystem
     {
         return Input.GetKey(_bindings.KeyJump);
     }
+
+    public float GetMouseYAxis()
+    {
+        return Input.GetAxis("Mouse Y");
+    }
+
+    public float GetMouseXAxis()
+    {
+        return Input.GetAxis("Mouse X");
+    }
 }
