@@ -344,7 +344,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
+  JumpHeight: 3
   Gravity: -9.8
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!143 &813960341
 CharacterController:
   m_ObjectHideFlags: 0

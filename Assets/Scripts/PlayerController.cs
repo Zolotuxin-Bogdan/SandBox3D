@@ -3,7 +3,10 @@
 public class PlayerController : MonoBehaviour
 {
     public float Speed = 6.0f;
+    public float JumpHeight = 20.0f;
     public float Gravity = -9.8f;
+
+    private float _verticalSpeed = 0;
 
     private readonly InputSystem _inputSystem = new InputSystem();
     private CharacterController _characterController;
@@ -13,7 +16,7 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Move();
     }
@@ -24,9 +27,17 @@ public class PlayerController : MonoBehaviour
         var deltaZ = _inputSystem.GetVerticalMovementValue() * Speed;
         var movement = new Vector3(deltaX, 0, deltaZ);
         movement = Vector3.ClampMagnitude(movement, Speed);
-        movement.y = Gravity;
-        movement *= Time.deltaTime;
         movement = transform.TransformDirection(movement);
-        _characterController.Move(movement);
+        if (_characterController.isGrounded)
+        {
+            _verticalSpeed = -1f;
+            if (_inputSystem.IsJumpKeyPressed())
+            {
+                _verticalSpeed = JumpHeight;
+            }
+        }
+        _verticalSpeed += Gravity * Time.deltaTime;
+        movement.y = _verticalSpeed;
+        _characterController.Move(movement * Time.deltaTime);
     }
 }
