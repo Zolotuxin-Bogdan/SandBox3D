@@ -31,4 +31,9 @@ public class InputSystem
         }
         return 0f;
     }
+
+    public bool IsJumpKeyPressed()
+    {
+        return Input.GetKey(_bindings.KeyJump);
+    }
 }
