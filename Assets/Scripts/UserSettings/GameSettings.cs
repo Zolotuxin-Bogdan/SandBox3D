@@ -31,5 +31,9 @@ namespace Assets.Scripts.UserSettings
         /// game interface language
         /// </summary>
         public Languages Language { get; set; }
+        /// <summary>
+        /// in-game mouse sensitivity, set for horizontal and vertical axis
+        /// </summary>
+        public float MouseSensitivity { get; set; }
     }
 }
