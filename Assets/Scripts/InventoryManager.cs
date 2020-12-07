@@ -14,16 +14,7 @@ namespace Assets.Scripts
 
         public void AddItemByName(string itemName)
         {
-            var item = _items.Find(p => p.name == itemName);
-
-            if (item != null)
-            {
-                item.count += 1;
-            }
-            else
-            {
-                _items.Add(new Item{count = 1, name = itemName, maxCount = 64});
-            }
+            _items.Add(new Item{count = 1, name = itemName, maxCount = 64});
         }
 
         public void RemoveItemByName(string itemName)
