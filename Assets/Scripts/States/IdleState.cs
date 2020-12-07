@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.States
+﻿using Assets.FSM;
+
+namespace Assets.Scripts.States
 {
     public class IdleState: State
     {

@@ -37,6 +37,11 @@ public class InputSystem
         return Input.GetKey(_bindings.KeyJump);
     }
 
+    public bool IsLeftShiftPressed()
+    {
+        return Input.GetKey(_bindings.KeyLeftShift);
+    }
+
     public float GetMouseYAxis()
     {
         return Input.GetAxis("Mouse Y");
@@ -45,5 +50,10 @@ public class InputSystem
     public float GetMouseXAxis()
     {
         return Input.GetAxis("Mouse X");
+    }
+
+    public float GetMouseScrollWheelValue()
+    {
+        return Input.GetAxis("Mouse ScrollWheel");
     }
 }

@@ -13,8 +13,8 @@ namespace Assets.Scripts
         public bool ShowCursor = false;
         
         private float _rotationX = 0;
-        private InputSystem _inputSystem; 
-        
+        private InputSystem _inputSystem;
+
         void Start()
         {
             Cursor.visible = ShowCursor;
