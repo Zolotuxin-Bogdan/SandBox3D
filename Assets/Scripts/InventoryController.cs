@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System.Collections.Generic;
+using Assets.InventorySystem;
+using Assets.InventorySystem.Items;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -11,13 +13,18 @@ namespace Assets.Scripts
 
         void Start()
         {
-            _inventoryManager = new InventoryManager();
+            _inventoryManager = new InventoryManager(new List<InventoryItem>());
             Controller.OnDropItemTouched(PickupItem);
         }
 
         void PickupItem(string itemName)
         {
-            _inventoryManager.AddItemByName(itemName);
+            //_inventoryManager.AddItem();
+        }
+
+        void DropItem()
+        {
+            //_inventoryManager.DeleteItem();
         }
     }
 }

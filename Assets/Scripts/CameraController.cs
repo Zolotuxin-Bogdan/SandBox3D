@@ -53,10 +53,7 @@ namespace Assets.Scripts
 
         void Zoom()
         {
-            float scrollData = Input.GetAxis("Mouse ScrollWheel");
-            _targetZoom -= scrollData * zoomFactor;
-            _targetZoom = Mathf.Clamp(_targetZoom, 0f, 100f);
-            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _targetZoom, Time.deltaTime * zoomSpeed);
+            
         }
     }
 }

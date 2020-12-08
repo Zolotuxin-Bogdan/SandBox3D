@@ -52,8 +52,20 @@ public class InputSystem
         return Input.GetAxis("Mouse X");
     }
 
-    public float GetMouseScrollWheelValue()
-    {
+    public float GetMouseWheelAxisValue(){
         return Input.GetAxis("Mouse ScrollWheel");
+    }
+
+    public float GetIncline()
+    {
+        if (Input.GetKey(_bindings.KeyLeftIncline))
+        {
+            return 1f;
+        }
+        if (Input.GetKey(_bindings.KeyRightIncline))
+        {
+            return -1f;
+        }
+        return 0f;
     }
 }

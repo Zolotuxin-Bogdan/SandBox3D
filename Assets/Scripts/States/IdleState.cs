@@ -9,6 +9,8 @@ namespace Assets.Scripts.States
             throw new System.NotImplementedException();
         }
 
+        public void Cool(){}
+
         public override void Close()
         {
             throw new System.NotImplementedException();
