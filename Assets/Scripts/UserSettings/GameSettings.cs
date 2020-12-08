@@ -35,5 +35,8 @@ namespace Assets.Scripts.UserSettings
         /// in-game mouse sensitivity, set for horizontal and vertical axis
         /// </summary>
         public float MouseSensitivity { get; set; }
+        public Difficulty GameDifficulty { get; set; }
+        public FlagState InvertMouse { get; set; }
+        public FlagState TouchscreenMode { get; set; }
     }
 }
