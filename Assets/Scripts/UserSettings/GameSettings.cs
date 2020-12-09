@@ -38,5 +38,6 @@ namespace Assets.Scripts.UserSettings
         public Difficulty GameDifficulty { get; set; }
         public FlagState InvertMouse { get; set; }
         public FlagState TouchscreenMode { get; set; }
+        public int FOV { get; set; }
     }
 }
