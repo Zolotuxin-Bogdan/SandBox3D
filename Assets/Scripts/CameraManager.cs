@@ -16,6 +16,7 @@ namespace Assets.Scripts
         public float zoomSpeed = 5f;
         public float minZoomLimit = 2f;
         public float maxZoomLimit = 16f;
+        public float wheelValueIncrement = 1000f;
         public float startingZoom = 5f;
 
         [Header("Rotate Controls")]
@@ -59,7 +60,7 @@ namespace Assets.Scripts
             }
         }
         void UpdateFrameZoom(){
-            frameZoom += inputSystem.GetMouseWheelAxisValue() * 1000;
+            frameZoom += inputSystem.GetMouseWheelAxisValue() * wheelValueIncrement;
         }
         
         void Move()

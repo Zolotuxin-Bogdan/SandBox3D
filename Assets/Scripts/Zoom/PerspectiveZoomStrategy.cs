@@ -22,14 +22,14 @@ namespace Assets.Scripts.Zoom
         public void ZoomIn(Camera cam, float delta, float minZoomLimit)
         {
             if (currentZoomLevel <= minZoomLimit) return;
-            currentZoomLevel = Mathf.Max(currentZoomLevel  - delta, minZoomLimit);
+            currentZoomLevel = Mathf.Max(currentZoomLevel - delta, minZoomLimit);
             PositionCamera(cam);
         }
 
         public void ZoomOut(Camera cam, float delta, float maxZoomLimit)
         {
             if (currentZoomLevel <= maxZoomLimit) return;
-            currentZoomLevel = Mathf.Min(currentZoomLevel  - delta, maxZoomLimit);
+            currentZoomLevel = Mathf.Min(currentZoomLevel + delta, maxZoomLimit);
             PositionCamera(cam);
         }
     }
