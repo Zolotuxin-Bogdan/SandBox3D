@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using Assets.Scripts.UserSettings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,13 +9,16 @@ namespace Assets.Scripts.UI
 {
     public class SettingsController: MonoBehaviour
     {
-        private Difficulty gameDifficulty;
+        Difficulty gameDifficulty;
 
-        private FlagState touchscreenModeState;
+        FlagState touchscreenModeState;
 
-        private FlagState mouseInvertState;
+        FlagState mouseInvertState;
+        
+        public SettingsManager settingsManager;
         //////////////////////////////////////////////
         ///////////////Simple buttons////////////////
+        [Header("Settings buttons")]
         public Button DoneButton;
         public Button TexturePackButton;
         public Button SnooperSettingsButton;
@@ -30,13 +34,14 @@ namespace Assets.Scripts.UI
         public Button SwitchDifficultyButton;
         //////////////////////////////////////////////
         ///////////////////Sliders///////////////////
+        [Header("Settings Sliders")]
         public Slider MusicVolumeSlider;
         public Slider SoundVolumeSlider;
         public Slider SensitivityValueSlider;
         public Slider FovValueSlider;
         //////////////////////////////////////////////
         ////////////////Unity Messages///////////////
-        private void Start() {
+        void Start() {
             DoneButton.onClick.AddListener(Submit);
             TexturePackButton.onClick.AddListener(ShowTexturePackWin);
             SnooperSettingsButton.onClick.AddListener(ShowSnooperSettingsWin);
@@ -49,16 +54,16 @@ namespace Assets.Scripts.UI
             SwitchMouseInvertButton.onClick.AddListener(SwitchMouseInvertValue);
             SwitchDifficultyButton.onClick.AddListener(SwitchDifficulty);
             
-            MusicVolumeSlider.onValueChanged.AddListener(DisplayMusicVolume);
-            SoundVolumeSlider.onValueChanged.AddListener(DisplaySoundVolume);
-            SensitivityValueSlider.onValueChanged.AddListener(DisplaySensitivityValue);
-            FovValueSlider.onValueChanged.AddListener(DisplayFovValue);
+            MusicVolumeSlider.onValueChanged.AddListener(UpdateMusicVolume);
+            SoundVolumeSlider.onValueChanged.AddListener(UpdateSoundVolume);
+            SensitivityValueSlider.onValueChanged.AddListener(UpdateSensitivityValue);
+            FovValueSlider.onValueChanged.AddListener(UpdateFovValue);
         }
         //////////////////////////////////////////////
         ////////////////////Events///////////////////
         void Submit()
         {
-            // before invoke -> save all settings
+
             _action.Invoke(SettingsEvent.DoneClicked);
         }
 
@@ -107,6 +112,7 @@ namespace Assets.Scripts.UI
             }
 
             SwitchTouchscreenModeButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+            settingsManager.GetSettings().TouchscreenMode = touchscreenModeState;
         }
 
         void SwitchMouseInvertValue()
@@ -123,6 +129,7 @@ namespace Assets.Scripts.UI
                 mouseInvertState = FlagState.Off;
             }
             SwitchMouseInvertButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+            settingsManager.GetSettings().InvertMouse = mouseInvertState;
         }
 
         void SwitchDifficulty()
@@ -149,30 +156,35 @@ namespace Assets.Scripts.UI
                 gameDifficulty = Difficulty.Easy;
             }
             SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+            settingsManager.GetSettings().GameDifficulty = gameDifficulty;
         }
 
-        void DisplayMusicVolume(float value)
+        void UpdateMusicVolume(float value)
         {
             MusicVolumeSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Music: {value}%";
+            settingsManager.GetSettings().MusicVolume = (int)value;
         }
         
-        void DisplaySoundVolume(float value)
+        void UpdateSoundVolume(float value)
         {
             SoundVolumeSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Sound: {value}%";
+            settingsManager.GetSettings().SfxVolume = (int)value;
         }
         
-        void DisplaySensitivityValue(float value)
+        void UpdateSensitivityValue(float value)
         {
             SensitivityValueSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Sensitivity: {value}%";
+            settingsManager.GetSettings().MouseSensitivity = value;
         }
         
-        void DisplayFovValue(float value)
+        void UpdateFovValue(float value)
         {
             FovValueSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"FOV: {value}";
+            settingsManager.GetSettings().FOV = (int)value;
         }
         //////////////////////////////////////////////
         ////////////////////Action///////////////////
-        private UnityAction<SettingsEvent> _action;
+        UnityAction<SettingsEvent> _action;
         
         public void AddListener(UnityAction<SettingsEvent> action)
         {
