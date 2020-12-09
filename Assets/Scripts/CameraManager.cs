@@ -32,12 +32,13 @@ namespace Assets.Scripts
         private void Awake() {
             cam = GetComponentInChildren<Camera>();
             cam.transform.localPosition = new Vector3(0f, Mathf.Abs(cameraOffset.y), -Mathf.Abs(cameraOffset.x));
-            zoomStrategy = new OrthographicZoomStrategy(cam, startingZoom);
+            //zoomStrategy = new OrthographicZoomStrategy(cam, startingZoom);
             cam.transform.LookAt(transform.position + Vector3.up * lookAtOffset);
             inputSystem = new InputSystem();
             Cursor.lockState = CursorLockMode.Locked;
             //mouseLook = gameObject.AddComponent<MouseLook>();
             controller = GetComponentInChildren<CharacterController>();
+            zoomStrategy = cam.orthographic ?(IZoomStrategy) new OrthographicZoomStrategy(cam, startingZoom) : new PerspectiveZoomStrategy(cam, cameraOffset, startingZoom);
         }
 
         private void Update() {
@@ -85,6 +86,7 @@ namespace Assets.Scripts
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
+            //transform.LookAt(playerBody);
         }
     }
 }
