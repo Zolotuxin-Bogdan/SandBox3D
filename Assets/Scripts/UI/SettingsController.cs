@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Enums;
-using Assets.Scripts.UserSettings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -137,22 +136,22 @@ namespace Assets.Scripts.UI
             var text = SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text;
             if (text.Contains(Difficulty.Easy.ToString()))
             {
-                text = $"Difficulty: {Difficulty.Normal.ToString()}";
+                text = $"Difficulty: {Difficulty.Normal}";
                 gameDifficulty = Difficulty.Normal;
             }
             else if (text.Contains(Difficulty.Normal.ToString()))
             {
-                text = $"Difficulty: {Difficulty.Hard.ToString()}";
+                text = $"Difficulty: {Difficulty.Hard}";
                 gameDifficulty = Difficulty.Hard;
             }
             else if (text.Contains(Difficulty.Hard.ToString()))
             {
-                text = $"Difficulty: {Difficulty.Peaceful.ToString()}";
+                text = $"Difficulty: {Difficulty.Peaceful}";
                 gameDifficulty = Difficulty.Peaceful;
             }
             else if (text.Contains(Difficulty.Peaceful.ToString()))
             {
-                text = $"Difficulty: {Difficulty.Easy.ToString()}";
+                text = $"Difficulty: {Difficulty.Easy}";
                 gameDifficulty = Difficulty.Easy;
             }
             SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text = text;

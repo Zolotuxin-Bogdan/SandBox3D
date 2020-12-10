@@ -12,17 +12,40 @@ namespace Assets.Scripts.UI
         public GameObject language;
         public GameObject multiplayerSettings;
         public GameObject videoSettings;
-                
+        
+        SettingsController settingsController;
+        ControlsController controlsController;
+        SnooperSettingsController snooperSettingsController;
+        TexturePackController texturePackController;
+        LanguageController languageController;
+        MultiplayerSettingsController multiplayerSettingsController;
+        VideoSettingsController videoSettingsController;
+
         //Unity Start Message
         void Start()
         {
-            settings.GetComponent<SettingsController>().AddListener(SettingsListener);
-            controls.GetComponent<ControlsController>().AddListener(ControlsListener);
-            snooperSettings.GetComponent<SnooperSettingsController>().AddListener(SnooperSettingsListener);
-            texturePack.GetComponent<TexturePackController>().AddListener(TexturePackListener);
-            language.GetComponent<LanguageController>().AddListener(LanguageListener);
-            multiplayerSettings.GetComponent<MultiplayerSettingsController>().AddListener(MultiplayerSettingsListener);
-            videoSettings.GetComponent<VideoSettingsController>().AddListener(VideoSettingsListener);
+            settingsController = GetComponentInChildren<SettingsController>();//
+            controlsController = GetComponentInChildren<ControlsController>();//
+            snooperSettingsController = GetComponentInChildren<SnooperSettingsController>();//
+            texturePackController = GetComponentInChildren<TexturePackController>();//
+            languageController = GetComponentInChildren<LanguageController>();//
+            multiplayerSettingsController = GetComponentInChildren<MultiplayerSettingsController>();//
+            videoSettingsController = GetComponentInChildren<VideoSettingsController>();//
+
+            settingsController.AddListener(SettingsListener);
+            controlsController.AddListener(ControlsListener);
+            snooperSettingsController.AddListener(SnooperSettingsListener);
+            texturePackController.AddListener(TexturePackListener);
+            languageController.AddListener(LanguageListener);
+            multiplayerSettingsController.AddListener(MultiplayerSettingsListener);
+            videoSettingsController.AddListener(VideoSettingsListener);
+
+            controls.SetActive(false);
+            snooperSettings.SetActive(false);
+            texturePack.SetActive(false);
+            language.SetActive(false);
+            multiplayerSettings.SetActive(false);
+            videoSettings.SetActive(false);
         }        
         void SettingsListener(SettingsEvent @event)
         {
@@ -62,32 +85,38 @@ namespace Assets.Scripts.UI
         
         private void ControlsListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            controls.SetActive(false);
         }
 
         private void SnooperSettingsListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            snooperSettings.SetActive(false);
         }
 
         private void TexturePackListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            texturePack.SetActive(false);
         }
 
         private void LanguageListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            language.SetActive(false);
         }
 
         private void MultiplayerSettingsListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            multiplayerSettings.SetActive(false);
         }
 
         private void VideoSettingsListener()
         {
-            throw new NotImplementedException();
+            settings.SetActive(true);
+            videoSettings.SetActive(false);
         }
     }
 }
