@@ -155,7 +155,7 @@ namespace Assets.Scripts.UI
                 gameDifficulty = Difficulty.Easy;
             }
             SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            settingsManager.GetSettings().GameDifficulty = gameDifficulty;
+            settingsManager.GetSettings().Difficulty = gameDifficulty;
         }
 
         void UpdateMusicVolume(float value)

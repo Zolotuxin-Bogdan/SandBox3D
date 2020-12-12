@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.UI;
 
 namespace Assets.Scripts
 {
@@ -9,11 +10,16 @@ namespace Assets.Scripts
         /// </summary>
         /// <typeparam name="T">Enum</typeparam>
         /// <param name="id">enum value id</param>
-        /// <returns><see cref="string"/></returns>
-        public static string FromIdToString<T>(int id)
+        /// <returns><see cref="string"/> or <see cref="ArgumentOutOfRangeException"/>></returns>
+        public static T FromIdToString<T>(int id)
         {
-            var names = Enum.GetNames(typeof(T));
-            return names[id];
+            var values = System.Enum.GetValues(typeof(T));
+            if (id > values.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+            else
+                return (T)values.GetValue(id);
         }
     }
 }
