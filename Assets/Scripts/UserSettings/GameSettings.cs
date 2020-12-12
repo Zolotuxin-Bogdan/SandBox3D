@@ -13,12 +13,10 @@ namespace Assets.Scripts.UserSettings
         /// should the game be in full screen mode
         /// </summary>
         public bool IsFullscreen { get; set; }
-        public Quality ShadowQuality { get; set; }
         /// <summary>
         /// distance to draw shadows
         /// </summary>
         public Distance ShadowDistance { get; set; }
-        public Quality GraphicQuality { get; set; }
         /// <summary>
         /// game background music
         /// </summary>
@@ -35,9 +33,73 @@ namespace Assets.Scripts.UserSettings
         /// in-game mouse sensitivity, set for horizontal and vertical axis
         /// </summary>
         public float MouseSensitivity { get; set; }
-        public Difficulty GameDifficulty { get; set; }
+        /// <summary>
+        /// contain difficulty for current game 
+        /// </summary>
+        public Difficulty Difficulty { get; set; }
+        /// <summary>
+        /// Enable/Disable iverting mouse movement
+        /// </summary>
         public FlagState InvertMouse { get; set; }
+        /// <summary>
+        /// Enable/Disable touchscreen 
+        /// </summary>
         public FlagState TouchscreenMode { get; set; }
+        /// <summary>
+        /// player line of sight
+        /// </summary>
         public int FOV { get; set; }
+        /// <summary>
+        /// game shadows quality
+        /// </summary>
+        public Quality Shadows { get; set; }
+        /// <summary>
+        /// game graphic quality
+        /// </summary>
+        public Quality Graphic { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public MipmapLevels Mipmap{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Brightness Brightness { get; set; }
+        /// <summary>
+        /// max count of frames per second (121 - mean that frames count is unlimited)
+        /// </summary>
+        public int MaxFramerate { get; set; }
+        /// <summary>
+        /// world draw distance
+        /// </summary>
+        public int RenderDistance { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public BiomeBlend BiomeBlend { get; set; }
+        /// <summary>
+        /// Enable/Disable shadows entity
+        /// </summary>
+        public bool EntityShadows { get; set;}
+        /// <summary>
+        /// Enable/Disable clouds
+        /// </summary>
+        public bool Clouds { get; set; }
+        /// <summary>
+        /// Enable/Disable view bobbing
+        /// </summary>
+        public bool ViewBobbing { get; set; }
+        /// <summary>
+        /// Enable/Disable smooth lighting
+        /// </summary>
+        public bool SmoothLighting { get; set; }
+        /// <summary>
+        /// Enable/Disable vertical sync
+        /// </summary>
+        public bool UseVSync { get; set; }
+        /// <summary>
+        /// GUI size relative to original
+        /// </summary>
+        public int GUIScale { get; set; }
     }
 }
