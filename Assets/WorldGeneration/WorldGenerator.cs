@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int WorldSize { get; set; } = 100;
+    public GameObject Block;
+    //public ResourcePack ResourcePack = LoadSystem.LoadResourcePack;
+
     void Start()
     {
-        
+        GenerateWorld();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GenerateWorld()
     {
-        
+        var blocksSpawnPositions = new FlatWorldTypeGeneration(WorldSize).GetBlockPositions();
+        foreach (var blocksSpawnPosition in blocksSpawnPositions)
+        {
+            Instantiate(Block, blocksSpawnPosition, Block.transform.rotation);
+        }
     }
 }
