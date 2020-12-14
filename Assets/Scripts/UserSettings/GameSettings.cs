@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Assets.Scripts.Enums;
 using UnityEngine;
 
@@ -9,116 +10,124 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// game screen resolution
         /// </summary>
-        [Obsolete("Property ScreenResolution is deprecated and will be updated soon.", false)]
-        public Vector2 ScreenResolution { get; set; }
-        /// <summary>
-        /// distance to draw shadows
-        /// </summary>
-        [Obsolete("Property ShadowDistance is deprecated and will be removed soon.", false)]
-        public Distance ShadowDistance { get; set; }
+        public Vector2 screenResolution
+        {
+            get => screenResolution;
+            set
+            {
+                switch (value.x)
+                {
+                    case 640 when value.y.Equals(360):
+                    case 800 when value.y.Equals(600):
+                    case 1024 when value.y.Equals(768):
+                    case 1360 when value.y.Equals(768):
+                    case 1280 when value.y.Equals(800):
+                    case 1440 when value.y.Equals(900):
+                    case 1600 when value.y.Equals(900):
+                    case 1920 when value.y.Equals(1080):
+                        screenResolution = value;
+                        break;
+                }
+                if (value.x.Equals(1920) && value.y.Equals(1200))
+                {
+                    screenResolution = value;
+                }
+            }
+        }
+
         /// <summary>
         /// game background music
         /// </summary>
-        public int MusicVolume { get; set; }
+        public int musicVolume
+        {
+            get => musicVolume;
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
+                musicVolume = value;
+            }
+        }
+
         /// <summary>
         /// ambient sound volume
         /// </summary>
-        public int SfxVolume { get; set; }
+        public int sfxVolume
+        {
+            get => sfxVolume;
+            set
+            {
+                if (value < 0 ) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
+                sfxVolume = value;
+            }
+        }
+
         /// <summary>
         /// game interface language
         /// </summary>
-        public Languages Language { get; set; }
+        public Languages language
+        {
+            get => language; 
+            set
+            {
+                if (!Enum.IsDefined(typeof(Languages), value))
+                    throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(Languages));
+                language = value;
+            }
+        }
+
         /// <summary>
         /// in-game mouse sensitivity, set for horizontal and vertical axis
         /// </summary>
-        public float MouseSensitivity { get; set; }
+        public float mouseSensitivity
+        {
+            get => mouseSensitivity;
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value > 200) throw new ArgumentOutOfRangeException(nameof(value));
+                mouseSensitivity = value;
+            }
+        }
+
         /// <summary>
         /// contain difficulty for current game 
         /// </summary>
-        public Difficulty Difficulty { get; set; }
+        public Difficulty difficulty
+        {
+            get => difficulty;
+            set
+            {
+                if (!Enum.IsDefined(typeof(Difficulty), value))
+                    throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(Difficulty));
+                difficulty = value;
+            }
+        }
         /// <summary>
         /// Enable/Disable iverting mouse movement
         /// </summary>
-        public FlagState InvertMouse { get; set; }
+        public bool invertMouse { get; set; }
         /// <summary>
         /// Enable/Disable touchscreen 
         /// </summary>
-        public FlagState TouchscreenMode { get; set; }
+        public bool touchscreenMode { get; set; }
         /// <summary>
         /// player line of sight
         /// </summary>
-        public int FOV { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [Obsolete("Property Mipmap is deprecated and will be removed soon.", false)]
-        public MipmapLevels Mipmap{ get; set; }
-        /// <summary>
-        /// max count of frames per second (121 - mean that frames count is unlimited)
-        /// </summary>
-        [Obsolete("Property MaxFramerate is deprecated and will be removed soon.", false)]
-        public int MaxFramerate { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [Obsolete("Property BiomeBlend is deprecated and will be removed soon.", false)]
-        public BiomeBlend BiomeBlend { get; set; }
-        /// <summary>
-        /// Enable/Disable shadows entity
-        /// </summary>
-        [Obsolete("Property EntityShadows is deprecated and will be removed soon.", false)]
-        public bool EntityShadows { get; set;}
+        public int fov
+        {
+            get => fov;
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value > 180) throw new ArgumentOutOfRangeException(nameof(value));
+                fov = value;
+            }
+        }
 
-        // VIDEO(GRAPHIC) SETTINGS
-        
-        /// <summary>
-        /// game graphic quality
-        /// </summary>
-        public Quality graphic_quality { get; set; }
-        /// <summary>
-        /// should the game be in full screen mode
-        /// </summary>
-        public bool graphic_fullscreen { get; set; }
-        /// <summary>
-        /// brightness level of game objects
-        /// </summary>
-        public Brightness graphic_brightness { get; set; }
-        /// <summary>
-        /// world draw distance
-        /// </summary>
-        public int graphic_renderDistance { get; set; }
-        /// <summary>
-        /// Enable/Disable clouds
-        /// </summary>
-        public bool graphic_clouds { get; set; }
-        /// <summary>
-        /// Enable/Disable view bobbing
-        /// </summary>
-        public bool graphic_viewBobbing { get; set; }
-        /// <summary>
-        /// Enable/Disable smooth lighting
-        /// </summary>
-        public bool graphic_smoothLighting { get; set; }
-        /// <summary>
-        /// Enable/Disable vertical sync
-        /// </summary>
-        public bool graphic_useVSync { get; set; }
-        /// <summary>
-        /// GUI size relative to original
-        /// </summary>
-        public int graphic_guiScale { get; set; }
+        public GraphicSettings graphic;
 
-        // CHAT AND MULTIPLAYER SETTINGS
-
-        public ChatDisplayStates chat_displayState { get; set; }
-        public bool chat_allowWebLinks { get; set; }
-        public bool chat_allowPromptOnLinks { get; set; }
-        public bool chat_allowColorsInChat { get; set; }
-        public bool multiplayer_allowCape { get; set; }
-        public float chat_scale { get; set; }
-        public float chat_opacity { get; set; }
-        public float chat_unfocusedHeight { get; set; }
-        public float chat_focusedHeight { get; set; }
-        public float chat_width { get; set; }
+        public MultiplayerSettings multiplayer; 
     }
 }
