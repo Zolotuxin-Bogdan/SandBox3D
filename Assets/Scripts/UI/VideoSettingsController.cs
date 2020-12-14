@@ -74,7 +74,7 @@ namespace Assets.Scripts.UI
         {
             var value = Converter.FromIdToString<Brightness>((int)arg0);
             brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: {value}";
-            settingsManager.GetSettings().Brightness = value;
+            settingsManager.GetSettings().graphic_brightness = value;
         }
 
         private void UpdateMaxFramerate(float arg0)
@@ -90,7 +90,7 @@ namespace Assets.Scripts.UI
         private void UpdateRenderDistance(float arg0)
         {
             renderDistance.GetComponentInChildren<TextMeshProUGUI>().text = $"Render Distance: {arg0} chunks";
-            settingsManager.GetSettings().RenderDistance = (int)arg0;
+            settingsManager.GetSettings().graphic_renderDistance = (int)arg0;
         }
 
         private void UpdateBiomeBlend(float arg0)
@@ -137,12 +137,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("OFF"))
             {
                 text = "Clouds: ON";
-                settingsManager.GetSettings().Clouds = true;
+                settingsManager.GetSettings().graphic_clouds = true;
             }
             else if (text.Contains("ON"))
             {
                 text = "Clouds: OFF";
-                settingsManager.GetSettings().Clouds = false;
+                settingsManager.GetSettings().graphic_clouds = false;
             }
             clouds.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -158,12 +158,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("OFF"))
             {
                 text = "View Bobbing: ON";
-                settingsManager.GetSettings().ViewBobbing = true;
+                settingsManager.GetSettings().graphic_viewBobbing = true;
             }
             else if (text.Contains("ON"))
             {
                 text = "View Bobbing: OFF";
-                settingsManager.GetSettings().ViewBobbing = false;
+                settingsManager.GetSettings().graphic_viewBobbing = false;
             }
             viewBobbing.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -174,12 +174,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("OFF"))
             {
                 text = "Fullscreen: ON";
-                settingsManager.GetSettings().IsFullscreen = true;
+                settingsManager.GetSettings().graphic_fullscreen = true;
             }
             else if (text.Contains("ON"))
             {
                 text = "Fullscreen: OFF";
-                settingsManager.GetSettings().IsFullscreen = false;
+                settingsManager.GetSettings().graphic_fullscreen = false;
             }
             fullscreen.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -195,12 +195,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("OFF"))
             {
                 text = "Smooth Lighting: ON";
-                settingsManager.GetSettings().SmoothLighting = true;
+                settingsManager.GetSettings().graphic_smoothLighting = true;
             }
             else if (text.Contains("ON"))
             {
                 text = "Smooth Lighting: OFF";
-                settingsManager.GetSettings().SmoothLighting = false;
+                settingsManager.GetSettings().graphic_smoothLighting = false;
             }
             smoothLighting.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -211,12 +211,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("OFF"))
             {
                 text = "Use VSync: ON";
-                settingsManager.GetSettings().UseVSync = true;
+                settingsManager.GetSettings().graphic_useVSync = true;
             }
             else if (text.Contains("ON"))
             {
                 text = "Use VSync: OFF";
-                settingsManager.GetSettings().UseVSync = false;
+                settingsManager.GetSettings().graphic_useVSync = false;
             }
             useVSync.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -225,7 +225,7 @@ namespace Assets.Scripts.UI
         {
             var value = 0;
             guiScale.GetComponentInChildren<TextMeshProUGUI>().text = $"GUI Scale: {++value}";
-            settingsManager.GetSettings().GUIScale = value;
+            settingsManager.GetSettings().graphic_guiScale = value;
         }
 
         private UnityAction action;
