@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7643334622075533766}
   - component: {fileID: 9066592631009124056}
   m_Layer: 0
-  m_Name: Cobblestone
+  m_Name: SingleTextureBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8147689194977630227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.88, z: -3.07}
-  m_LocalScale: {x: 75, y: 75, z: 75}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8aafec055432ad42b0c16a211b60b71, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
