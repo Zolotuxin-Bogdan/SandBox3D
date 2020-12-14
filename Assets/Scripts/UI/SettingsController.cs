@@ -9,10 +9,6 @@ namespace Assets.Scripts.UI
     public class SettingsController: MonoBehaviour
     {
         Difficulty gameDifficulty;
-
-        FlagState touchscreenModeState;
-
-        FlagState mouseInvertState;
         
         public SettingsManager settingsManager;
         //////////////////////////////////////////////
@@ -99,87 +95,84 @@ namespace Assets.Scripts.UI
         void SwitchTouchscreenModeValue()
         {
             var text = SwitchTouchscreenModeButton.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains(FlagState.Off.ToString().ToUpper()))
+            if (text.Contains("OFF"))
             {
-                text = $"Touchscreen Mode: {FlagState.On.ToString().ToUpper()}";
-                touchscreenModeState = FlagState.On;
+                text = "Touchscreen Mode: ON";
+                settingsManager.GetSettings().touchscreenMode = true;
+                
             }
-            else if (text.Contains(FlagState.On.ToString().ToUpper()))
+            else if (text.Contains("ON"))
             {
-                text = $"Touchscreen Mode: {FlagState.Off.ToString().ToUpper()}";
-                touchscreenModeState = FlagState.Off;
+                text = "Touchscreen Mode: OFF";
+                settingsManager.GetSettings().touchscreenMode = false;
             }
-
             SwitchTouchscreenModeButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            settingsManager.GetSettings().TouchscreenMode = touchscreenModeState;
         }
 
         void SwitchMouseInvertValue()
         {
             var text = SwitchMouseInvertButton.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains(FlagState.Off.ToString().ToUpper()))
+            if (text.Contains("OFF"))
             {
-                text = $"Invert Mouse: {FlagState.On.ToString().ToUpper()}";
-                mouseInvertState = FlagState.On;
+                text = "Invert Mouse: ON";
+            settingsManager.GetSettings().invertMouse = true;
             }
-            else if (text.Contains(FlagState.On.ToString().ToUpper()))
+            else if (text.Contains("ON"))
             {
-                text = $"Invert Mouse: {FlagState.Off.ToString().ToUpper()}";
-                mouseInvertState = FlagState.Off;
+                text = "Invert Mouse: OFF";
+                settingsManager.GetSettings().invertMouse = false;
             }
             SwitchMouseInvertButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            settingsManager.GetSettings().InvertMouse = mouseInvertState;
         }
 
         void SwitchDifficulty()
         {
             var text = SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains(Difficulty.Easy.ToString()))
+            if (text.Contains("Easy"))
             {
                 text = $"Difficulty: {Difficulty.Normal}";
-                gameDifficulty = Difficulty.Normal;
+                settingsManager.GetSettings().difficulty = Difficulty.Normal;
             }
-            else if (text.Contains(Difficulty.Normal.ToString()))
+            else if (text.Contains("Normal"))
             {
                 text = $"Difficulty: {Difficulty.Hard}";
-                gameDifficulty = Difficulty.Hard;
+                settingsManager.GetSettings().difficulty = Difficulty.Hard;
             }
-            else if (text.Contains(Difficulty.Hard.ToString()))
+            else if (text.Contains("Hard"))
             {
                 text = $"Difficulty: {Difficulty.Peaceful}";
-                gameDifficulty = Difficulty.Peaceful;
+                settingsManager.GetSettings().difficulty = Difficulty.Peaceful;
             }
-            else if (text.Contains(Difficulty.Peaceful.ToString()))
+            else if (text.Contains("Peaceful"))
             {
                 text = $"Difficulty: {Difficulty.Easy}";
-                gameDifficulty = Difficulty.Easy;
+                settingsManager.GetSettings().difficulty = Difficulty.Easy;
             }
             SwitchDifficultyButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            settingsManager.GetSettings().Difficulty = gameDifficulty;
         }
 
         void UpdateMusicVolume(float value)
         {
             MusicVolumeSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Music: {value}%";
-            settingsManager.GetSettings().MusicVolume = (int)value;
+            settingsManager.GetSettings().musicVolume = (int)value;
         }
         
         void UpdateSoundVolume(float value)
         {
             SoundVolumeSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Sound: {value}%";
-            settingsManager.GetSettings().SfxVolume = (int)value;
+            settingsManager.GetSettings().sfxVolume = (int)value;
         }
         
         void UpdateSensitivityValue(float value)
         {
             SensitivityValueSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"Sensitivity: {value}%";
-            settingsManager.GetSettings().MouseSensitivity = value;
+            settingsManager.GetSettings().mouseSensitivity = value;
         }
         
         void UpdateFovValue(float value)
         {
             FovValueSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"FOV: {value}";
-            settingsManager.GetSettings().FOV = (int)value;
+            settingsManager.GetSettings().fov = (int)value;
         }
         //////////////////////////////////////////////
         ////////////////////Action///////////////////

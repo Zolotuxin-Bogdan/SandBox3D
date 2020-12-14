@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Enums;
-using Assets.Scripts.UserSettings;
+﻿using Assets.Scripts.UserSettings;
 using UnityEngine;
 
 namespace Assets.Scripts

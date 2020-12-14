@@ -51,17 +51,17 @@ namespace Assets.Scripts.UI
             if (text.Contains("Shown"))
             {
                 text = "Chat: Commands Only";
-                settings.GetSettings().chat_displayState = ChatDisplayStates.CommandsOnly;
+                settings.GetSettings().multiplayer.displayState = ChatDisplayStates.CommandsOnly;
             }
             else if (text.Contains("Commands Only"))
             {
                 text = "Chat: Hidden";
-                settings.GetSettings().chat_displayState = ChatDisplayStates.Hidden;
+                settings.GetSettings().multiplayer.displayState = ChatDisplayStates.Hidden;
             }
             else if (text.Contains("Hidden"))
             {
                 text = "Chat: Shown";
-                settings.GetSettings().chat_displayState = ChatDisplayStates.Shown;
+                settings.GetSettings().multiplayer.displayState = ChatDisplayStates.Shown;
             }
             ChatState.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -72,12 +72,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("ON"))
             {
                 text = "Web Links: OFF";
-                settings.GetSettings().chat_allowWebLinks = false;
+                settings.GetSettings().multiplayer.allowWebLinks = false;
             }
             else if (text.Contains("OFF"))
             {
                 text = "Web Links: ON";
-                settings.GetSettings().chat_allowWebLinks = true;
+                settings.GetSettings().multiplayer.allowWebLinks = true;
             }
             WebLinks.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -88,12 +88,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("ON"))
             {
                 text = "Prompt on Links: OFF";
-                settings.GetSettings().chat_allowPromptOnLinks = false;
+                settings.GetSettings().multiplayer.allowPromptOnLinks = false;
             }
             else if (text.Contains("OFF"))
             {
                 text = "Prompt on Links: ON";
-                settings.GetSettings().chat_allowPromptOnLinks = true;
+                settings.GetSettings().multiplayer.allowPromptOnLinks = true;
             }
             PromptOnLinks.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -104,12 +104,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("ON"))
             {
                 text = "Colors: OFF";
-                settings.GetSettings().chat_allowColorsInChat = false;
+                settings.GetSettings().multiplayer.allowColorsInChat = false;
             }
             else if (text.Contains("OFF"))
             {
                 text = "Colors: ON";
-                settings.GetSettings().chat_allowColorsInChat = true;
+                settings.GetSettings().multiplayer.allowColorsInChat = true;
             }
             Colors.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -120,12 +120,12 @@ namespace Assets.Scripts.UI
             if (text.Contains("ON"))
             {
                 text = "Show Cape: OFF";
-                settings.GetSettings().multiplayer_allowCape = false;
+                settings.GetSettings().multiplayer.allowCape = false;
             }
             else if (text.Contains("OFF"))
             {
                 text = "Show Cape: ON";
-                settings.GetSettings().multiplayer_allowCape = true;
+                settings.GetSettings().multiplayer.allowCape = true;
             }
             Colors.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
@@ -133,7 +133,7 @@ namespace Assets.Scripts.UI
         private void UpdateOpacity(float arg0)
         {
             Opacity.GetComponentInChildren<TextMeshProUGUI>().text = $"Opacity: {arg0}%";
-            settings.GetSettings().chat_opacity = arg0;
+            settings.GetSettings().multiplayer.opacity = arg0;
         }
 
         private void UpdateScale(float arg0)
@@ -142,25 +142,25 @@ namespace Assets.Scripts.UI
                 Scale.GetComponentInChildren<TextMeshProUGUI>().text = "Scale: OFF";
             else 
                 Scale.GetComponentInChildren<TextMeshProUGUI>().text = $"Scale: {arg0}%";
-            settings.GetSettings().chat_scale = arg0;
+            settings.GetSettings().multiplayer.scale = arg0;
         }
 
         private void UpdateUnfocusedHeight(float arg0)
         {
             UnfocusedHeight.GetComponentInChildren<TextMeshProUGUI>().text = $"Unfocused Height: {arg0}px";
-            settings.GetSettings().chat_unfocusedHeight = arg0;
+            settings.GetSettings().multiplayer.unfocusedHeight = arg0;
         }
 
         private void UpdateFocusedHeight(float arg0)
         {
             FocusedHeight.GetComponentInChildren<TextMeshProUGUI>().text = $"Focused Height: {arg0}%";
-            settings.GetSettings().chat_focusedHeight = arg0;
+            settings.GetSettings().multiplayer.focusedHeight = arg0;
         }
 
         private void UpdateWidth(float arg0)
         {
             Width.GetComponentInChildren<TextMeshProUGUI>().text = $"Width: {arg0}%";
-            settings.GetSettings().chat_width = arg0;
+            settings.GetSettings().multiplayer.width = arg0;
         }
 
         private UnityAction action;
