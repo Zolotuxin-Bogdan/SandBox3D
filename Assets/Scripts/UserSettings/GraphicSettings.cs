@@ -11,12 +11,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public Quality quality
         {
-            get => quality;
+            get => _quality;
             set
             {
                 if (!Enum.IsDefined(typeof(Quality), value))
                     throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(Quality));
-                quality = value;
+                _quality = value;
             }
         }
         /// <summary>
@@ -28,12 +28,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public float brightness
         {
-            get => brightness;
+            get => _brightness;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
-                brightness = value;
+                _brightness = value;
             }
         }
 
@@ -42,12 +42,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public int renderDistance
         {
-            get => renderDistance;
+            get => _renderDistance;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 16) throw new ArgumentOutOfRangeException(nameof(value));
-                renderDistance = value;
+                _renderDistance = value;
             }
         }
 
@@ -72,12 +72,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public int guiScale
         {
-            get => guiScale;
+            get => _guiScale;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 6) throw new ArgumentOutOfRangeException(nameof(value));
-                guiScale = value;
+                _guiScale = value;
             }
         }
 
@@ -86,12 +86,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public float mipmap
         {
-            get => mipmap;
+            get => _mipmap;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 4) throw new ArgumentOutOfRangeException(nameof(value));
-                mipmap = value;
+                _mipmap = value;
             }
         }
 
@@ -100,12 +100,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public int maxFramerate
         {
-            get => maxFramerate;
+            get => _maxFramerate;
             set
             {
-                if (value < 10) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 121) throw new ArgumentOutOfRangeException(nameof(value));
-                maxFramerate = value;
+                _maxFramerate = value;
             }
         }
 
@@ -114,12 +114,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public BiomeBlend biomeBlend
         {
-            get => biomeBlend;
+            get => _biomeBlend;
             set
             {
                 if (!Enum.IsDefined(typeof(BiomeBlend), value))
                     throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(BiomeBlend));
-                biomeBlend = value;
+                _biomeBlend = value;
             }
         }
 
@@ -127,5 +127,13 @@ namespace Assets.Scripts.UserSettings
         /// Enable/Disable shadows entity
         /// </summary>
         public bool entityShadows { get; set;}
+
+        Quality _quality;
+        float _brightness;
+        int _renderDistance;
+        int _guiScale;
+        float _mipmap;
+        int _maxFramerate;
+        BiomeBlend _biomeBlend;
     }
 }

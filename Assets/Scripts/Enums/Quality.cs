@@ -2,8 +2,8 @@
 {
     public enum Quality
     {
-        Low,
-        Medium,
+        Fast,
+        Fancy,
         High
     }
 }

@@ -12,7 +12,7 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public Vector2 screenResolution
         {
-            get => screenResolution;
+            get => _screenResolution;
             set
             {
                 switch (value.x)
@@ -25,27 +25,26 @@ namespace Assets.Scripts.UserSettings
                     case 1440 when value.y.Equals(900):
                     case 1600 when value.y.Equals(900):
                     case 1920 when value.y.Equals(1080):
-                        screenResolution = value;
+                        _screenResolution = value;
                         break;
                 }
                 if (value.x.Equals(1920) && value.y.Equals(1200))
                 {
-                    screenResolution = value;
+                    _screenResolution = value;
                 }
             }
         }
-
         /// <summary>
         /// game background music
         /// </summary>
         public int musicVolume
         {
-            get => musicVolume;
+            get => _musicVolume;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
-                musicVolume = value;
+                _musicVolume = value;
             }
         }
 
@@ -54,12 +53,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public int sfxVolume
         {
-            get => sfxVolume;
+            get => _sfxVolume;
             set
             {
                 if (value < 0 ) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
-                sfxVolume = value;
+                _sfxVolume = value;
             }
         }
 
@@ -68,26 +67,26 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public Languages language
         {
-            get => language; 
+            get => _language; 
             set
             {
                 if (!Enum.IsDefined(typeof(Languages), value))
                     throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(Languages));
-                language = value;
+                _language = value;
             }
         }
-
+        
         /// <summary>
         /// in-game mouse sensitivity, set for horizontal and vertical axis
         /// </summary>
         public float mouseSensitivity
         {
-            get => mouseSensitivity;
+            get => _mouseSensitivity;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 200) throw new ArgumentOutOfRangeException(nameof(value));
-                mouseSensitivity = value;
+                _mouseSensitivity = value;
             }
         }
 
@@ -96,12 +95,12 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public Difficulty difficulty
         {
-            get => difficulty;
+            get => _difficulty;
             set
             {
                 if (!Enum.IsDefined(typeof(Difficulty), value))
                     throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(Difficulty));
-                difficulty = value;
+                _difficulty = value;
             }
         }
         /// <summary>
@@ -117,17 +116,24 @@ namespace Assets.Scripts.UserSettings
         /// </summary>
         public int fov
         {
-            get => fov;
+            get => _fov;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 180) throw new ArgumentOutOfRangeException(nameof(value));
-                fov = value;
+                _fov = value;
             }
         }
 
-        public GraphicSettings graphic;
+        public GraphicSettings graphic = new GraphicSettings();
+        public MultiplayerSettings multiplayer = new MultiplayerSettings();
 
-        public MultiplayerSettings multiplayer; 
+        Vector2 _screenResolution;
+        int _musicVolume;
+        int _sfxVolume;
+        Languages _language;
+        float _mouseSensitivity;
+        Difficulty _difficulty;
+        int _fov;
     }
 }

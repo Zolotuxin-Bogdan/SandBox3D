@@ -2,6 +2,13 @@
 {
     public enum BiomeBlend
     {
-        Fastest
+        Fastest,
+        Fast,
+        Normal,
+        High,
+        Very_High,
+        Extreme,
+        Showoff,
+        Maximum
     }
 }

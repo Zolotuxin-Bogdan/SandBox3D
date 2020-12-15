@@ -8,12 +8,12 @@ namespace Assets.Scripts.UserSettings
     {
         public ChatDisplayStates displayState
         {
-            get => displayState;
+            get => _displayState;
             set
             {
                 if (!Enum.IsDefined(typeof(ChatDisplayStates), value))
                     throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(ChatDisplayStates));
-                displayState = value;
+                _displayState = value;
             }
         }
 
@@ -23,57 +23,63 @@ namespace Assets.Scripts.UserSettings
         public bool allowCape { get; set; }
         public float scale
         {
-            get => scale;
+            get => _scale;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
-                scale = value;
+                _scale = value;
             }
         }
 
         public float opacity
         {
-            get => opacity;
+            get => _opacity;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 100) throw new ArgumentOutOfRangeException(nameof(value));
-                opacity = value;
+                _opacity = value;
             }
         }
 
         public float unfocusedHeight
         {
-            get => unfocusedHeight;
+            get => _unfocusedHeight;
             set
             {
                 if (value < 20) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 180) throw new ArgumentOutOfRangeException(nameof(value));
-                unfocusedHeight = value;
+                _unfocusedHeight = value;
             }
         }
 
         public float focusedHeight
         {
-            get => focusedHeight;
+            get => _focusedHeight;
             set
             {
                 if (value < 20) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 180) throw new ArgumentOutOfRangeException(nameof(value));
-                focusedHeight = value;
+                _focusedHeight = value;
             }
         }
 
         public float width
         {
-            get => width;
+            get => _width;
             set
             {
                 if (value < 40) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 320) throw new ArgumentOutOfRangeException(nameof(value));
-                width = value;
+                _width = value;
             }
         }
+        ChatDisplayStates _displayState;
+        float _scale;
+        float _opacity;
+        float _unfocusedHeight;
+        float _focusedHeight;
+        float _width;
     }
 }
