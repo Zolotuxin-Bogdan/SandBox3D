@@ -1,23 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
     public int WorldSize { get; set; } = 100;
-    public GameObject Block;
-    //public ResourcePack ResourcePack = LoadSystem.LoadResourcePack;
+    public ResourcePack ResourcePack;
 
-    void Start()
+    public void LoadResourcePack()
     {
-        GenerateWorld();
+        ResourcePack = ResourcePackStorageProvider.Instance.LoadResourcePack();
+
     }
     public void GenerateWorld()
     {
-        var blocksSpawnPositions = new FlatWorldTypeGeneration(WorldSize).GetBlockPositions();
-        foreach (var blocksSpawnPosition in blocksSpawnPositions)
+        var blockDtoList = new FlatWorldTypeGeneration(WorldSize).GetBlocksDto();
+        foreach (var blockDto in blockDtoList)
         {
-            Instantiate(Block, blocksSpawnPosition, Block.transform.rotation);
+            var blockInfo = ResourcePack.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
+            var createdBlock = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()), blockDto.Position, Quaternion.identity);
+            createdBlock.GetComponent<Renderer>().material = blockInfo.BlockMaterial;
         }
     }
 }

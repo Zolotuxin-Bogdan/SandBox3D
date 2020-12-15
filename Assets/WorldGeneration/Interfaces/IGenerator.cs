@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IGenerator
 {
-    List<Vector3> GetBlockPositions();
+    List<BlockDto> GetBlocksDto();
 }
