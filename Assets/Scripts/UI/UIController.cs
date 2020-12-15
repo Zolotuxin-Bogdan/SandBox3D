@@ -12,7 +12,8 @@ namespace Assets.Scripts.UI
         public GameObject language;
         public GameObject multiplayerSettings;
         public GameObject videoSettings;
-        
+        public SettingsManager settingsManager;
+
         SettingsController settingsController;
         ControlsController controlsController;
         SnooperSettingsController snooperSettingsController;
@@ -77,6 +78,7 @@ namespace Assets.Scripts.UI
                     break;
                 case SettingsEvent.DoneClicked:
                     settings.SetActive(false);
+                    settingsManager.SaveSettings();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event), @event, null);

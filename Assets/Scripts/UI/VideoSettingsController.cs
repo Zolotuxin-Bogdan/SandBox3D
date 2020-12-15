@@ -33,6 +33,7 @@ namespace Assets.Scripts.UI
 
 
         Resolutions resolutions;
+        int scale;
         //Unity Start Message
         void Start()
         {
@@ -56,6 +57,7 @@ namespace Assets.Scripts.UI
             maxFramerate.onValueChanged.AddListener(UpdateMaxFramerate);
             brightness.onValueChanged.AddListener(UpdateBrightness);
             mipmapLevels.onValueChanged.AddListener(UpdateMipmapLevels);
+            scale = settingsManager.GetSettings().graphic.guiScale;
         }
 
         private void Submit()
@@ -65,15 +67,22 @@ namespace Assets.Scripts.UI
 
         private void UpdateMipmapLevels(float arg0)
         { 
-            //var value = Converter.FromIdToString<MipmapLevels>((int)arg0);
-            mipmapLevels.GetComponentInChildren<TextMeshProUGUI>().text = $"Mipmap Levels: {arg0}";
+            if (arg0 < 1)
+                mipmapLevels.GetComponentInChildren<TextMeshProUGUI>().text = $"Mipmap Levels: OFF";
+            else            
+                mipmapLevels.GetComponentInChildren<TextMeshProUGUI>().text = $"Mipmap Levels: {arg0}";
             settingsManager.GetSettings().graphic.mipmap = arg0;
         }
 
         private void UpdateBrightness(float arg0)
         {
             //var value = Converter.FromIdToString<Brightness>((int)arg0);
-            brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: {arg0}";
+            if (arg0 < 1)
+                brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: Moody";
+            else if (arg0 > 99)
+                brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: Bright";    
+            else
+                brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: +{arg0}%";
             settingsManager.GetSettings().graphic.brightness = arg0;
         }
 
@@ -106,7 +115,7 @@ namespace Assets.Scripts.UI
         private void UpdateResolution(float arg0)
         {
             var value = ((int x, int y))resolutions.resTuple.GetValue((int)arg0);
-            resolution.GetComponentInChildren<TextMeshProUGUI>().text = $"{value.x}x{value.y}";
+            resolution.GetComponentInChildren<TextMeshProUGUI>().text = $"Resolution: {value.x}x{value.y}";
             settingsManager.GetSettings().screenResolution = new Vector2(value.x, value.y);
         }
 
@@ -128,7 +137,20 @@ namespace Assets.Scripts.UI
 
         private void UpdateParticles()
         {
-            throw new System.NotImplementedException();
+            var text = particles.GetComponentInChildren<TextMeshProUGUI>().text;
+            if (text.Contains("Decreast"))
+            {
+                text = $"Graphics: {ParticlesMode.Minimal}";
+            }
+            else if (text.Contains("Minimal"))
+            {
+                text = $"Graphics: {ParticlesMode.All}";
+            }
+            else if (text.Contains("All"))
+            {
+                text = $"Graphics: {ParticlesMode.Decreast}";
+            }
+            particles.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
 
         private void UpdateClouds()
@@ -149,7 +171,20 @@ namespace Assets.Scripts.UI
 
         private void UpdateAttackIndicator()
         {
-            throw new System.NotImplementedException();
+           var text = attackIndicator.GetComponentInChildren<TextMeshProUGUI>().text;
+            if (text.Contains("OFF"))
+            {
+                text = "Attack Indicator: Crosshair";
+            }
+            else if (text.Contains("Crosshair"))
+            {
+                text = "Attack Indicator: Hotbar";;
+            }
+            else if (text.Contains("Hotbar"))
+            {
+                text = "Attack Indicator: OFF";;
+            }
+            attackIndicator.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
 
         private void UpdateViewBobbing()
@@ -186,7 +221,23 @@ namespace Assets.Scripts.UI
 
         void UpdateGraphics()
         {
-
+            var text = graphics.GetComponentInChildren<TextMeshProUGUI>().text;
+            if (text.Contains("High"))
+            {
+                text = $"Graphics: {Quality.Fast}";
+                settingsManager.GetSettings().graphic.quality = Quality.Fast;
+            }
+            else if (text.Contains("Low"))
+            {
+                text = $"Graphics: {Quality.Fancy}";
+                settingsManager.GetSettings().graphic.quality = Quality.Fancy;
+            }
+            else if (text.Contains("Medium"))
+            {
+                text = $"Graphics: {Quality.High}";
+                settingsManager.GetSettings().graphic.quality = Quality.High;
+            }
+            graphics.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
 
         void UpdateSmoothLighting()
@@ -223,9 +274,13 @@ namespace Assets.Scripts.UI
 
         void UpdateGUIScale()
         {
-            var value = 0;
-            guiScale.GetComponentInChildren<TextMeshProUGUI>().text = $"GUI Scale: {++value}";
-            settingsManager.GetSettings().graphic.guiScale = value;
+            scale++;
+            if (scale > 3)
+            {
+                scale = 1;
+            }
+            guiScale.GetComponentInChildren<TextMeshProUGUI>().text = $"GUI Scale: {scale}";
+            settingsManager.GetSettings().graphic.guiScale = scale;
         }
 
         private UnityAction action;
