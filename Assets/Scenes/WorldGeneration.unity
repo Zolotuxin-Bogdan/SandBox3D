@@ -541,7 +541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -470.5, y: -244.5}
+  m_AnchoredPosition: {x: -370.9, y: -176.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &955517287
@@ -673,7 +673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: -209}
+  m_AnchoredPosition: {x: -371.4, y: -141.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072962000
@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 1154147823}
   - component: {fileID: 1154147822}
   - component: {fileID: 1154147821}
+  - component: {fileID: 1154147825}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -841,6 +842,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154147825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154147820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6334ee6d18cf814c81022cb784b2b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SingleTextureBlockMaterial: {fileID: 2100000, guid: 81f93698723c95d44ac088faaedcf5ab, type: 2}
 --- !u!1 &1466450203
 GameObject:
   m_ObjectHideFlags: 0

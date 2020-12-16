@@ -1,4 +1,4 @@
-﻿public enum BlockTypes
+﻿public enum BlockType
 {
     SingleTexture,
     Liquid

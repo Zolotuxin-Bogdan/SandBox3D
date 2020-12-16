@@ -14,25 +14,20 @@ public class FlatWorldTypeGeneration : IGenerator
     public List<BlockDto> GetBlocksDto()
     {
         var blockDtoList = new List<BlockDto>();
-        var blockDto = new BlockDto()
-        {
-            BlockId = 0,
-            Position = _spawnPosition
-        };
-        blockDtoList.Add(blockDto);
         for (var x = 0; x < _worldSize; x++)
         {
+            BlockDto blockDto;
             for (var z = 0; z < _worldSize; z++)
             {
                 _spawnPosition.z = z;
-                blockDto.Position = _spawnPosition;
+                blockDto = new BlockDto()
+                {
+                    BlockId = 0,
+                    Position = _spawnPosition
+                }; ;
                 blockDtoList.Add(blockDto);
             }
-
-            _spawnPosition.z = 0;
-            _spawnPosition.x = x;
-            blockDto.Position = _spawnPosition;
-            blockDtoList.Add(blockDto);
+            _spawnPosition.x = x+1;
         }
 
         return blockDtoList;

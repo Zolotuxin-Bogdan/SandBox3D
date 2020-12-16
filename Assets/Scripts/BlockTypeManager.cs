@@ -5,6 +5,9 @@ public class BlockTypeManager : MonoBehaviour
 {
     public static BlockTypeManager Instance { get; private set; }
 
+    //
+    // Block Types
+    //
     public GameObject SingleTextureBlock;
 
     private Dictionary<string, GameObject> _typeDictionary = new Dictionary<string, GameObject>();
@@ -21,7 +24,7 @@ public class BlockTypeManager : MonoBehaviour
     }
     void Start()
     {
-        _typeDictionary.Add(BlockTypes.SingleTexture.ToString(), SingleTextureBlock);
+        _typeDictionary.Add(BlockType.SingleTexture.ToString(), SingleTextureBlock);
     }
     public GameObject GetBlockTypeByName(string typeName)
     {

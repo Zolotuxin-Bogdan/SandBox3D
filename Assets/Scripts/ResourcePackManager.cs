@@ -5,11 +5,6 @@ public class ResourcePackManager : MonoBehaviour
 {
     public static ResourcePackManager Instance { get; private set; }
 
-    
-    //
-    // Materials
-    //
-    public Material cobblestoneMaterial;
 
     void Awake()
     {
@@ -27,13 +22,15 @@ public class ResourcePackManager : MonoBehaviour
 
     public ResourcePack CreateResourcePack()
     {
+        var texturesDefaultPath = Directory.GetCurrentDirectory() + "\\Textures" + "\\Default\\";
         var resourcePack = new ResourcePack();
         var cobblestone = new Block()
         {
             BlockId = 0,
             BlockName = "Cobblestone",
-            BlockTypeName = BlockTypes.SingleTexture,
-            BlockMaterial = cobblestoneMaterial
+            BlockTypeName = BlockType.SingleTexture,
+            BlockMaterialType = MaterialType.SingleTextureMaterial,
+            BlockTexturePath = texturesDefaultPath + "cobblestone.png"
         };
         resourcePack.Blocks.Add(cobblestone);
 
