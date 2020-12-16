@@ -124,7 +124,8 @@ namespace Assets.Scripts.UserSettings
                 _fov = value;
             }
         }
-
+        public string pathToTexturePack { get; set; }
+                
         public GraphicSettings graphic = new GraphicSettings();
         public MultiplayerSettings multiplayer = new MultiplayerSettings();
 
