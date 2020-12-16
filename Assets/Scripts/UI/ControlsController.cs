@@ -7,6 +7,7 @@ namespace Assets.Scripts.UI
 {
     public class ControlsController: MonoBehaviour
     {
+        public GameObject Item;
         public Button Done;
 
         private void Start() {

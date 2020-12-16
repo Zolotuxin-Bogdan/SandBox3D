@@ -1,18 +1,19 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.UserSettings;
+using UnityEngine;
 public class InputSystem
 {
-    private KeyboardBindings _bindings;
+    private MovementKeyBindings _movementBindings;
     public InputSystem()
     {
-        _bindings = new KeyboardBindings();
+        _movementBindings = new MovementKeyBindings();
     }
     public float GetHorizontalMovementValue()
     {
-        if(Input.GetKey(_bindings.KeyRight))
+        if(Input.GetKey(_movementBindings.KeyRight.keyCode))
         {
             return 1f;
         }
-        if (Input.GetKey(_bindings.KeyLeft))
+        if (Input.GetKey(_movementBindings.KeyLeft.keyCode))
         {
             return -1f;
         }
@@ -21,11 +22,11 @@ public class InputSystem
 
     public float GetVerticalMovementValue()
     {
-        if (Input.GetKey(_bindings.KeyForward))
+        if (Input.GetKey(_movementBindings.KeyForward.keyCode))
         {
             return 1f;
         }
-        if (Input.GetKey(_bindings.KeyBack))
+        if (Input.GetKey(_movementBindings.KeyBack.keyCode))
         {
             return -1f;
         }
@@ -34,12 +35,7 @@ public class InputSystem
 
     public bool IsJumpKeyPressed()
     {
-        return Input.GetKey(_bindings.KeyJump);
-    }
-
-    public bool IsLeftShiftPressed()
-    {
-        return Input.GetKey(_bindings.KeyLeftShift);
+        return Input.GetKey(_movementBindings.KeyJump.keyCode);
     }
 
     public float GetMouseYAxis()
@@ -54,18 +50,5 @@ public class InputSystem
 
     public float GetMouseWheelAxisValue(){
         return Input.GetAxis("Mouse ScrollWheel");
-    }
-
-    public float GetIncline()
-    {
-        if (Input.GetKey(_bindings.KeyLeftIncline))
-        {
-            return 1f;
-        }
-        if (Input.GetKey(_bindings.KeyRightIncline))
-        {
-            return -1f;
-        }
-        return 0f;
     }
 }
