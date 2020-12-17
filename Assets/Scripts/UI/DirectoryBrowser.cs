@@ -16,41 +16,41 @@ using UnityEngine;
  *
  *  //another code
  *  
- *  DirectoryBrowser explorer;
- *  bool drawExplorer;
- *  public string path;
- *  public Texture2D directoryIcon;
- *  
- *  private void SomeButtonCallback()
- *  {
- *     drawExplorer = true;
- *  }
- *  
- *  private void OnGUI()
- *  {
- *     if (explorer != null)
- *         explorer.OnGUI();
- *     else
- *         OnGUIMain();
- *  }
- *  
- *  private void OnGUIMain()
- *  {
- *      if (drawExplorer)
- *      {
- *          explorer = new DirectoryBrowser(
- *              "Choose folder...",
- *              new Rect(100, 100, 600, 500),
- *              FileSelectCallback
- *          );
- *      }
- *  }
- *  
- *  private void FileSelectCallback(string path)
- *  {
- *      explorer = null;
- *      this.path = path;
- *  }
+ * DirectoryBrowser explorer;
+ * bool drawExplorer;
+ * public string path;
+ * public Texture2D directoryIcon;
+   
+ * private void SomeButtonCallback()
+ * {
+ *    drawExplorer = true;
+ * }
+   
+ * private void OnGUI()
+ * {
+ *    if (explorer != null)
+ *        explorer.OnGUI();
+ *    else
+ *        OnGUIMain();
+ * }
+   
+ * private void OnGUIMain()
+ * {
+ *     if (drawExplorer)
+ *     {
+ *         explorer = new DirectoryBrowser(
+ *             "Choose folder...",
+ *             new Rect(100, 100, 600, 500),
+ *             FileSelectCallback
+ *         );
+ *     }
+ * }
+   
+ * private void FileSelectCallback(string path)
+ * {
+ *     explorer = null;
+ *     this.path = path;
+ * }
  *
  */
 
@@ -95,10 +95,11 @@ public class DirectoryBrowser
     protected FinishedCallback callback;
 
     /// <summary>
-    /// FileBrowser constructor
+    /// DirectoryBrowser constructor
     /// </summary>
     /// <param name="title">window title</param>
     /// <param name="screenRect">window rect</param>
+    /// <param name="callback">callback listener</param>
     public DirectoryBrowser(string title, Rect screenRect, FinishedCallback callback)
     {
         this.title = title;
@@ -107,9 +108,9 @@ public class DirectoryBrowser
         SwitchDirectory(Directory.GetCurrentDirectory());
     }
 
-    protected void SwitchDirectory([NotNull]string directory)
+    protected void SwitchDirectory(string directory)
     {
-        if (currentDirectory == directory)
+        if (directory == null || currentDirectory == directory)
             return;
         currentDirectory = directory;
         scrollPosition = Vector2.zero;
@@ -136,10 +137,10 @@ public class DirectoryBrowser
         directoriesWithIcons = bufferList.ToArray();
         bufferList.Clear();
     }
-
+    
     public void OnGUI() 
     {
-        string parentDirectoryName = "";
+        string parentDirectoryName = null;
         GUILayout.BeginArea(
             screenRect,
             title,
@@ -154,6 +155,7 @@ public class DirectoryBrowser
 		        		for (int i = currentDirectoryParts.Length - 1; i > parentIndex; --i) {
 		        			parentDirectoryName = Path.GetDirectoryName(parentDirectoryName);
 		        		}
+                        SwitchDirectory(parentDirectoryName);
     	        	}
 		        }
                 GUILayout.FlexibleSpace();
@@ -169,12 +171,14 @@ public class DirectoryBrowser
                 selectedDirectory = GUILayout.SelectionGrid(
                     selectedDirectory,
                     directoriesWithIcons,
-                    1
+                    1,
+                    centeredText
                 );
-                if (selectedDirectory > -1)
-                {
-                    callback(Path.Combine(currentDirectory, directories[selectedDirectory]));
-                }
+                 if (selectedDirectory > -1)
+                 {
+                    SwitchDirectory(directories[selectedDirectory]);
+                    //  callback(Path.Combine(currentDirectory, directories[selectedDirectory]));
+                 }
                 GUI.enabled = true;
             GUILayout.EndScrollView();
             GUILayout.BeginHorizontal();
