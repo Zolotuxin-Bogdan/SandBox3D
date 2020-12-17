@@ -23,11 +23,13 @@ namespace Assets.Scripts.UI
 
         string texturePackPath;
         string[] directories; 
+        List<string> loadedDirectories;
         string selectedDirectory = "";
         private void Start() {
             Done.onClick.AddListener(Submit);
             RefreshList.onClick.AddListener(Refresh);
             texturePackPath = Application.dataPath + "\\texturepacks\\";
+            loadedDirectories = new List<string>();
         }
 
         private void Refresh()
@@ -42,12 +44,15 @@ namespace Assets.Scripts.UI
             {
                 if (directories[i] == selectedDirectory)
                     continue;
+                if (loadedDirectories.Contains(directories[i].Remove(0, texturePackPath.Length)))
+                    continue;
                 CreateTextObject(i, directories[i].Remove(0, texturePackPath.Length), AvailableTexturePacks.content.transform);                
             }
         }
 
         void CreateTextObject(int id, string text, Transform parent)
         {
+            loadedDirectories.Add(text);
             var newItem = Instantiate(Item);
             var labels = newItem.GetComponentsInChildren<TextMeshProUGUI>();
             labels[0].text = text;
@@ -56,8 +61,15 @@ namespace Assets.Scripts.UI
             newItem.SetActive(true);
             newItem.AddComponent<Button>().onClick.AddListener(
                 () => {
-                    settings.GetSettings().pathToTexturePack = selectedDirectory = directories[id];
-                    newItem.transform.SetParent(SelectedTexturePacks.content.transform);
+                    if (newItem.transform.parent.Equals(SelectedTexturePacks.content.transform))
+                    {
+                        settings.GetSettings().pathToTexturePack = selectedDirectory = "";
+                        newItem.transform.SetParent(parent);    
+                    }else if (SelectedTexturePacks.content.childCount < 2) 
+                    {
+                        settings.GetSettings().pathToTexturePack = selectedDirectory = directories[id];
+                        newItem.transform.SetParent(SelectedTexturePacks.content.transform);
+                    }
                 }
             );
         }
