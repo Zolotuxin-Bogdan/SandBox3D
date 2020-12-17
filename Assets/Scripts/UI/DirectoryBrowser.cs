@@ -71,7 +71,8 @@ public class DirectoryBrowser
             {
                 centeredText = new GUIStyle(GUI.skin.label);
                 centeredText.alignment = TextAnchor.MiddleLeft;
-                centeredText.fixedHeight = GUI.skin.button.fixedHeight;
+                centeredText.margin = new RectOffset(10, 0, 4, 0);
+                //centeredText.fixedHeight = GUI.skin.button.fixedHeight;
             }
             return centeredText;
         }
@@ -132,8 +133,8 @@ public class DirectoryBrowser
 
     protected void BuildContent()
     {
-        List<GUIContent> bufferList = directories.Select(dir => new GUIContent {text = dir, image = DirectoryIcon}).ToList();
-
+        List<GUIContent> bufferList = directories.Select(dir => new GUIContent {text = new DirectoryInfo(dir).Name, image = DirectoryIcon}).ToList();
+        
         directoriesWithIcons = bufferList.ToArray();
         bufferList.Clear();
     }
@@ -172,7 +173,7 @@ public class DirectoryBrowser
                     selectedDirectory,
                     directoriesWithIcons,
                     1,
-                    centeredText
+                    CenteredText
                 );
                  if (selectedDirectory > -1)
                  {
