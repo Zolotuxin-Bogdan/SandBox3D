@@ -106,11 +106,11 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// Enable/Disable iverting mouse movement
         /// </summary>
-        public bool invertMouse { get; set; }
+        public bool invertMouse { get; set; } = false;
         /// <summary>
         /// Enable/Disable touchscreen 
         /// </summary>
-        public bool touchscreenMode { get; set; }
+        public bool touchscreenMode { get; set; } = false;
         /// <summary>
         /// player line of sight
         /// </summary>
@@ -129,12 +129,12 @@ namespace Assets.Scripts.UserSettings
         public GraphicSettings graphic = new GraphicSettings();
         public MultiplayerSettings multiplayer = new MultiplayerSettings();
 
-        Vector2 _screenResolution;
-        int _musicVolume;
-        int _sfxVolume;
-        Languages _language;
-        float _mouseSensitivity;
-        Difficulty _difficulty;
-        int _fov;
+        Vector2 _screenResolution = new Vector2(new Resolution().width, new Resolution().height);
+        int _musicVolume = 100;
+        int _sfxVolume = 100;
+        Languages _language = Languages.Russian;
+        float _mouseSensitivity = 100;
+        Difficulty _difficulty = Difficulty.Normal;
+        int _fov = 85;
     }
 }

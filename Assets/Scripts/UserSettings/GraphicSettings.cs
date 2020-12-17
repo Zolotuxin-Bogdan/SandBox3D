@@ -22,11 +22,11 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// should the game be in full screen mode
         /// </summary>
-        public bool fullscreen { get; set; }
+        public bool fullscreen { get; set; } = false;
         /// <summary>
         /// brightness level of game objects
         /// </summary>
-        public float brightness
+        public int brightness
         {
             get => _brightness;
             set
@@ -54,19 +54,19 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// Enable/Disable clouds
         /// </summary>
-        public bool clouds { get; set; }
+        public bool clouds { get; set; } = true;
         /// <summary>
         /// Enable/Disable view bobbing
         /// </summary>
-        public bool viewBobbing { get; set; }
+        public bool viewBobbing { get; set; } = true;
         /// <summary>
         /// Enable/Disable smooth lighting
         /// </summary>
-        public bool smoothLighting { get; set; }
+        public bool smoothLighting { get; set; } = false;
         /// <summary>
         /// Enable/Disable vertical sync
         /// </summary>
-        public bool useVSync { get; set; }
+        public bool useVSync { get; set; } = false;
         /// <summary>
         /// GUI size relative to original
         /// </summary>
@@ -84,7 +84,7 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// 
         /// </summary>
-        public float mipmap
+        public int mipmap
         {
             get => _mipmap;
             set
@@ -103,7 +103,7 @@ namespace Assets.Scripts.UserSettings
             get => _maxFramerate;
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                if (value < 10) throw new ArgumentOutOfRangeException(nameof(value));
                 if (value > 121) throw new ArgumentOutOfRangeException(nameof(value));
                 _maxFramerate = value;
             }
@@ -126,14 +126,14 @@ namespace Assets.Scripts.UserSettings
         /// <summary>
         /// Enable/Disable shadows entity
         /// </summary>
-        public bool entityShadows { get; set;}
+        public bool entityShadows { get; set;} = false;
 
-        Quality _quality;
-        float _brightness;
-        int _renderDistance;
-        int _guiScale;
-        float _mipmap;
-        int _maxFramerate;
-        BiomeBlend _biomeBlend;
+        Quality _quality = Quality.High;
+        int _brightness = 0;
+        int _renderDistance = 8;
+        int _guiScale = 2;
+        int _mipmap = 4;
+        int _maxFramerate = 120;
+        BiomeBlend _biomeBlend = BiomeBlend.Normal;
     }
 }

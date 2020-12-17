@@ -17,11 +17,11 @@ namespace Assets.Scripts.UserSettings
             }
         }
 
-        public bool allowWebLinks { get; set; }
-        public bool allowPromptOnLinks { get; set; }
-        public bool allowColorsInChat { get; set; }
-        public bool allowCape { get; set; }
-        public float scale
+        public bool allowWebLinks { get; set; } = true;
+        public bool allowPromptOnLinks { get; set; } = true;
+        public bool allowColorsInChat { get; set; } = true;
+        public bool allowCape { get; set; } = true;
+        public int scale
         {
             get => _scale;
             set
@@ -32,7 +32,7 @@ namespace Assets.Scripts.UserSettings
             }
         }
 
-        public float opacity
+        public int opacity
         {
             get => _opacity;
             set
@@ -43,7 +43,7 @@ namespace Assets.Scripts.UserSettings
             }
         }
 
-        public float unfocusedHeight
+        public int unfocusedHeight
         {
             get => _unfocusedHeight;
             set
@@ -54,7 +54,7 @@ namespace Assets.Scripts.UserSettings
             }
         }
 
-        public float focusedHeight
+        public int focusedHeight
         {
             get => _focusedHeight;
             set
@@ -65,7 +65,7 @@ namespace Assets.Scripts.UserSettings
             }
         }
 
-        public float width
+        public int width
         {
             get => _width;
             set
@@ -75,11 +75,11 @@ namespace Assets.Scripts.UserSettings
                 _width = value;
             }
         }
-        ChatDisplayStates _displayState;
-        float _scale;
-        float _opacity;
-        float _unfocusedHeight;
-        float _focusedHeight;
-        float _width;
+        ChatDisplayStates _displayState = ChatDisplayStates.Shown;
+        int _scale = 100;
+        int _opacity = 100;
+        int _unfocusedHeight = 100;
+        int _focusedHeight = 100;
+        int _width = 320;
     }
 }
