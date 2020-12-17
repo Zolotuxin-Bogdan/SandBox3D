@@ -7,7 +7,7 @@
         public string name {get; set;}
         public string description {get; set;}
         public bool isStackable {get; set;} = false;
-        public UnityEngine.Texture2D icon {get; set;} = null;
+        public UnityEngine.Sprite icon {get; set;} = null;
         public int count { get; set; }
         public int stackSize { get; set; }
         public bool isCraftable { get;set; }
