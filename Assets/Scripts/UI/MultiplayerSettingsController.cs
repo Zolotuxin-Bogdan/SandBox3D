@@ -133,7 +133,7 @@ namespace Assets.Scripts.UI
         private void UpdateOpacity(float arg0)
         {
             Opacity.GetComponentInChildren<TextMeshProUGUI>().text = $"Opacity: {arg0}%";
-            settings.GetSettings().multiplayer.opacity = arg0;
+            settings.GetSettings().multiplayer.opacity = (int)arg0;
         }
 
         private void UpdateScale(float arg0)
@@ -142,25 +142,25 @@ namespace Assets.Scripts.UI
                 Scale.GetComponentInChildren<TextMeshProUGUI>().text = "Scale: OFF";
             else 
                 Scale.GetComponentInChildren<TextMeshProUGUI>().text = $"Scale: {arg0}%";
-            settings.GetSettings().multiplayer.scale = arg0;
+            settings.GetSettings().multiplayer.scale = (int)arg0;
         }
 
         private void UpdateUnfocusedHeight(float arg0)
         {
             UnfocusedHeight.GetComponentInChildren<TextMeshProUGUI>().text = $"Unfocused Height: {arg0}px";
-            settings.GetSettings().multiplayer.unfocusedHeight = arg0;
+            settings.GetSettings().multiplayer.unfocusedHeight = (int)arg0;
         }
 
         private void UpdateFocusedHeight(float arg0)
         {
             FocusedHeight.GetComponentInChildren<TextMeshProUGUI>().text = $"Focused Height: {arg0}%";
-            settings.GetSettings().multiplayer.focusedHeight = arg0;
+            settings.GetSettings().multiplayer.focusedHeight = (int)arg0;
         }
 
         private void UpdateWidth(float arg0)
         {
             Width.GetComponentInChildren<TextMeshProUGUI>().text = $"Width: {arg0}%";
-            settings.GetSettings().multiplayer.width = arg0;
+            settings.GetSettings().multiplayer.width = (int)arg0;
         }
 
         private UnityAction action;

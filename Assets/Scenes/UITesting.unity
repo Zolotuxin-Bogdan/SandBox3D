@@ -15307,7 +15307,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 10
+    m_Top: 40
     m_Bottom: 0
   m_ChildAlignment: 1
   m_StartCorner: 0
@@ -19140,7 +19140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47034a0f49862a64d807aaebf85e77b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Languages: {fileID: 0}
+  settings: {fileID: 199902752}
+  Item: {fileID: 495759680}
+  LanguageList: {fileID: 67335086}
   Done: {fileID: 229019467}
 --- !u!1 &1660946339
 GameObject:
@@ -23869,6 +23871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d142185aff07fab4d88f2411062486bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item: {fileID: 0}
   Done: {fileID: 845767641}
 --- !u!1 &2066990743
 GameObject:

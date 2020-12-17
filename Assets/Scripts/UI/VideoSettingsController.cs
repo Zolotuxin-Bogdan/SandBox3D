@@ -71,7 +71,7 @@ namespace Assets.Scripts.UI
                 mipmapLevels.GetComponentInChildren<TextMeshProUGUI>().text = $"Mipmap Levels: OFF";
             else            
                 mipmapLevels.GetComponentInChildren<TextMeshProUGUI>().text = $"Mipmap Levels: {arg0}";
-            settingsManager.GetSettings().graphic.mipmap = arg0;
+            settingsManager.GetSettings().graphic.mipmap = (int)arg0;
         }
 
         private void UpdateBrightness(float arg0)
@@ -83,7 +83,7 @@ namespace Assets.Scripts.UI
                 brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: Bright";    
             else
                 brightness.GetComponentInChildren<TextMeshProUGUI>().text = $"Brightness: +{arg0}%";
-            settingsManager.GetSettings().graphic.brightness = arg0;
+            settingsManager.GetSettings().graphic.brightness = (int)arg0;
         }
 
         private void UpdateMaxFramerate(float arg0)
