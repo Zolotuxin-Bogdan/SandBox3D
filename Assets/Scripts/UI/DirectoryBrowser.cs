@@ -142,6 +142,8 @@ public class DirectoryBrowser
     public void OnGUI() 
     {
         string parentDirectoryName = null;
+        GUI.skin.window.alignment = TextAnchor.UpperLeft;
+        GUI.skin.window.fontStyle = FontStyle.Normal;
         GUILayout.BeginArea(
             screenRect,
             title,

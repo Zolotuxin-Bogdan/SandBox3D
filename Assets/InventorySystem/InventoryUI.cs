@@ -9,11 +9,13 @@ public class InventoryUI : MonoBehaviour
     public GameObject[] slots;
 
     Inventory inventory;
+    MeshProvider meshProvider;
     int selectedSlot;
     bool waitingKey;
     private void Start()
     {
         inventory = new Inventory(slots.Length);
+        meshProvider = new MeshProvider();
         controller.OnDropItemTouched(PickUpCallback);
         waitingKey = false;
         ConfigureSlots();
@@ -50,8 +52,9 @@ public class InventoryUI : MonoBehaviour
 
     private void PickUpCallback(string slug)
     {
-        //ItemConstruct.ConstructItem(slug);
-        //inventory.AddItem(item);
+        // var item = CrateItem(slug);
+        // inventory.AddItem(item);
+        inventory.AddItem(new InventoryItem{slug = slug});
     }
 
     private void DropItem()
@@ -66,7 +69,7 @@ public class InventoryUI : MonoBehaviour
         var newItem = new GameObject(item.name);
         newItem.AddComponent<Rigidbody>();
         newItem.AddComponent<MeshRenderer>();
-        //newItem.AddComponent<Item>().item = item;
-        //newItem.AddComponent<MeshFilter>().mesh = MeshProvider.GetMesh(item.slug);
+        newItem.AddComponent<Item>().item = item;
+        newItem.AddComponent<MeshFilter>().mesh = meshProvider.ImportMeshBySlug(item.slug);
     }
 }
