@@ -2,11 +2,15 @@
 using Assets.InventorySystem.Items;
 using UnityEngine;
 using UnityEngine.UI;
-
+using block = Assets.InventorySystem.Items.Block;
 public class InventoryUI : MonoBehaviour
 {
     public PlayerController controller;
-    public GameObject[] slots;
+    public GameObject equipment;
+    public GameObject slotsContainer;
+    public GameObject hotBar;
+
+    GameObject[] slots;
 
     Inventory inventory;
     MeshProvider meshProvider;
@@ -18,7 +22,13 @@ public class InventoryUI : MonoBehaviour
         meshProvider = new MeshProvider();
         controller.OnDropItemTouched(PickUpCallback);
         waitingKey = false;
+        LoadSlots();
         ConfigureSlots();
+    }
+
+    private void LoadSlots()
+    {
+        slots = slotsContainer.GetComponentsInChildren<GameObject>();
     }
 
     private void ConfigureSlots()
@@ -52,9 +62,31 @@ public class InventoryUI : MonoBehaviour
 
     private void PickUpCallback(string slug)
     {
-        // var item = CrateItem(slug);
-        // inventory.AddItem(item);
-        inventory.AddItem(new InventoryItem{slug = slug});
+        var item = CreateItem(slug);
+        foreach (var slot in slots)
+        {
+            if (slot.GetComponentInChildren<Image>().sprite == null)
+            {
+                slot.GetComponentInChildren<Image>().sprite = item.icon;
+                break;
+            }
+        }
+        inventory.AddItem(item);
+    }
+
+    private InventoryItem CreateItem(string slug)
+    {
+        if (slug.Contains("block"))
+            return new block();
+        if (slug.Contains("armor"))
+            return new Armor();
+        if (slug.Contains("food"))
+            return new Food();
+        if (slug.Contains("tool"))
+            return new Instrument();
+        if (slug.Contains("weapon"))
+            return new Weapon();
+        throw new ArgumentOutOfRangeException(nameof(slug));
     }
 
     private void DropItem()
