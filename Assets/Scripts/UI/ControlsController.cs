@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.UserSettings;
 using TMPro;
 using UnityEngine;
@@ -15,33 +16,41 @@ namespace Assets.Scripts.UI
         public Button ResetAllKeys;
         public Button Done;
 
-        MovementKeyBindings movementKeys;
+        List<KeyboardBindings> keysCollection;
         bool waitingKey;
         KeyBind selectedKey;
         TextMeshProUGUI labelOfSelectedKey;
 
         private void Start() {
+            keysCollection = new List<KeyboardBindings>();
             Done.onClick.AddListener(Submit);
             ResetAllKeys.onClick.AddListener(ResetKeys);
-            movementKeys = new MovementKeyBindings();
+            keysCollection.Add(new MovementKeyBindings());
+            keysCollection.Add(new ActionKeyBindings());
             ShowControls();
         }
 
         private void ResetKeys()
         {
-            var keyBinds = movementKeys.GetBinds();
-            foreach (var keyBind in keyBinds)
+            foreach (var child in keysCollection)
             {
-                keyBind.ResetKey();
+                var keyBinds = child.GetBinds();
+                foreach (var keyBind in keyBinds)
+                {
+                    keyBind.ResetKey();
+                }   
             }
         }
 
         private void ShowControls()
         {
-            var keyBinds = movementKeys.GetBinds();
-            foreach (var keyBind in keyBinds)
+            foreach (var child in keysCollection)
             {
-                CreateControlsItem(keyBind, ControlsList.content.transform);
+                var keyBinds = child.GetBinds();
+                foreach (var keyBind in keyBinds)
+                {
+                    CreateControlsItem(keyBind, ControlsList.content.transform);
+                }
             }
         }
 
