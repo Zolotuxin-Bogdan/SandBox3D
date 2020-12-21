@@ -5,6 +5,7 @@ public class AudioClipManager : MonoBehaviour
     public static AudioClipManager Instance { get; private set; }
 
     public SoundAudioClip[] SoundAudioClips;
+    public MusicAudioClip[] MusicAudioClips;
 
     void Awake()
     {
