@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 
@@ -109,6 +108,14 @@ public class DirectoryBrowser
         SwitchDirectory(Directory.GetCurrentDirectory());
     }
 
+    public DirectoryBrowser(string title, Rect screenRect, FinishedCallback callback, string currentDirectory)
+    {
+        this.title = title;
+        this.screenRect = screenRect;
+        this.callback = callback;
+        SwitchDirectory(currentDirectory);
+    }
+
     protected void SwitchDirectory(string directory)
     {
         if (directory == null || currentDirectory == directory)
@@ -154,9 +161,11 @@ public class DirectoryBrowser
 		        	if (parentIndex == currentDirectoryParts.Length - 1) {
 		        		GUILayout.Label(currentDirectoryParts[parentIndex], CenteredText);
 		        	} else if (GUILayout.Button(currentDirectoryParts[parentIndex])) {
-		        		parentDirectoryName = currentDirectory;
+                        parentDirectoryName = currentDirectory;
+                        Debug.Log(parentDirectoryName);
 		        		for (int i = currentDirectoryParts.Length - 1; i > parentIndex; --i) {
 		        			parentDirectoryName = Path.GetDirectoryName(parentDirectoryName);
+                            Debug.Log(parentDirectoryName);
 		        		}
                         SwitchDirectory(parentDirectoryName);
     	        	}
@@ -177,11 +186,10 @@ public class DirectoryBrowser
                     1,
                     CenteredText
                 );
-                 if (selectedDirectory > -1)
-                 {
-                    SwitchDirectory(directories[selectedDirectory]);
-                    //  callback(Path.Combine(currentDirectory, directories[selectedDirectory]));
-                 }
+                if (selectedDirectory > -1)
+                {
+                   SwitchDirectory(directories[selectedDirectory]);
+                }
                 GUI.enabled = true;
             GUILayout.EndScrollView();
             GUILayout.BeginHorizontal();
