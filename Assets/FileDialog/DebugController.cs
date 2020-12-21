@@ -33,14 +33,12 @@ public class DebugController : MonoBehaviour
     {
         if (drawExplorer)
         {
-			if (GUILayout.Button("...")) {
 				explorer = new DirectoryBrowser(
                     "Choose folder...",
                     new Rect(300, 100, 800, 600),
                     FileSelectCallback
                 );
 				explorer.DirectoryIcon = directoryIcon;
-			}
         }
     }
     
@@ -48,5 +46,6 @@ public class DebugController : MonoBehaviour
     {
         explorer = null;
         this.path = path;
+        drawExplorer = false;
     }
 }
