@@ -12,6 +12,9 @@ namespace Assets.Scripts.UI
         public GameObject language;
         public GameObject multiplayerSettings;
         public GameObject videoSettings;
+        public GameObject menu;
+        public GameObject singleplayerMenu;
+        public GameObject multiplayerMenu;
         public SettingsManager settingsManager;
 
         SettingsController settingsController;
@@ -21,7 +24,8 @@ namespace Assets.Scripts.UI
         LanguageController languageController;
         MultiplayerSettingsController multiplayerSettingsController;
         VideoSettingsController videoSettingsController;
-
+        MenuController menuController;
+        
         //Unity Start Message
         void Start()
         {
@@ -32,6 +36,7 @@ namespace Assets.Scripts.UI
             languageController = GetComponentInChildren<LanguageController>();//
             multiplayerSettingsController = GetComponentInChildren<MultiplayerSettingsController>();//
             videoSettingsController = GetComponentInChildren<VideoSettingsController>();//
+            menuController = GetComponentInChildren<MenuController>();
 
             settingsController.AddListener(SettingsListener);
             controlsController.AddListener(ControlsListener);
@@ -40,6 +45,7 @@ namespace Assets.Scripts.UI
             languageController.AddListener(LanguageListener);
             multiplayerSettingsController.AddListener(MultiplayerSettingsListener);
             videoSettingsController.AddListener(VideoSettingsListener);
+            menuController.AddListener(MenuListener);
 
             controls.SetActive(false);
             snooperSettings.SetActive(false);
@@ -47,7 +53,29 @@ namespace Assets.Scripts.UI
             language.SetActive(false);
             multiplayerSettings.SetActive(false);
             videoSettings.SetActive(false);
-        }        
+        }
+
+        private void MenuListener(MenuEvents @event)
+        {
+            switch (@event)
+            {
+                case MenuEvents.OnSettingsClicked:
+                    settings.SetActive(true);
+                    menu.SetActive(false);
+                    break;
+                case MenuEvents.OnMultiplayerClicked:
+                    menu.SetActive(false);
+                    multiplayerMenu.SetActive(true);
+                    break;
+                case MenuEvents.OnSinglePlayerClicked:
+                    menu.SetActive(false);
+                    singleplayerMenu.SetActive(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
+            }
+        }
+
         void SettingsListener(SettingsEvent @event)
         {
             switch (@event)
