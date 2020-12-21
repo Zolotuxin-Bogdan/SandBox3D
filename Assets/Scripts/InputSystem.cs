@@ -2,18 +2,21 @@
 using UnityEngine;
 public class InputSystem
 {
-    private MovementKeyBindings _movementBindings;
+    MovementKeyBindings movementBindings;
+    ActionKeyBindings actionBindings;
     public InputSystem()
     {
-        _movementBindings = new MovementKeyBindings();
+        movementBindings = new MovementKeyBindings();
+        actionBindings = new ActionKeyBindings();
     }
+    
     public float GetHorizontalMovementValue()
     {
-        if(Input.GetKey(_movementBindings.KeyRight.keyCode))
+        if(Input.GetKey(movementBindings.KeyRight.keyCode))
         {
             return 1f;
         }
-        if (Input.GetKey(_movementBindings.KeyLeft.keyCode))
+        if (Input.GetKey(movementBindings.KeyLeft.keyCode))
         {
             return -1f;
         }
@@ -22,11 +25,11 @@ public class InputSystem
 
     public float GetVerticalMovementValue()
     {
-        if (Input.GetKey(_movementBindings.KeyForward.keyCode))
+        if (Input.GetKey(movementBindings.KeyForward.keyCode))
         {
             return 1f;
         }
-        if (Input.GetKey(_movementBindings.KeyBack.keyCode))
+        if (Input.GetKey(movementBindings.KeyBack.keyCode))
         {
             return -1f;
         }
@@ -35,7 +38,7 @@ public class InputSystem
 
     public bool IsJumpKeyPressed()
     {
-        return Input.GetKey(_movementBindings.KeyJump.keyCode);
+        return Input.GetKey(movementBindings.KeyJump.keyCode);
     }
 
     public float GetMouseYAxis()
@@ -50,5 +53,24 @@ public class InputSystem
 
     public float GetMouseWheelAxisValue(){
         return Input.GetAxis("Mouse ScrollWheel");
+    }
+
+    public bool IsDropKeyPressed()
+    {
+        return Input.GetKey(actionBindings.DropKey.keyCode);
+    }
+
+    public bool IsAttackKeyPressed()
+    {
+        return Input.GetKey(actionBindings.AttackKey.keyCode);
+    }
+    
+    public bool IsCrouchingKeyPressed()
+    {
+        return Input.GetKey(actionBindings.CrouchingKey.keyCode);
+    }
+    public bool IsUseKeyPressed()
+    {
+        return Input.GetKey(actionBindings.UseKey.keyCode);
     }
 }
