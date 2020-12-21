@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Assets.InventorySystem.Items;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,25 +11,27 @@ public class InventoryUI : MonoBehaviour
     public GameObject slotsContainer;
     public GameObject hotBar;
 
-    GameObject[] slots;
+    Button[] slots;
 
     Inventory inventory;
     MeshProvider meshProvider;
+    InputSystem input;
     int selectedSlot;
     bool waitingKey;
     private void Start()
     {
+        LoadSlots();
         inventory = new Inventory(slots.Length);
         meshProvider = new MeshProvider();
+        input = new InputSystem();
         controller.OnDropItemTouched(PickUpCallback);
         waitingKey = false;
-        LoadSlots();
         ConfigureSlots();
     }
 
     private void LoadSlots()
     {
-        slots = slotsContainer.GetComponentsInChildren<GameObject>();
+        slots = slotsContainer.GetComponentsInChildren<Button>();
     }
 
     private void ConfigureSlots()
@@ -39,25 +42,24 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void AddSlotAction(GameObject slot, int index)
+    private void AddSlotAction(Button slot, int index)
     {
-        slot.GetComponent<Button>().onClick.AddListener(
+        slot.onClick.AddListener(
             () => {
                 selectedSlot = index;
                 waitingKey = true;
+                StartCoroutine("WaitKey");
+                Debug.Log("Wait key");
             }
         );
     }
 
-    private void OnGUI() {
-        if (waitingKey)
-        {
-            if (Event.current.isKey && (Event.current.keyCode == KeyCode.Q))
-            {
-                DropItem();
-                waitingKey = false;
-            }
-        }
+    private IEnumerator WaitKey() {
+        while (!input.IsDropKeyPressed())
+            yield return null;
+        Debug.Log("Drop key pressed");
+        DropItem();
+        waitingKey = false;
     }
 
     private void PickUpCallback(string slug)
