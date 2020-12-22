@@ -13,14 +13,28 @@ public class MenuController : MonoBehaviour
     public Button settings;
     public Button quit;
 
-    // Start is called before the first frame update
+    string[] phrases = new string[] {"Hotter then the sun!", "Minecraft in 3D?", "You reading this text!", "To be ill is not cool", "I will definitely survive!"};
+    
     private void Start()
     {
         singleplayer.onClick.AddListener(SingleplayerCallback);
         multiplayer.onClick.AddListener(MultiplayerCallback);
         settings.onClick.AddListener(SettingsCallback);
         quit.onClick.AddListener(CloseGame);
+    }
+
+    private void OnEnable() {
+        randomText.text = GetRandomText(phrases);
         StartCoroutine(Animate());
+    }
+
+    private void OnDisable() {
+        StopCoroutine(Animate());
+    }
+
+    private string GetRandomText(string[] phrases)
+    {
+        return phrases[Random.Range(0, phrases.Length)];
     }
 
     protected int counter = 1;
