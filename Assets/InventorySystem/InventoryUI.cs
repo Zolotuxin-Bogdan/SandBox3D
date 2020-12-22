@@ -100,10 +100,6 @@ public class InventoryUI : MonoBehaviour
 
     private void AddItemToScene(InventoryItem item)
     {
-        var newItem = new GameObject(item.name);
-        newItem.AddComponent<Rigidbody>();
-        newItem.AddComponent<MeshRenderer>();
-        newItem.AddComponent<Item>().item = item;
-        newItem.AddComponent<MeshFilter>().mesh = meshProvider.ImportMeshBySlug(item.slug);
+        new SceneEditor().AddItem(item);
     }
 }
