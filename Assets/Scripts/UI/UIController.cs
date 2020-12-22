@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI
         MultiplayerSettingsController multiplayerSettingsController;
         VideoSettingsController videoSettingsController;
         MenuController menuController;
-        
+        bool isMenu;
         //Unity Start Message
         void Start()
         {
@@ -47,12 +47,14 @@ namespace Assets.Scripts.UI
             videoSettingsController.AddListener(VideoSettingsListener);
             menuController.AddListener(MenuListener);
 
+            settings.SetActive(false);
             controls.SetActive(false);
             snooperSettings.SetActive(false);
             texturePack.SetActive(false);
             language.SetActive(false);
             multiplayerSettings.SetActive(false);
             videoSettings.SetActive(false);
+            isMenu = false;
         }
 
         private void MenuListener(MenuEvents @event)
@@ -62,6 +64,7 @@ namespace Assets.Scripts.UI
                 case MenuEvents.OnSettingsClicked:
                     settings.SetActive(true);
                     menu.SetActive(false);
+                    isMenu = true;
                     break;
                 case MenuEvents.OnMultiplayerClicked:
                     menu.SetActive(false);
@@ -107,6 +110,11 @@ namespace Assets.Scripts.UI
                 case SettingsEvent.DoneClicked:
                     settings.SetActive(false);
                     settingsManager.SaveSettings();
+                    if (isMenu)
+                    {
+                        menu.SetActive(true);
+                        isMenu = false;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
