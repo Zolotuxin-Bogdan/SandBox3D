@@ -1,5 +1,5 @@
 ﻿public enum BlockType
 {
-    SingleTexture,
+    FullSizeBlock,
     Liquid
 }

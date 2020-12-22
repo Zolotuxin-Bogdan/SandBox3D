@@ -814,7 +814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7567313609f435248ba39587a9567de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cobblestoneMaterial: {fileID: 2100000, guid: 81f93698723c95d44ac088faaedcf5ab, type: 2}
 --- !u!114 &1154147823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806c6e32d9ff5264883987da299d687a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SingleTextureBlock: {fileID: 8147689194977630227, guid: 7b77e6a13ab481e4e9c4eb30d28aaec6, type: 3}
+  FullSizeBlock: {fileID: 5966746529686325934, guid: 320d6ee941709104f87dfbedf0951d77, type: 3}
 --- !u!4 &1154147824
 Transform:
   m_ObjectHideFlags: 0
@@ -854,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6334ee6d18cf814c81022cb784b2b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SingleTextureBlockMaterial: {fileID: 2100000, guid: 81f93698723c95d44ac088faaedcf5ab, type: 2}
+  FullSizeBlockMaterial: {fileID: 2100000, guid: 62ba0a55ebd9f1442b9cf65039595fa6, type: 2}
 --- !u!1 &1466450203
 GameObject:
   m_ObjectHideFlags: 0

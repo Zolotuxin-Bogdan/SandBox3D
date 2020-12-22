@@ -8,7 +8,7 @@ public class BlockTypeManager : MonoBehaviour
     //
     // Block Types
     //
-    public GameObject SingleTextureBlock;
+    public GameObject FullSizeBlock;
 
     private Dictionary<string, GameObject> _typeDictionary = new Dictionary<string, GameObject>();
     void Awake()
@@ -24,7 +24,7 @@ public class BlockTypeManager : MonoBehaviour
     }
     void Start()
     {
-        _typeDictionary.Add(BlockType.SingleTexture.ToString(), SingleTextureBlock);
+        _typeDictionary.Add(BlockType.FullSizeBlock.ToString(), FullSizeBlock);
     }
     public GameObject GetBlockTypeByName(string typeName)
     {

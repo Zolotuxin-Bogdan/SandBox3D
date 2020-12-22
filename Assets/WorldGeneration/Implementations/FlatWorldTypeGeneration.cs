@@ -22,7 +22,7 @@ public class FlatWorldTypeGeneration : IGenerator
                 _spawnPosition.z = z;
                 blockDto = new BlockDto()
                 {
-                    BlockId = 0,
+                    BlockId = z%3,
                     Position = _spawnPosition
                 }; ;
                 blockDtoList.Add(blockDto);

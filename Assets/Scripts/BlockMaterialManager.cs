@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockMaterialManager : MonoBehaviour
@@ -9,7 +8,7 @@ public class BlockMaterialManager : MonoBehaviour
     //
     // Material Types
     //
-    public Material SingleTextureBlockMaterial;
+    public Material FullSizeBlockMaterial;
 
     private Dictionary<string, Material> _materialDictionary = new Dictionary<string, Material>();
     void Awake()
@@ -25,7 +24,7 @@ public class BlockMaterialManager : MonoBehaviour
     }
     void Start()
     {
-        _materialDictionary.Add(MaterialType.SingleTextureMaterial.ToString(), SingleTextureBlockMaterial);
+        _materialDictionary.Add(MaterialType.FullSizeBlockMaterial.ToString(), FullSizeBlockMaterial);
     }
     public Material GetBlockMaterialByName(string typeName)
     {

@@ -1,4 +1,4 @@
 ﻿public enum MaterialType
 {
-    SingleTextureMaterial
+    FullSizeBlockMaterial
 }

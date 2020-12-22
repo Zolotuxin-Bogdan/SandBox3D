@@ -28,12 +28,29 @@ public class ResourcePackManager : MonoBehaviour
         {
             BlockId = 0,
             BlockName = "Cobblestone",
-            BlockTypeName = BlockType.SingleTexture,
-            BlockMaterialType = MaterialType.SingleTextureMaterial,
+            BlockTypeName = BlockType.FullSizeBlock,
+            BlockMaterialType = MaterialType.FullSizeBlockMaterial,
             BlockTexturePath = texturesDefaultPath + "cobblestone.png"
         };
         resourcePack.Blocks.Add(cobblestone);
-
+        var furnance = new Block()
+        {
+            BlockId = 1,
+            BlockName = "Furnance",
+            BlockTypeName = BlockType.FullSizeBlock,
+            BlockMaterialType = MaterialType.FullSizeBlockMaterial,
+            BlockTexturePath = texturesDefaultPath + "furnance.png"
+        };
+        resourcePack.Blocks.Add(furnance);
+        var furnanceOn = new Block()
+        {
+            BlockId = 2,
+            BlockName = "Furnance_On",
+            BlockTypeName = BlockType.FullSizeBlock,
+            BlockMaterialType = MaterialType.FullSizeBlockMaterial,
+            BlockTexturePath = texturesDefaultPath + "furnance_on.png"
+        };
+        resourcePack.Blocks.Add(furnanceOn);
         return resourcePack;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
@@ -18,14 +19,19 @@ public class WorldGenerator : MonoBehaviour
         foreach (var blockDto in blockDtoList)
         {
             var blockInfo = ResourcePack.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
-            var createdBlock = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()), blockDto.Position, Quaternion.identity);
-            createdBlock.GetComponent<Renderer>().material = 
+            var createdBlock = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()), blockDto.Position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+            createdBlock.name = blockInfo.BlockName;
+            createdBlock.GetComponent<Renderer>().material =
                 BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
-            WWW www = new WWW(blockInfo.BlockTexturePath);
-            Texture2D texTmp = new Texture2D(16, 16, TextureFormat.DXT5, false);
-            //LoadImageIntoTexture compresses JPGs by DXT1 and PNGs by DXT5     
-            www.LoadImageIntoTexture(texTmp);
-            createdBlock.GetComponent<Renderer>().material.SetTexture("_MainTex", texTmp);
+            var blockTexture = new Texture2D(16, 16, TextureFormat.RGBA32, false);
+            blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
+            blockTexture.filterMode = FilterMode.Point;
+            createdBlock.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
         }
+    }
+
+    private byte[] GetTextureBytes(string path)
+    {
+        return File.ReadAllBytes(path);
     }
 }
