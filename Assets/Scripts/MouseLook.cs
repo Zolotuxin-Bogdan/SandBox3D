@@ -15,7 +15,6 @@ namespace Assets.Scripts
         private float _rotationX = 0;
         private InputSystem _inputSystem;
 
-        public float rotationAngle;
         void Start()
         {
             Cursor.visible = isCursorVisible;
@@ -29,8 +28,6 @@ namespace Assets.Scripts
         {
             if (Axes == RotationAxes.MouseX)
             {
-                //transform.rotation.eulerAngles = Quaternion.Euler(new Vector3;
-                rotationAngle = _inputSystem.GetMouseXAxis() * SensitivityHor;
                 transform.Rotate(0,  _inputSystem.GetMouseXAxis() * SensitivityHor, 0);
             }
             else if (Axes == RotationAxes.MouseY)
