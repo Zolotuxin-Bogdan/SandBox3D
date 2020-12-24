@@ -1,44 +1,46 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Assets.InventorySystem.Items;
 using UnityEngine;
 using UnityEngine.UI;
-using block = Assets.InventorySystem.Items.Block;
+
 public class InventoryUI : MonoBehaviour
 {
     public PlayerController controller;
     public GameObject equipment;
     public GameObject slotsContainer;
     public GameObject hotBar;
+    public GameObject item;
 
-    Button[] slots;
+    public int slotCount = 27;
+    public int columnCount = 9;
+
 
     Inventory inventory;
     MeshProvider meshProvider;
     InputSystem input;
     int selectedSlot;
-    bool waitingKey;
+    
     private void Start()
     {
         LoadSlots();
-        inventory = new Inventory(slots.Length);
+        inventory = new Inventory(slotCount);
         meshProvider = new MeshProvider();
         input = new InputSystem();
         controller.OnDropItemTouched(PickUpCallback);
-        waitingKey = false;
         ConfigureSlots();
     }
 
     private void LoadSlots()
     {
-        slots = slotsContainer.GetComponentsInChildren<Button>();
+        var container = slotsContainer.GetComponent<GridLayoutGroup>();
+        container.constraintCount = 9;
     }
 
     private void ConfigureSlots()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slotCount; i++)
         {
-            AddSlotAction(slots[i], i);
+            AddSlotAction(Instantiate(item).GetComponent<Button>(), i);
         }
     }
 
@@ -47,11 +49,12 @@ public class InventoryUI : MonoBehaviour
         slot.onClick.AddListener(
             () => {
                 selectedSlot = index;
-                waitingKey = true;
                 StartCoroutine("WaitKey");
                 Debug.Log("Wait key");
             }
         );
+        slot.gameObject.transform.SetParent(slotsContainer.transform);
+        slot.gameObject.SetActive(true);
     }
 
     private IEnumerator WaitKey() {
@@ -59,11 +62,11 @@ public class InventoryUI : MonoBehaviour
             yield return null;
         Debug.Log("Drop key pressed");
         DropItem();
-        waitingKey = false;
     }
 
     private void PickUpCallback(string slug)
     {
+        var slots = slotsContainer.GetComponentsInChildren<Button>();
         var item = CreateItem(slug);
         foreach (var slot in slots)
         {
@@ -78,17 +81,8 @@ public class InventoryUI : MonoBehaviour
 
     private InventoryItem CreateItem(string slug)
     {
-        if (slug.Contains("block"))
-            return new block();
-        if (slug.Contains("armor"))
-            return new Armor();
-        if (slug.Contains("food"))
-            return new Food();
-        if (slug.Contains("tool"))
-            return new Instrument();
-        if (slug.Contains("weapon"))
-            return new Weapon();
-        throw new ArgumentOutOfRangeException(nameof(slug));
+        //return new InventoryItem{slug = slug};
+        return new InventoryItem();
     }
 
     private void DropItem()
@@ -100,6 +94,6 @@ public class InventoryUI : MonoBehaviour
 
     private void AddItemToScene(InventoryItem item)
     {
-        new SceneEditor().AddItem(item);
+        //new SceneEditor().AddItem(item);
     }
 }
