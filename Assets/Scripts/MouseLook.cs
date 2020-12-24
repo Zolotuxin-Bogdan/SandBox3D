@@ -11,12 +11,15 @@ namespace Assets.Scripts
         public float MinimumVert = -45.0f;
         public float MaximumVert = 45.0f;
         public bool isCursorVisible = false;
-        
+        public SettingsManager settings;
+
         private float _rotationX = 0;
         private InputSystem _inputSystem;
+        private bool isInvertMouse;
 
         void Start()
         {
+            isInvertMouse =  settings.GetSettings().invertMouse;
             Cursor.visible = isCursorVisible;
             _inputSystem = new InputSystem();
             Rigidbody body = GetComponent<Rigidbody>();
@@ -28,18 +31,27 @@ namespace Assets.Scripts
         {
             if (Axes == RotationAxes.MouseX)
             {
-                transform.Rotate(0,  _inputSystem.GetMouseXAxis() * SensitivityHor, 0);
+                if (isInvertMouse)
+                    transform.Rotate(0,  _inputSystem.GetMouseXAxis() * SensitivityHor * (-1), 0);
+                else
+                    transform.Rotate(0,  _inputSystem.GetMouseXAxis() * SensitivityHor, 0);
             }
             else if (Axes == RotationAxes.MouseY)
             {
-                _rotationX -= _inputSystem.GetMouseYAxis() * SensitivityVert;
+                if (isInvertMouse)
+                    _rotationX += _inputSystem.GetMouseYAxis() * SensitivityVert;
+                else
+                    _rotationX -= _inputSystem.GetMouseYAxis() * SensitivityVert;
                 _rotationX = Mathf.Clamp(_rotationX, MinimumVert, MaximumVert);
                 float rotationY = transform.localEulerAngles.y;
                 transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
             }
             else
             {
-                _rotationX -= _inputSystem.GetMouseYAxis() * SensitivityVert;
+                if (isInvertMouse)
+                    _rotationX += _inputSystem.GetMouseYAxis() * SensitivityVert;
+                else
+                    _rotationX -= _inputSystem.GetMouseYAxis() * SensitivityVert;
                 _rotationX = Mathf.Clamp(_rotationX, MinimumVert, MaximumVert);
                 float delta = _inputSystem.GetMouseXAxis() * SensitivityHor;
                 float rotationY = transform.localEulerAngles.y + delta;
