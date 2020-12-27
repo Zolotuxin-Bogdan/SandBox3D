@@ -225,7 +225,7 @@ MonoBehaviour:
   MinimumVert: -45
   MaximumVert: 45
   isCursorVisible: 0
-  rotationAngle: 0
+  settings: {fileID: 0}
 --- !u!1 &81137174
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +341,7 @@ MonoBehaviour:
   Speed: 6
   JumpHeight: 5
   Gravity: -9.8
+  PlayerHead: {fileID: 1892525280}
   FirstPersonCamPosition: {fileID: 1198412876}
   FirstPersonCam: {fileID: 1834596}
 --- !u!143 &166423509
@@ -843,3 +844,8 @@ Transform:
   m_Father: {fileID: 166423512}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892525280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -9195483843252839461, guid: 9ab5ed6b666d9984095dc9c400359096, type: 3}
+  m_PrefabInstance: {fileID: 1174740058}
+  m_PrefabAsset: {fileID: 0}

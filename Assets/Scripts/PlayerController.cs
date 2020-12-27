@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight = 20.0f;
     public float Gravity = -9.8f;
 
+    public GameObject PlayerHead;
+
     public GameObject FirstPersonCamPosition;
     public Camera FirstPersonCam;
 
@@ -32,7 +34,16 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         FirstPersonCam.transform.position = FirstPersonCamPosition.transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, _firstPersonCamera.transform.rotation.eulerAngles.y, transform.rotation.z));
+        PlayerHead.transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, _firstPersonCamera.transform.rotation.eulerAngles.y + 180f, transform.rotation.z));
+        if (PlayerHead.transform.rotation.eulerAngles.y > transform.rotation.eulerAngles.y + 50f)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.eulerAngles.y + 10f, transform.rotation.z));
+        }
+        if (PlayerHead.transform.rotation.eulerAngles.y < transform.rotation.eulerAngles.y - 50f)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x , transform.rotation.eulerAngles.y - 10f, transform.rotation.z));
+        }
+
         var deltaX = _inputSystem.GetHorizontalMovementValue() * Speed;
         var deltaZ = _inputSystem.GetVerticalMovementValue() * Speed;
         var movement = new Vector3(deltaX, 0, deltaZ);
