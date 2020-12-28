@@ -9,27 +9,27 @@ namespace Assets.Scripts.Zoom
 
         public PerspectiveZoomStrategy(Camera cam, Vector3 offset ,float startingZoom)
         {
-            normalizedCameraPosition = new Vector3(0f, Mathf.Abs(offset.y), Mathf.Abs(offset.x)).normalized;
-            currentZoomLevel = startingZoom;
+             cam.transform.localPosition = new Vector3(0f, Mathf.Abs(offset.y), Mathf.Abs(offset.x)).normalized;
+            currentZoomLevel = startingZoom * 6;
             PositionCamera(cam);
         }
 
         private void PositionCamera(Camera cam)
         {
-            cam.transform.localPosition = normalizedCameraPosition * currentZoomLevel;
+            cam.fieldOfView = currentZoomLevel;
         }
 
         public void ZoomIn(Camera cam, float delta, float minZoomLimit)
         {
-            if (currentZoomLevel <= minZoomLimit) return;
-            currentZoomLevel = Mathf.Max(currentZoomLevel - delta, minZoomLimit);
+            if (currentZoomLevel <= minZoomLimit * 6) return;
+            currentZoomLevel = Mathf.Max(currentZoomLevel - delta, minZoomLimit * 6);
             PositionCamera(cam);
         }
 
         public void ZoomOut(Camera cam, float delta, float maxZoomLimit)
         {
-            if (currentZoomLevel <= maxZoomLimit) return;
-            currentZoomLevel = Mathf.Min(currentZoomLevel + delta, maxZoomLimit);
+            if (currentZoomLevel >= maxZoomLimit * 6) return;
+            currentZoomLevel = Mathf.Min(currentZoomLevel + delta, maxZoomLimit * 6);
             PositionCamera(cam);
         }
     }
