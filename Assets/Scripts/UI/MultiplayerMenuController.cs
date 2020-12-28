@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,7 +13,6 @@ public class MultiplayerMenuController : MonoBehaviour
     public Button delete;
     public Button edit;
     public ScrollRect servers;
-    public InputField searchField;
 
     int selectedServer = -1;
     private void Start() {

@@ -1,10 +1,9 @@
-﻿using TMPro;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
+using TMPro;
+using System.IO;
 
 public class SingleplayerMenuController : MonoBehaviour
 {
@@ -15,8 +14,8 @@ public class SingleplayerMenuController : MonoBehaviour
     public Button rename;
     public Button delete;
     public ScrollRect worlds;
-    public InputField searchField;
-    
+    public GameObject item;
+
     int selectedWorld = -1;
     void Start()
     {
@@ -26,6 +25,31 @@ public class SingleplayerMenuController : MonoBehaviour
         reCreate.onClick.AddListener(ReCreateCallback);
         rename.onClick.AddListener(RenameCallback);
         delete.onClick.AddListener(DeleteCallback);
+        RefreshWorldsList();
+    }
+
+    private void RefreshWorldsList()
+    {
+        var saves = Directory.GetDirectories(Application.dataPath + "\\saves\\");
+        for (int i = 0; i < saves.Length; i++)
+        {
+            var info = new DirectoryInfo(saves[i]);
+            CreateItem(info.Name, info.LastWriteTime, i, worlds.content.transform);
+        }
+    }
+
+    private void CreateItem(string worldName, DateTime lastWriteTime, int index, Transform parent)
+    {
+        var newItem = Instantiate(item, parent);
+        var labels = newItem.GetComponentsInChildren<TextMeshProUGUI>();
+        labels[0].text = worldName;
+        labels[1].text = $"{worldName} {lastWriteTime}";
+        labels[2].text = "Version: ";
+        newItem.GetComponent<Button>().onClick.AddListener(
+            () => {
+                selectedWorld = index;
+            }
+        );
     }
 
     private void DeleteCallback()
@@ -36,41 +60,39 @@ public class SingleplayerMenuController : MonoBehaviour
 
     private void RenameCallback()
     {
-        // var text = RenameWorld(worlds.content.GetChild(selectedWorld));
-        throw new NotImplementedException();
+        action.Invoke(SingleplayerMenuEvents.OnRenameClicked);
     }
 
     private void ReCreateCallback()
     {
-        // WorldLoader.Remove(worldname);
-        // WorldGenerator.Generate();
-        // action.Invoke(StartGame);
-        throw new NotImplementedException();
+        action.Invoke(SingleplayerMenuEvents.OnRecreateClicked);
     }
 
     private void CancelCallback()
     {
-        action.Invoke();
-        throw new NotImplementedException();
+        action.Invoke(SingleplayerMenuEvents.OnCancelClicked);
     }
 
     private void RunWorldCallback()
     {
-        // WorldLoader.Load(worldname);
-        // action.Invoke(StartGame);
-        throw new NotImplementedException();
+        action.Invoke(SingleplayerMenuEvents.OnRunWorldClicked);
     }
 
     private void CreateWorldCallback()
     {
-        // WorldGenerator.Generate();
-        // action.Invoke(StartGame);
-        throw new NotImplementedException();
+        action.Invoke(SingleplayerMenuEvents.OnCreateWorldClicked);
     }
 
-    protected UnityAction action;
+    public string GetSelectedWorldName()
+    {
+        if (selectedWorld > -1)
+            return worlds.content.GetChild(selectedWorld).GetComponentsInChildren<TextMeshProUGUI>()[0].text;
+        return null;
+    }
 
-    public void AddListener(UnityAction action)
+    protected UnityAction<SingleplayerMenuEvents> action;
+
+    public void AddListener(UnityAction<SingleplayerMenuEvents> action)
     {
         this.action = action;
     }
