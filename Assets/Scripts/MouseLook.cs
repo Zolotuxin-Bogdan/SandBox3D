@@ -19,7 +19,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            isInvertMouse =  settings.GetSettings().invertMouse;
+            isInvertMouse = false;//settings.GetSettings().invertMouse;
             Cursor.visible = isCursorVisible;
             _inputSystem = new InputSystem();
             Rigidbody body = GetComponent<Rigidbody>();

@@ -19,25 +19,15 @@ namespace Assets.Scripts
         public float wheelValueIncrement = 1000f;
         public float startingZoom = 5f;
 
-        [Header("Rotate Controls")]
-        public float mouseSensitivity = 100f;
-        public Transform playerBody;
-        float xRotation = 0f;
-
         IZoomStrategy zoomStrategy;
         float frameZoom;
         Camera cam;
         InputSystem inputSystem;
         CharacterController controller;
-        MouseLook mouseLook;
         private void Awake() {
             cam = GetComponentInChildren<Camera>();
-            cam.transform.localPosition = new Vector3(0f, Mathf.Abs(cameraOffset.y), -Mathf.Abs(cameraOffset.x));
-            //zoomStrategy = new OrthographicZoomStrategy(cam, startingZoom);
-            cam.transform.LookAt(transform.position + Vector3.up * lookAtOffset);
             inputSystem = new InputSystem();
             Cursor.lockState = CursorLockMode.Locked;
-            //mouseLook = gameObject.AddComponent<MouseLook>();
             controller = GetComponentInChildren<CharacterController>();
             zoomStrategy = cam.orthographic ?(IZoomStrategy) new OrthographicZoomStrategy(cam, startingZoom) : new PerspectiveZoomStrategy(cam, cameraOffset, startingZoom);
         }
@@ -45,7 +35,6 @@ namespace Assets.Scripts
         private void Update() {
             UpdateFrameZoom();
             Move();
-            Rotating();
         }
         private void LateUpdate() {
             if (frameZoom > 0f)
@@ -72,22 +61,10 @@ namespace Assets.Scripts
             var movement = new Vector3(deltaX, deltaY, deltaZ);
             movement = Vector3.ClampMagnitude(movement, moveSpeed);
             movement = transform.TransformDirection(movement);
-            controller.Move(movement * Time.deltaTime);
-        }
-
-        void Rotating(){
-            float mouseX = inputSystem.GetMouseXAxis() * mouseSensitivity * Time.deltaTime;
-            float mouseY = inputSystem.GetMouseYAxis() * mouseSensitivity * Time.deltaTime;
-            //float mouseZ = inputSystem.GetIncline() * mouseSensitivity * Time.deltaTime;
-
-            //playerBody.Rotate(new Vector3(-mouseY, mouseX, mouseZ));
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.up * mouseX);
-            //transform.LookAt(playerBody);
+            if (Input.GetKey(KeyCode.LeftControl))
+                controller.Move(movement * Time.fixedDeltaTime);
+            else
+                controller.Move(movement * Time.deltaTime);
         }
     }
 }
