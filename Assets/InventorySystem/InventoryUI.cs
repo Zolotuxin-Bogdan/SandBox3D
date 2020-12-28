@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using Assets.InventorySystem.Items;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public PlayerController controller;
     public GameObject equipment;
@@ -11,89 +12,141 @@ public class InventoryUI : MonoBehaviour
     public GameObject hotBar;
     public GameObject item;
 
-    public int slotCount = 27;
-    public int columnCount = 9;
+    public int inventorySize = 27;
+    public int inventoryColumnSize = 9;
 
 
     Inventory inventory;
     MeshProvider meshProvider;
     InputSystem input;
     int selectedSlot;
-    
+    bool isCoroutineRunning = false;
+    bool isItemDragging = false;
+
     private void Start()
     {
-        LoadSlots();
-        inventory = new Inventory(slotCount);
+        InitializationInventory();
         meshProvider = new MeshProvider();
         input = new InputSystem();
-        controller.OnDropItemTouched(PickUpCallback);
-        ConfigureSlots();
+        controller.OnDropItemTouched(PickUpCallback);   
     }
 
-    private void LoadSlots()
-    {
-        var container = slotsContainer.GetComponent<GridLayoutGroup>();
-        container.constraintCount = 9;
-    }
+    protected void InitializationInventory() {
+        inventory = new Inventory(inventorySize);
+        
+        var inventoryStyle = slotsContainer.GetComponent<GridLayoutGroup>();
+        
+        inventoryStyle.padding = new RectOffset(10, 10, 10, 10);
+        inventoryStyle.cellSize = new Vector2(36, 36);
+        inventoryStyle.spacing = new Vector2(4, 4);
+        inventoryStyle.childAlignment = TextAnchor.UpperCenter;
+        inventoryStyle.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        inventoryStyle.constraintCount = inventoryColumnSize;
 
-    private void ConfigureSlots()
-    {
-        for (int i = 0; i < slotCount; i++)
+        for (var i = 0; i < inventorySize; i++)
         {
-            AddSlotAction(Instantiate(item).GetComponent<Button>(), i);
+            var newItem = Instantiate(item);
+            newItem.GetComponent<Button>().onClick.AddListener(
+                () => {
+                    if (isCoroutineRunning) {
+                        StopAllCoroutines();
+                        isCoroutineRunning = false;
+                    }
+                    selectedSlot = i;
+                    StartCoroutine(WaitAction());
+                }
+            );
+            newItem.transform.SetParent(slotsContainer.transform);
+            newItem.SetActive(true);
         }
     }
 
-    private void AddSlotAction(Button slot, int index)
-    {
-        slot.onClick.AddListener(
-            () => {
-                selectedSlot = index;
-                StartCoroutine("WaitKey");
-                Debug.Log("Wait key");
-            }
-        );
-        slot.gameObject.transform.SetParent(slotsContainer.transform);
-        slot.gameObject.SetActive(true);
-    }
-
-    private IEnumerator WaitKey() {
-        while (!input.IsDropKeyPressed())
+    protected IEnumerator WaitAction() {
+        isCoroutineRunning = true;
+        while (!input.IsDropKeyPressed() && !isItemDragging)
             yield return null;
-        Debug.Log("Drop key pressed");
-        DropItem();
-    }
-
-    private void PickUpCallback(string slug)
-    {
-        var slots = slotsContainer.GetComponentsInChildren<Button>();
-        var item = CreateItem(slug);
-        foreach (var slot in slots)
-        {
-            if (slot.GetComponentInChildren<Image>().sprite == null)
-            {
-                slot.GetComponentInChildren<Image>().sprite = item.icon;
-                break;
+        if (isItemDragging) { 
+            OnItemDragged();
+        } else {
+            if (input.IsDropKeyPressed()) {
+                OnItemDropped();
             }
         }
-        inventory.AddItem(item);
     }
 
-    private InventoryItem CreateItem(string slug)
-    {
-        //return new InventoryItem{slug = slug};
-        return new InventoryItem();
+    protected void PickUpCallback(string path) { 
+        // AddItem(item);
+        AddItem(new BaseItem());
     }
 
-    private void DropItem()
-    {
+    protected void OnItemDropped() { 
         var item = inventory.GetItem(selectedSlot);
         inventory.RemoveItem(selectedSlot);
-        AddItemToScene(item);
+        var uiInventory = slotsContainer.GetComponentsInChildren<Button>();
+        //uiInventory[selectedSlot].
     }
 
-    private void AddItemToScene(InventoryItem item)
+    protected void OnItemDragged() { }
+
+
+    protected void AddItem(BaseItem item) { 
+        inventory.AddItem(item);
+        var uiItem = new InventoryItem();
+        uiItem.count = item.count;
+        if (item is Armor) {
+            uiItem.properties.Add(ItemTypes.Armor);
+            uiItem.properties.Add(ItemTypes.IsCraftable);
+            uiItem.stackSize = 1;
+
+        } else if (item is Weapon) {
+            uiItem.properties.Add(ItemTypes.Weapon);
+            uiItem.properties.Add(ItemTypes.IsCraftable);
+            uiItem.stackSize = 1;
+
+        } else if (item is Tool) {
+            uiItem.properties.Add(ItemTypes.Tool);
+            uiItem.properties.Add(ItemTypes.IsCraftable);
+            uiItem.stackSize = 1;
+
+        } else if (item is Food) {
+            uiItem.properties.Add(ItemTypes.Food);
+            uiItem.properties.Add(ItemTypes.IsStackable);
+            uiItem.stackSize = 64;
+
+        } else if (item is Assets.InventorySystem.Items.Block) {
+            uiItem.properties.Add(ItemTypes.Block);
+            uiItem.properties.Add(ItemTypes.IsStackable);
+            uiItem.stackSize = 64;
+
+        }
+        SetIcon(uiItem, item.slug); 
+    }
+    
+    protected void SetIcon(InventoryItem item, string pathToSprite) { 
+        item.icon = Resources.Load<Sprite>(pathToSprite);
+    }
+
+    protected void AddItemToScene(BaseItem item, bool isDropped = false) { 
+        // ItemObject.Instance();
+        // ItemObject.BeginSpawn();
+        //    ItemObject.item = item;
+        //    if (isDropped) {
+        //        ItemObject.MoveTo(new Vector2(Screen.width/2, Screen.height/2), 1f);
+        //    } else {
+        //        Character.RightHand.SetItem(ItemObject);
+        //        Camera.DrawableRightHand.Draw(ItemObject);
+        //    }
+        // ItemObject.EndSpawn();
+        // 
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //new SceneEditor().AddItem(item);
+        isItemDragging = eventData.dragging;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isItemDragging = eventData.dragging;
     }
 }

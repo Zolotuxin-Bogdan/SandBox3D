@@ -4,20 +4,28 @@ using Assets.InventorySystem.Items;
 
 public class Inventory
 {
-    protected List<InventoryItem> items = new List<InventoryItem>();
+    protected BaseItem[] items;
     protected readonly int size;
     
     public Inventory(int size) 
     { 
         this.size = size;
+        items = new BaseItem[size];
+        for (var i = 0; i < items.Length; i++)
+        {
+            items[i] = null;
+        }
     }
 
-    public void AddItem(InventoryItem item)
+    public void AddItem(BaseItem item)
     {
-        if (items.Count == size) 
-            throw new Exception("Inventory stack overflow!");
-        
-        items.Add(item);
+        for (var i = 0; i < items.Length; i++)
+        {
+            if (items[i] == null) {
+                items[i] = item;
+                break;
+            }
+        }
     }
 
     public void RemoveItem(int index)
@@ -25,15 +33,15 @@ public class Inventory
         if (index > size || index < 0) 
             throw new ArgumentOutOfRangeException(nameof(index));
         
-        items.RemoveAt(index);
+        items[index] = null;
     }
 
-    public InventoryItem GetItem(int index)
+    public BaseItem GetItem(int index)
     {
         if (index > size || index < 0) 
             throw new ArgumentOutOfRangeException(nameof(index));
         
-        return items.ToArray()[index];
+        return items[index];
     }
 
     public void SwitchItems(int index1, int index2)
@@ -44,12 +52,10 @@ public class Inventory
         if (index2 > size || index2 < 0) 
             throw new ArgumentOutOfRangeException(nameof(index2));
         
-        var item1 = items.ToArray()[index1];
-        var item2 = items.ToArray()[index2];
+        var item1 = items[index1];
+        var item2 = items[index2];
         
-        items.Insert(index1, item2);
-        items.Insert(index2, item1);
-    }
-
-    
+        items[index1] =  item2;
+        items[index2] = item1;
+    }    
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    protected InventoryItem _item;
-    public InventoryItem item 
+    protected BaseItem _item;
+    public BaseItem item 
     { 
         get => _item;
         set => _item = value; 
