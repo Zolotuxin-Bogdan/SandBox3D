@@ -1,0 +1,10 @@
+<XML>
+	<Bundle>
+		<Textures>/Assets/AssetBundles/texturepacks</Textures>
+	</Bundle>
+	<Configuration>
+		<Path>
+			<Textures>/texturepacks/Default</Textures>
+		</Path>
+	</Configuration>
+</XML>
