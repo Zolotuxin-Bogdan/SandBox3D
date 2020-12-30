@@ -5,6 +5,7 @@ public class ResourcePackManager : MonoBehaviour
 {
     public static ResourcePackManager Instance { get; private set; }
 
+    public string TextureDefaultPath = Directory.GetCurrentDirectory() + "/texturepacks/Default";
 
     void Awake()
     {
@@ -18,11 +19,24 @@ public class ResourcePackManager : MonoBehaviour
         }
     }
 
-    
+    //////////////////////////////////////////////////////////// DELETE(FOR TESTING)
+    public void UnpackTextures()
+    {
+        BundleUnpacker unpacker = new BundleUnpacker();
+        unpacker.UnpackTextures();
+    }
+    ////////////////////////////////////////////////////////////
 
     public ResourcePack CreateResourcePack()
     {
-        var texturesDefaultPath = Directory.GetCurrentDirectory() + "\\Textures" + "\\Default\\";
+        var xmlConfig = ConfigLoader.GetConfig();
+        var texturesPathNode = xmlConfig.SelectSingleNode("XML/Configuration/Path/Textures");
+        var pathForUnpack = TextureDefaultPath;
+        if (texturesPathNode != null)
+        {
+            pathForUnpack = texturesPathNode.InnerText;
+        }
+        var texturesDefaultPath = Directory.GetCurrentDirectory() + pathForUnpack;
         var resourcePack = new ResourcePack();
         var cobblestone = new Block()
         {

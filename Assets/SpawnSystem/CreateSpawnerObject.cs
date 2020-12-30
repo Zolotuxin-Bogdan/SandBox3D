@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿/*using UnityEditor;
 using UnityEngine;
 namespace Assets.SpawnSystem
 {
@@ -10,4 +10,4 @@ namespace Assets.SpawnSystem
             g_Obj.AddComponent<Spawner>();
         }
     }
-}
+}*/

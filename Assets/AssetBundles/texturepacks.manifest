@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3714522331
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 95f0d9ae4a347c0dfcfe4b8b57cf005b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 525b72fdacf3aef7d65f355ad8f17a96
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/texturepacks/Default/dirt.png
+- Assets/texturepacks/Default/oak_log.png
+- Assets/texturepacks/Default/sand.png
+- Assets/texturepacks/Default/cobblestone.png
+- Assets/texturepacks/Default/furnance.png
+- Assets/texturepacks/Default/furnance_on.png
+Dependencies: []
