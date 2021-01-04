@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         }
         if (PlayerHead.transform.rotation.eulerAngles.y < transform.rotation.eulerAngles.y - 50f)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x , transform.rotation.eulerAngles.y - 10f, transform.rotation.z));
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.eulerAngles.y - 10f, transform.rotation.z));
         }
 
         var deltaX = _inputSystem.GetHorizontalMovementValue() * Speed;
@@ -62,12 +62,23 @@ public class PlayerController : MonoBehaviour
         _characterController.Move(movement * Time.deltaTime);
     }
 
+    private GameObject _lastGameObject = new GameObject();
     void Dig()
     {
-        Ray ray = FirstPersonCam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 3))
-            Debug.DrawLine(ray.origin, hit.point, Color.red);
+        if (Physics.Raycast(FirstPersonCam.transform.position, FirstPersonCam.transform.forward, out var hit, 3))
+        {
+            //Debug.DrawLine(FirstPersonCam.transform.position, hit.point, Color.red);
+            if (_lastGameObject != hit.collider.gameObject)
+            {
+                _lastGameObject.GetComponent<BlockInstance>().RestoreMaxDurability();
+            }
+            hit.collider.gameObject.GetComponent<BlockInstance>().RemoveDurability(1);
+
+
+
+            _lastGameObject = hit.collider.gameObject;
+        }
+
     }
 
     public void OnDropItemTouched(UnityAction<string> action)

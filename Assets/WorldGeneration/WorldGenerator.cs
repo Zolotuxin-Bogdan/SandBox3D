@@ -21,6 +21,7 @@ public class WorldGenerator : MonoBehaviour
             var blockInfo = ResourcePack.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
             var createdBlock = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()), blockDto.Position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             createdBlock.name = blockInfo.BlockName;
+            createdBlock.AddComponent<BlockInstance>();
             createdBlock.GetComponent<Renderer>().material =
                 BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
             var blockTexture = new Texture2D(48, 48, TextureFormat.RGBA32, false);
