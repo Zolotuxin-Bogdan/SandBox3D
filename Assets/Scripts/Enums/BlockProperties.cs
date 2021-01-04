@@ -1,6 +1,9 @@
-﻿public enum BlockProperties
+﻿namespace Assets.Scripts.Enums
 {
-    Pouring,
-    Liquid,
-    Plant
+    public enum BlockProperties
+    {
+        Pouring,
+        Liquid,
+        Plant
+    }
 }

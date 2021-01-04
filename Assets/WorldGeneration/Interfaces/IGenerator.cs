@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.DTO;
 
-public interface IGenerator
+namespace Assets.WorldGeneration.Interfaces
 {
-    List<BlockDto> GetBlocksDto();
+    public interface IGenerator
+    {
+        List<BlockDto> GetBlocksDto();
+    }
 }

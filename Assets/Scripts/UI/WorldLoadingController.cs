@@ -1,39 +1,43 @@
 ﻿using System.Collections;
+using Assets.WorldGeneration;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WorldLoadingController : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    public TextMeshProUGUI loadState;
-    public string worldName;
-
-    string[] states = 
+    public class WorldLoadingController : MonoBehaviour
     {
-        "Load World",
-        "Build Terrain"
-    };
+        public TextMeshProUGUI loadState;
+        public string worldName;
 
-    void Start()
-    {
-        StartCoroutine(LoadWorld());
-    }
-
-    private IEnumerator LoadWorld()
-    {
-        while (true)
+        string[] states = 
         {
-            loadState.text = states[0];
-            //worldloader.LoadWorld(worldName);
-            loadState.text = states[1];
-            gameObject.AddComponent<WorldGenerator>().GenerateWorld();
-            action.Invoke();
-        }
-    }
+            "Load World",
+            "Build Terrain"
+        };
 
-    protected UnityAction action;
-    public void AddListener(UnityAction action)
-    {
-        this.action = action;
+        void Start()
+        {
+            StartCoroutine(LoadWorld());
+        }
+
+        private IEnumerator LoadWorld()
+        {
+            while (true)
+            {
+                loadState.text = states[0];
+                //worldloader.LoadWorld(worldName);
+                loadState.text = states[1];
+                gameObject.AddComponent<WorldGenerator>().GenerateWorld();
+                action.Invoke();
+            }
+        }
+
+        protected UnityAction action;
+        public void AddListener(UnityAction action)
+        {
+            this.action = action;
+        }
     }
 }

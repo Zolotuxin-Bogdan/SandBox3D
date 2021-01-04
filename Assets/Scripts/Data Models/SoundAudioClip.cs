@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
-[System.Serializable]
-public class SoundAudioClip
+namespace Assets.Scripts.Data_Models
 {
-    public Sound Sound;
-    public AudioClip AudioClip;
+    [System.Serializable]
+    public class SoundAudioClip
+    {
+        public Sound Sound;
+        public AudioClip AudioClip;
+    }
 }

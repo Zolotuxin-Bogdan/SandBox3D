@@ -1,14 +1,17 @@
 ﻿using Assets.FSM;
 
-public class RunningState : State
+namespace Assets.Scripts.States
 {
-    public override void Close()
+    public class RunningState : State
     {
-        throw new System.NotImplementedException();
-    }
+        public override void Close()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    public override void Start()
-    {
-        throw new System.NotImplementedException();
+        public override void Start()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

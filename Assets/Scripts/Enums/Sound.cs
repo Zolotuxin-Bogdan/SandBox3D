@@ -1,6 +1,9 @@
-﻿public enum Sound
+﻿namespace Assets.Scripts.Enums
 {
-    PlayerMove,
-    PlayerHit,
-    PlayerDig
+    public enum Sound
+    {
+        PlayerMove,
+        PlayerHit,
+        PlayerDig
+    }
 }

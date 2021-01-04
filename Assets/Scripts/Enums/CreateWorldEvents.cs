@@ -1,5 +1,8 @@
-﻿public enum CreateWorldEvents
+﻿namespace Assets.Scripts.Enums
 {
-    OnCancelClicked,
-    OnCreateClicked
+    public enum CreateWorldEvents
+    {
+        OnCancelClicked,
+        OnCreateClicked
+    }
 }

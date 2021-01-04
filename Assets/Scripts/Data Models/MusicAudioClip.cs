@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
-[System.Serializable]
-public class MusicAudioClip
+namespace Assets.Scripts.Data_Models
 {
-    public Music Music;
-    public AudioClip AudioClip;
+    [System.Serializable]
+    public class MusicAudioClip
+    {
+        public Music Music;
+        public AudioClip AudioClip;
+    }
 }

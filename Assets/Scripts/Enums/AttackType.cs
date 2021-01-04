@@ -1,5 +1,8 @@
-﻿public enum AttackType
+﻿namespace Assets.Scripts.Enums
 {
-    Close,
-    Ranged
+    public enum AttackType
+    {
+        Close,
+        Ranged
+    }
 }

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class MeshProvider
+namespace Assets.InventorySystem
 {
-    public Mesh ImportMeshBySlug(string slug)
+    public class MeshProvider
     {
-        return (Mesh)Resources.Load<Mesh>(slug) ?? throw new System.Exception("Failed to load Mesh");
+        public Mesh ImportMeshBySlug(string slug)
+        {
+            return (Mesh)Resources.Load<Mesh>(slug) ?? throw new System.Exception("Failed to load Mesh");
+        }
     }
 }

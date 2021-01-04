@@ -1,4 +1,7 @@
-﻿public enum MaterialType
+﻿namespace Assets.Scripts.Enums
 {
-    FullSizeBlockMaterial
+    public enum MaterialType
+    {
+        FullSizeBlockMaterial
+    }
 }

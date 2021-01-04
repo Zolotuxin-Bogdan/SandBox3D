@@ -1,12 +1,15 @@
 ﻿using UnityEditor;
 
-public class BundleBuilder
+namespace Assets.Editor
 {
-    [MenuItem("Assets/ Build AssetBundles")]
-    static void BuildAllAssetBundles()
+    public class BundleBuilder
     {
-        BuildPipeline.BuildAssetBundles("Assets/AssetBundles",
-            BuildAssetBundleOptions.ChunkBasedCompression,
-            EditorUserBuildSettings.activeBuildTarget);
+        [MenuItem("Assets/ Build AssetBundles")]
+        static void BuildAllAssetBundles()
+        {
+            BuildPipeline.BuildAssetBundles("Assets/AssetBundles",
+                BuildAssetBundleOptions.ChunkBasedCompression,
+                EditorUserBuildSettings.activeBuildTarget);
+        }
     }
 }

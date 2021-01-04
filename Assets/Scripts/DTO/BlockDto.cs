@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-public class BlockDto
+namespace Assets.Scripts.DTO
 {
-    public int BlockId { get; set; }
-    public Vector3 Position { get; set; }
+    public class BlockDto
+    {
+        public int BlockId { get; set; }
+        public Vector3 Position { get; set; }
+    }
 }

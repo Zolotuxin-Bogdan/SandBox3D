@@ -1,21 +1,25 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Data_Models;
+using UnityEngine;
 
-public class AudioClipManager : MonoBehaviour
+namespace Assets.AudioSystem
 {
-    public static AudioClipManager Instance { get; private set; }
-
-    public SoundAudioClip[] SoundAudioClips;
-    public MusicAudioClip[] MusicAudioClips;
-
-    void Awake()
+    public class AudioClipManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static AudioClipManager Instance { get; private set; }
+
+        public SoundAudioClip[] SoundAudioClips;
+        public MusicAudioClip[] MusicAudioClips;
+
+        void Awake()
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
     }
 }

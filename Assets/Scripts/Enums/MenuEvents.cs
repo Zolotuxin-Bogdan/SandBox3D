@@ -1,6 +1,9 @@
-﻿public enum MenuEvents
+﻿namespace Assets.Scripts.Enums
 {
-    OnMultiplayerClicked,
-    OnSinglePlayerClicked,
-    OnSettingsClicked
+    public enum MenuEvents
+    {
+        OnMultiplayerClicked,
+        OnSinglePlayerClicked,
+        OnSettingsClicked
+    }
 }

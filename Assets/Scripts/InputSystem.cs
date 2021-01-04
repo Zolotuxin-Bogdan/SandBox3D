@@ -1,76 +1,80 @@
 ﻿using Assets.Scripts.UserSettings;
 using UnityEngine;
-public class InputSystem
+
+namespace Assets.Scripts
 {
-    MovementKeyBindings movementBindings;
-    ActionKeyBindings actionBindings;
-    public InputSystem()
+    public class InputSystem
     {
-        movementBindings = new MovementKeyBindings();
-        actionBindings = new ActionKeyBindings();
-    }
+        MovementKeyBindings movementBindings;
+        ActionKeyBindings actionBindings;
+        public InputSystem()
+        {
+            movementBindings = new MovementKeyBindings();
+            actionBindings = new ActionKeyBindings();
+        }
     
-    public float GetHorizontalMovementValue()
-    {
-        if(Input.GetKey(movementBindings.KeyRight.keyCode))
+        public float GetHorizontalMovementValue()
         {
-            return 1f;
+            if(Input.GetKey(movementBindings.KeyRight.keyCode))
+            {
+                return 1f;
+            }
+            if (Input.GetKey(movementBindings.KeyLeft.keyCode))
+            {
+                return -1f;
+            }
+            return 0f;
         }
-        if (Input.GetKey(movementBindings.KeyLeft.keyCode))
+
+        public float GetVerticalMovementValue()
         {
-            return -1f;
+            if (Input.GetKey(movementBindings.KeyForward.keyCode))
+            {
+                return 1f;
+            }
+            if (Input.GetKey(movementBindings.KeyBack.keyCode))
+            {
+                return -1f;
+            }
+            return 0f;
         }
-        return 0f;
-    }
 
-    public float GetVerticalMovementValue()
-    {
-        if (Input.GetKey(movementBindings.KeyForward.keyCode))
+        public bool IsJumpKeyPressed()
         {
-            return 1f;
+            return Input.GetKey(movementBindings.KeyJump.keyCode);
         }
-        if (Input.GetKey(movementBindings.KeyBack.keyCode))
+
+        public float GetMouseYAxis()
         {
-            return -1f;
+            return Input.GetAxis("Mouse Y");
         }
-        return 0f;
-    }
 
-    public bool IsJumpKeyPressed()
-    {
-        return Input.GetKey(movementBindings.KeyJump.keyCode);
-    }
+        public float GetMouseXAxis()
+        {
+            return Input.GetAxis("Mouse X");
+        }
 
-    public float GetMouseYAxis()
-    {
-        return Input.GetAxis("Mouse Y");
-    }
+        public float GetMouseWheelAxisValue(){
+            return Input.GetAxis("Mouse ScrollWheel");
+        }
 
-    public float GetMouseXAxis()
-    {
-        return Input.GetAxis("Mouse X");
-    }
+        public bool IsDropKeyPressed()
+        {
+            return Input.GetKey(actionBindings.DropKey.keyCode);
+        }
 
-    public float GetMouseWheelAxisValue(){
-        return Input.GetAxis("Mouse ScrollWheel");
-    }
-
-    public bool IsDropKeyPressed()
-    {
-        return Input.GetKey(actionBindings.DropKey.keyCode);
-    }
-
-    public bool IsAttackKeyPressed()
-    {
-        return Input.GetKey(actionBindings.AttackKey.keyCode);
-    }
+        public bool IsAttackKeyPressed()
+        {
+            return Input.GetKey(actionBindings.AttackKey.keyCode);
+        }
     
-    public bool IsCrouchingKeyPressed()
-    {
-        return Input.GetKey(actionBindings.CrouchingKey.keyCode);
-    }
-    public bool IsUseKeyPressed()
-    {
-        return Input.GetKey(actionBindings.UseKey.keyCode);
+        public bool IsCrouchingKeyPressed()
+        {
+            return Input.GetKey(actionBindings.CrouchingKey.keyCode);
+        }
+        public bool IsUseKeyPressed()
+        {
+            return Input.GetKey(actionBindings.UseKey.keyCode);
+        }
     }
 }

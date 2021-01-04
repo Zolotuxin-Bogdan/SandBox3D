@@ -3,36 +3,39 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class RenameWorldController : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    public Button renameWorld;
-    public Button cancel;
-    public TMP_InputField worldName;
-
-    public string sourceWorldName;
-    void Start()
+    public class RenameWorldController : MonoBehaviour
     {
-        renameWorld.onClick.AddListener(RenameWorldCallback);
-        cancel.onClick.AddListener(CancelCallback);
-        worldName.text = sourceWorldName;
-    }
+        public Button renameWorld;
+        public Button cancel;
+        public TMP_InputField worldName;
 
-    private void CancelCallback()
-    {
-        action.Invoke();
-    }
+        public string sourceWorldName;
+        void Start()
+        {
+            renameWorld.onClick.AddListener(RenameWorldCallback);
+            cancel.onClick.AddListener(CancelCallback);
+            worldName.text = sourceWorldName;
+        }
 
-    private void RenameWorldCallback()
-    {
-        System.IO.File.Move(
-            Application.dataPath + "\\saves\\" + sourceWorldName,
-            Application.dataPath + "\\saves\\" + worldName.text
-        );
-    }
+        private void CancelCallback()
+        {
+            action.Invoke();
+        }
 
-    protected UnityAction action;
-    public void AddListener(UnityAction action)
-    {
-        this.action = action;
+        private void RenameWorldCallback()
+        {
+            System.IO.File.Move(
+                Application.dataPath + "\\saves\\" + sourceWorldName,
+                Application.dataPath + "\\saves\\" + worldName.text
+            );
+        }
+
+        protected UnityAction action;
+        public void AddListener(UnityAction action)
+        {
+            this.action = action;
+        }
     }
 }

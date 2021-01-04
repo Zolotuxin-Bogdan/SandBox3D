@@ -2,25 +2,28 @@
 using Assets.InventorySystem.Items;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+namespace Assets.InventorySystem
 {
-    protected BaseItem _item;
-    public BaseItem item 
-    { 
-        get => _item;
-        set => _item = value; 
-    }
-
-    public bool isLifted;
-
-    private void Awake() {
-        isLifted = false;
-        StartCoroutine(AllowLifted());
-    }
-
-    private IEnumerator AllowLifted()
+    public class Item : MonoBehaviour
     {
-        yield return new WaitForSecondsRealtime(2);
-        isLifted = true;
+        protected BaseItem _item;
+        public BaseItem item 
+        { 
+            get => _item;
+            set => _item = value; 
+        }
+
+        public bool isLifted;
+
+        private void Awake() {
+            isLifted = false;
+            StartCoroutine(AllowLifted());
+        }
+
+        private IEnumerator AllowLifted()
+        {
+            yield return new WaitForSecondsRealtime(2);
+            isLifted = true;
+        }
     }
 }

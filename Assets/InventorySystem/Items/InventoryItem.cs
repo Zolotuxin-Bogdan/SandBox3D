@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Enums;
 
 namespace Assets.InventorySystem.Items
 {

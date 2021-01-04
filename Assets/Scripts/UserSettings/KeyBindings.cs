@@ -1,5 +1,7 @@
-using Assets.Scripts.UserSettings;
-public abstract class KeyboardBindings
+namespace Assets.Scripts.UserSettings
 {
-    public abstract KeyBind[] GetBinds();
+    public abstract class KeyboardBindings
+    {
+        public abstract KeyBind[] GetBinds();
+    }
 }

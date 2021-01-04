@@ -1,36 +1,40 @@
 ﻿using System.IO;
+using Assets.Serializer;
 
-public class Storage
+namespace Assets.StorageSystem
 {
-    public void SaveData<T>(T data, string path)
+    public class Storage
     {
-        var directoryName = Path.GetDirectoryName(path);
-        if (!Directory.Exists(directoryName))
+        public void SaveData<T>(T data, string path)
         {
-            Directory.CreateDirectory(directoryName);
+            var directoryName = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+
+            if (!File.Exists(path))
+            {
+                File.Create(path).Close();
+            }
+
+            using (var sw = new StreamWriter(path))
+            {
+                sw.WriteLine(Serializer.Serializer.SerializeToJson(data));
+            }
         }
 
-        if (!File.Exists(path))
+        public T LoadData<T>(string path)
         {
-            File.Create(path).Close();
-        }
-
-        using (var sw = new StreamWriter(path))
-        {
-            sw.WriteLine(Serializer.SerializeToJson(data));
-        }
-    }
-
-    public T LoadData<T>(string path)
-    {
-        if (!File.Exists(path))
-        {
-            throw new FileNotFoundException();
-        }
-        using (var sr = new StreamReader(path))
-        {
-            var dataFromFile = sr.ReadLine();
-            return Deserializer.DeserializeJson<T>(dataFromFile);
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException();
+            }
+            using (var sr = new StreamReader(path))
+            {
+                var dataFromFile = sr.ReadLine();
+                return Deserializer.DeserializeJson<T>(dataFromFile);
+            }
         }
     }
 }

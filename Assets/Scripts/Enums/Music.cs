@@ -1,6 +1,9 @@
-﻿public enum Music 
+﻿namespace Assets.Scripts.Enums
 {
-    Music1,
-    Music2,
-    Music3
+    public enum Music 
+    {
+        Music1,
+        Music2,
+        Music3
+    }
 }

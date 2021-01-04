@@ -1,9 +1,11 @@
-using Assets.InventorySystem.Items;
 using UnityEngine;
 
-public class AttackController : MonoBehaviour 
+namespace Assets.Scripts
 {
-    private void Start() {
+    public class AttackController : MonoBehaviour 
+    {
+        private void Start() {
 
+        }
     }
 }

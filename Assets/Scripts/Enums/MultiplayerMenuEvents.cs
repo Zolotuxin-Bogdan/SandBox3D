@@ -1,7 +1,10 @@
-﻿public enum MultiplayerMenuEvents
+﻿namespace Assets.Scripts.Enums
 {
-    OnAddServerClicked,
-    OnEditClicked,
-    OnCancelClicked,
-    OnDirectConnectClicked
+    public enum MultiplayerMenuEvents
+    {
+        OnAddServerClicked,
+        OnEditClicked,
+        OnCancelClicked,
+        OnDirectConnectClicked
+    }
 }

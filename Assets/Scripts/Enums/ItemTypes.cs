@@ -1,11 +1,14 @@
-﻿public enum ItemTypes
+﻿namespace Assets.Scripts.Enums
 {
-    Weapon,
-    Armor,
-    Tool,
-    Block,
-    Food,
-    Potion,
-    IsCraftable,
-    IsStackable
+    public enum ItemTypes
+    {
+        Weapon,
+        Armor,
+        Tool,
+        Block,
+        Food,
+        Potion,
+        IsCraftable,
+        IsStackable
+    }
 }

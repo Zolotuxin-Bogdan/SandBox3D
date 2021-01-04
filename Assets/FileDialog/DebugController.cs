@@ -1,51 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DebugController : MonoBehaviour
+namespace Assets.FileDialog
 {
-    DirectoryBrowser explorer;
-    bool drawExplorer;
-    public string path;
-    public Texture2D directoryIcon;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class DebugController : MonoBehaviour
     {
-        gameObject.GetComponentInChildren<Button>().onClick.AddListener(SomeButtonCallback);
-    }
+        DirectoryBrowser explorer;
+        bool drawExplorer;
+        public string path;
+        public Texture2D directoryIcon;
     
-    private void SomeButtonCallback()
-    {
-       drawExplorer = true;
-    }
-    
-    private void OnGUI()
-    {
-       if (explorer != null)
-           explorer.OnGUI();
-       else
-           OnGUIMain();
-    }
-    
-    private void OnGUIMain()
-    {
-        if (drawExplorer)
+        // Start is called before the first frame update
+        void Start()
         {
-				explorer = new DirectoryBrowser(
+            gameObject.GetComponentInChildren<Button>().onClick.AddListener(SomeButtonCallback);
+        }
+    
+        private void SomeButtonCallback()
+        {
+            drawExplorer = true;
+        }
+    
+        private void OnGUI()
+        {
+            if (explorer != null)
+                explorer.OnGUI();
+            else
+                OnGUIMain();
+        }
+    
+        private void OnGUIMain()
+        {
+            if (drawExplorer)
+            {
+                explorer = new DirectoryBrowser(
                     "Choose folder...",
                     new Rect(300, 100, 800, 600),
                     FileSelectCallback
                 );
-				explorer.DirectoryIcon = directoryIcon;
+                explorer.DirectoryIcon = directoryIcon;
+            }
         }
-    }
     
-    private void FileSelectCallback(string path)
-    {
-        explorer = null;
-        this.path = path;
-        drawExplorer = false;
+        private void FileSelectCallback(string path)
+        {
+            explorer = null;
+            this.path = path;
+            drawExplorer = false;
+        }
     }
 }

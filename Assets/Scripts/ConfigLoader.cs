@@ -1,13 +1,16 @@
 ﻿using System.Xml;
 using UnityEngine;
 
-public static class ConfigLoader
+namespace Assets.Scripts
 {
-    public static XmlDocument GetConfig()
+    public static class ConfigLoader
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("App");
-        XmlDocument xmldoc = new XmlDocument();
-        xmldoc.LoadXml(textAsset.text);
-        return xmldoc;
+        public static XmlDocument GetConfig()
+        {
+            TextAsset textAsset = (TextAsset)Resources.Load("App");
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.LoadXml(textAsset.text);
+            return xmldoc;
+        }
     }
 }

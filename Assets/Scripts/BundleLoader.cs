@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 
-public class BundleLoader
+namespace Assets.Scripts
 {
-    private AssetBundle _assetBundle;
-
-    public AssetBundle LoadAssetBundle(string bundlePath)
+    public class BundleLoader
     {
-        _assetBundle = AssetBundle.LoadFromFile(bundlePath);
-        if (_assetBundle != null)
-        {
-            return _assetBundle;
-        }
+        private AssetBundle _assetBundle;
 
-        return null;
+        public AssetBundle LoadAssetBundle(string bundlePath)
+        {
+            _assetBundle = AssetBundle.LoadFromFile(bundlePath);
+            if (_assetBundle != null)
+            {
+                return _assetBundle;
+            }
+
+            return null;
+        }
     }
 }

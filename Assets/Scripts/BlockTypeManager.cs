@@ -1,38 +1,42 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Enums;
 using UnityEngine;
 
-public class BlockTypeManager : MonoBehaviour
+namespace Assets.Scripts
 {
-    public static BlockTypeManager Instance { get; private set; }
+    public class BlockTypeManager : MonoBehaviour
+    {
+        public static BlockTypeManager Instance { get; private set; }
 
-    //
-    // Block Types
-    //
-    public GameObject FullSizeBlock;
+        //
+        // Block Types
+        //
+        public GameObject FullSizeBlock;
 
-    private Dictionary<string, GameObject> _typeDictionary = new Dictionary<string, GameObject>();
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
+        private Dictionary<string, GameObject> _typeDictionary = new Dictionary<string, GameObject>();
+        void Awake()
         {
-            Destroy(this.gameObject);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
-        else
+        void Start()
         {
-            Instance = this;
+            _typeDictionary.Add(BlockType.FullSizeBlock.ToString(), FullSizeBlock);
         }
-    }
-    void Start()
-    {
-        _typeDictionary.Add(BlockType.FullSizeBlock.ToString(), FullSizeBlock);
-    }
-    public GameObject GetBlockTypeByName(string typeName)
-    {
-        var isContains = _typeDictionary.ContainsKey(typeName);
-        if (!isContains)
+        public GameObject GetBlockTypeByName(string typeName)
         {
-            return null;
+            var isContains = _typeDictionary.ContainsKey(typeName);
+            if (!isContains)
+            {
+                return null;
+            }
+            return _typeDictionary[typeName];
         }
-        return _typeDictionary[typeName];
     }
 }

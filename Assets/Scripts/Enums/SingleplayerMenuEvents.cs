@@ -1,8 +1,11 @@
-﻿public enum SingleplayerMenuEvents
+﻿namespace Assets.Scripts.Enums
 {
-    OnCreateWorldClicked,
-    OnRunWorldClicked,
-    OnCancelClicked,
-    OnRecreateClicked,
-    OnRenameClicked
+    public enum SingleplayerMenuEvents
+    {
+        OnCreateWorldClicked,
+        OnRunWorldClicked,
+        OnCancelClicked,
+        OnRecreateClicked,
+        OnRenameClicked
+    }
 }

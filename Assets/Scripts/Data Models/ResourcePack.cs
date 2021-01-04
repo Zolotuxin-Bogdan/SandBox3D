@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 
-public class ResourcePack
+namespace Assets.Scripts.Data_Models
 {
-    public List<Block> Blocks { get; set; } = new List<Block>();
+    public class ResourcePack
+    {
+        public List<Block> Blocks { get; set; } = new List<Block>();
+    }
 }

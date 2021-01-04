@@ -1,5 +1,8 @@
-﻿public enum BlockType
+﻿namespace Assets.Scripts.Enums
 {
-    FullSizeBlock,
-    Liquid
+    public enum BlockType
+    {
+        FullSizeBlock,
+        Liquid
+    }
 }
