@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UserSettings;
+﻿using System;
+using Assets.Scripts.UserSettings;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -63,9 +64,25 @@ namespace Assets.Scripts
             return Input.GetKey(actionBindings.DropKey.keyCode);
         }
 
+        [Obsolete("Method IsAttacKeyPressed deprecated. Use AttackKeyState method instead.", false)]
         public bool IsAttackKeyPressed()
         {
             return Input.GetKey(actionBindings.AttackKey.keyCode);
+        }
+
+        public bool AttackKeyState() 
+        {
+            if (Input.GetKeyDown(actionBindings.AttackKey.keyCode))
+                return true;
+            else if (Input.GetKeyUp(actionBindings.AttackKey.keyCode))
+                return false;
+            throw new Exception("Uknown key state");
+        }
+
+        [Obsolete("Method IsAttacKeyReleased deprecated. Use AttackKeyState method instead.", false)]
+        public bool IsAttackKeyReleased() 
+        {
+            return Input.GetKeyUp(actionBindings.AttackKey.keyCode);
         }
     
         public bool IsCrouchingKeyPressed()
