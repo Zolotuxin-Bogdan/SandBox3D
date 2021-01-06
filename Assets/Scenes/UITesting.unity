@@ -21553,8 +21553,8 @@ MonoBehaviour:
   slotsContainer: {fileID: 501283233}
   hotBar: {fileID: 572170380}
   item: {fileID: 580393889}
-  slotCount: 27
-  columnCount: 9
+  inventorySize: 27
+  inventoryColumnSize: 9
 --- !u!114 &1277688683
 MonoBehaviour:
   m_ObjectHideFlags: 0
