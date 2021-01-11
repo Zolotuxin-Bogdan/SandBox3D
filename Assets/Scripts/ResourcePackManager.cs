@@ -9,7 +9,7 @@ namespace Assets.Scripts
     {
         public static ResourcePackManager Instance { get; private set; }
 
-        public string TextureDefaultPath = Directory.GetCurrentDirectory() + "/texturepacks/Default";
+        public string TextureDefaultPath = Directory.GetCurrentDirectory() + "/texturepacks/Default/";
 
         void Awake()
         {
@@ -48,7 +48,10 @@ namespace Assets.Scripts
                 BlockName = "Cobblestone",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "cobblestone.png"
+                BlockTexturePath = texturesDefaultPath + "cobblestone.png",
+                BlockDurability = 5,
+                BlockDropId = 0,
+                BlockDropMaxCount = 1
             };
             resourcePack.Blocks.Add(cobblestone);
             var furnance = new Block()

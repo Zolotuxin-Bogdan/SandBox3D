@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Data_Models;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -8,11 +9,8 @@ namespace Assets.Scripts
         public int BlockDurability { get; set; }
         public int MaxBlockDurability { get; set; }
         public int BlockDropId { get; set; }
+        public int BlockDropMaxCount { get; set; }
 
-        void Start()
-        {
-            BlockDurability = MaxBlockDurability;
-        }
         public void RestoreMaxDurability()
         {
             BlockDurability = MaxBlockDurability;
@@ -33,6 +31,15 @@ namespace Assets.Scripts
             //
             // DROP ITEM
             //
+        }
+
+        public void SetDefaultValues(Block blockInfo)
+        {
+            BlockId = blockInfo.BlockId;
+            BlockDurability = blockInfo.BlockDurability;
+            MaxBlockDurability = blockInfo.BlockDurability;
+            BlockDropId = blockInfo.BlockDropId;
+            BlockDropMaxCount = blockInfo.BlockDropMaxCount;
         }
     }
 }

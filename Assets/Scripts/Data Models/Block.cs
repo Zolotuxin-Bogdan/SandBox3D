@@ -11,5 +11,9 @@ namespace Assets.Scripts.Data_Models
         public MaterialType BlockMaterialType { get; set; }
         public string BlockTexturePath { get; set; }
         public HashSet<BlockProperties> BlockProperties { get; set; } = new HashSet<BlockProperties>();
+        public int BlockDurability { get; set; }
+        public int BlockDigRate { get; set; }
+        public int BlockDropId { get; set; }
+        public int BlockDropMaxCount { get; set; }
     }
 }

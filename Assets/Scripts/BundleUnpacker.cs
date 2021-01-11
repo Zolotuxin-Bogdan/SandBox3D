@@ -30,7 +30,7 @@ namespace Assets.Scripts
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
-                var savePath = directoryPath + "/" + texture.name + ".png";
+                var savePath = directoryPath + texture.name + ".png";
                 File.WriteAllBytes(savePath, image.EncodeToPNG());
                 Debug.Log(savePath);
             }
