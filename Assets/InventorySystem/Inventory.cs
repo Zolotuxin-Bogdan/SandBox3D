@@ -1,63 +1,34 @@
-﻿using System;
+using System.Collections.Generic;
+using Assets.InventorySystem.Events;
 using Assets.InventorySystem.Items;
+using UnityEngine;
 
 namespace Assets.InventorySystem
-{
-    public class Inventory
+{  
+    public class Inventory : MonoBehaviour 
     {
-        protected BaseItem[] items;
-        protected readonly int size;
-    
-        public Inventory(int size) 
-        { 
-            this.size = size;
-            items = new BaseItem[size];
-            for (var i = 0; i < items.Length; i++)
-            {
-                items[i] = null;
+        public event InventoryAction onItemChangedCallback;
+        public List<UIItem> items = new List<UIItem>();
+        public static Inventory instance {get; set;}
+        
+        public readonly int INVENTORY_SIZE = 27;
+
+        void Awake() {
+            instance = this;
+        }        
+        public bool Add(UIItem item) {
+            if (items.Count >= INVENTORY_SIZE) {
+                Debug.Log("Inventory is already full");
+                return false;
             }
+            items.Add(item);
+            onItemChangedCallback?.Invoke();
+            return true;
         }
 
-        public void AddItem(BaseItem item)
-        {
-            for (var i = 0; i < items.Length; i++)
-            {
-                if (items[i] == null) {
-                    items[i] = item;
-                    break;
-                }
-            }
+        public void Remove(UIItem item) {
+            items.Remove(item);
+            onItemChangedCallback?.Invoke();
         }
-
-        public void RemoveItem(int index)
-        {
-            if (index > size || index < 0) 
-                throw new ArgumentOutOfRangeException(nameof(index));
-        
-            items[index] = null;
-        }
-
-        public BaseItem GetItem(int index)
-        {
-            if (index > size || index < 0) 
-                throw new ArgumentOutOfRangeException(nameof(index));
-        
-            return items[index];
-        }
-
-        public void SwitchItems(int index1, int index2)
-        {
-            if (index1 > size || index1 < 0) 
-                throw new ArgumentOutOfRangeException(nameof(index1));
-        
-            if (index2 > size || index2 < 0) 
-                throw new ArgumentOutOfRangeException(nameof(index2));
-        
-            var item1 = items[index1];
-            var item2 = items[index2];
-        
-            items[index1] =  item2;
-            items[index2] = item1;
-        }    
     }
 }
