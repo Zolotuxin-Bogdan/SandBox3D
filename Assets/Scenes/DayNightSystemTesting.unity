@@ -344,7 +344,8 @@ MonoBehaviour:
   sun: {fileID: 239489798}
   moon: {fileID: 1926222781}
   secondsInFullDay: 120
-  currentTime: 0
+  celestialBodiesPos: 70
+  currentTime: 0.77
   timeMiltiplier: 1
 --- !u!4 &1566544387
 Transform:
