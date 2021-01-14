@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Assets.Scripts.Enums;
 
 namespace Assets.InventorySystem.Items
@@ -6,17 +7,13 @@ namespace Assets.InventorySystem.Items
     {
         public bool gravity { get; set; } = false;
         public bool luminosity { get; set; } = false;
-        public Block(int amount, string slug, string name, bool isCraftable, bool IsTrasparent = false, bool isUnexploaded = false, bool isFlammable = true)
+        public Block(int amount, string slug, string name, HashSet<ItemProperties> itemProperties)
         {
             this.amount = amount;
             this.slug = slug;
             this.name = name;
             this.type = ItemType.Block;
-            this.stackable = true;
-            this.craftable = isCraftable;
-            this.transparent = IsTrasparent;
-            this.unexploaded = isUnexploaded;
-            this.flammable = isFlammable;
+            this.itemProperties = itemProperties;
         }
         public Block() { }
     }

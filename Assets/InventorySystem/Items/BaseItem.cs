@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Enums;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Enums;
 
 namespace Assets.InventorySystem.Items
 {
@@ -9,10 +10,6 @@ namespace Assets.InventorySystem.Items
         public string slug { get; set; }
         public int id { get; set; }
         public ItemType type { get; set; }
-        public bool stackable { get; set; }
-        public bool craftable { get; set; }
-        public bool transparent { get; set; }
-        public bool unexploaded { get; set; }
-        public bool flammable { get; set; }
+        public HashSet<ItemProperties> itemProperties { get; set; } = new HashSet<ItemProperties>();
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System.IO;
+using Assets.InventorySystem;
+using Assets.InventorySystem.Items;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.Enums;
 using UnityEngine;
+using Block = Assets.Scripts.Data_Models.Block;
 
 namespace Assets.Scripts
 {
@@ -42,6 +45,7 @@ namespace Assets.Scripts
             }
             var texturesDefaultPath = Directory.GetCurrentDirectory() + pathForUnpack;
             var resourcePack = new ResourcePack();
+
             var cobblestone = new Block()
             {
                 BlockId = 0,
@@ -53,7 +57,20 @@ namespace Assets.Scripts
                 BlockDropId = 0,
                 BlockDropMaxCount = 1
             };
+            cobblestone.BlockSlug =
+                $"item.block.{cobblestone.BlockName}_{cobblestone.BlockTypeName}:{cobblestone.BlockId}";
+            cobblestone.BlockInfo = new InventorySystem.Items.Block
+            {
+                type = ItemType.Block,
+                id = cobblestone.BlockId,
+                name = cobblestone.BlockName,
+                slug = cobblestone.BlockSlug
+            };
+            cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Craftable);
+            cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(cobblestone);
+
             var furnance = new Block()
             {
                 BlockId = 1,
