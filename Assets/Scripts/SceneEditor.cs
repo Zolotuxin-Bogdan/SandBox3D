@@ -31,7 +31,7 @@ namespace Assets.Scripts
             
             if (item.type == Enums.ItemType.Block) {
                 var blockInfo = resource.Blocks.FirstOrDefault(t => t.BlockSlug.Equals(item.slug));
-                var instance = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName));
+                var instance = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
                 
                 instance.GetComponent<Renderer>().material =
                     BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
@@ -95,16 +95,32 @@ namespace Assets.Scripts
                 blockTexture.filterMode = FilterMode.Point;
                 spawnedBlock.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
 
+                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Craftable)) {
+
+                }
+
+                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Flammable)) {
+
+                }
+
+                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Stackable)) {
+
+                }
+
+                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Transparent)) {
+
+                }
+
+                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Unexploaded)) {
+                    
+                }
+
+
                 var item = new InventorySystem.Items.Block
                 {
                     amount = 1, 
-                    craftable = true,
-                    flammable = true,
                     gravity = false,
                     luminosity = false,
-                    stackable = true,
-                    transparent = false,
-                    unexploaded = false,
                     type = Enums.ItemType.Block,
                     id = blockInfo.BlockId,
                     name = blockInfo.BlockName, 
