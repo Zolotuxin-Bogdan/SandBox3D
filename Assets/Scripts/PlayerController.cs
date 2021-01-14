@@ -22,8 +22,14 @@ namespace Assets.Scripts
         private readonly InputSystem _inputSystem = new InputSystem();
         private CharacterController _characterController;
         private Camera _firstPersonCamera;
-        private UnityAction<string> _action;
         private GameObject _lastGameObject;
+
+        public static PlayerController instance;
+
+        void Awake()
+        {
+            instance = this;
+        }
 
         void Start()
         {
@@ -60,8 +66,8 @@ namespace Assets.Scripts
 
             var camRotationY = FirstPersonCam.transform.rotation.eulerAngles.y;
 
-            Debug.Log("Body: " + transform.rotation.eulerAngles.y);
-            Debug.Log("Body Round: " + Math.Round(transform.rotation.eulerAngles.y));
+//            Debug.Log("Body: " + transform.rotation.eulerAngles.y);
+//            Debug.Log("Body Round: " + Math.Round(transform.rotation.eulerAngles.y));
 
 
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, (float)Math.Round(transform.rotation.eulerAngles.y), transform.rotation.z));
@@ -69,7 +75,7 @@ namespace Assets.Scripts
             {
                 if (transform.rotation.eulerAngles.y >= 310)
                 {
-                    Debug.Log("Camera: " + camRotationY);
+                    // Debug.Log("Camera: " + camRotationY);
                     if (camRotationY <= 50 && 360 + camRotationY >= transform.rotation.eulerAngles.y + 50f)
                     {
                         if (transform.rotation.eulerAngles.y + 10 > 360)
@@ -116,7 +122,6 @@ namespace Assets.Scripts
                 }
             }
             PlayerHead.transform.rotation = Quaternion.Euler(new Vector3(_firstPersonCamera.transform.rotation.eulerAngles.x * -1, _firstPersonCamera.transform.rotation.eulerAngles.y + 180f, transform.rotation.z));
-
             var deltaX = _inputSystem.GetHorizontalMovementValue() * Speed;
             var deltaZ = _inputSystem.GetVerticalMovementValue() * Speed;
             var movement = new Vector3(deltaX, 0, deltaZ);
@@ -165,16 +170,6 @@ namespace Assets.Scripts
             isDigReady = false;
             yield return new WaitForSeconds(waitTime);
             isDigReady = true;
-        }
-
-        public void OnDropItemTouched(UnityAction<string> action)
-        {
-            _action = action;
-        }
-
-        void OnCollisionEnter(Collision col)
-        {
-            _action.Invoke(col.gameObject.name);
         }
     }
 }
