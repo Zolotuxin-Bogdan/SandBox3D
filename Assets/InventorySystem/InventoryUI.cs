@@ -25,28 +25,16 @@ namespace Assets.InventorySystem
             }
 
             slots = parent.GetComponentsInChildren<SlotController>();
-
-            StartCoroutine(DropItem());
         }
         protected void UpdateUI() {
-            print("HERE");
             for (int i = 0; i < slots.Length; i++)
             {
-                if (i < inventory.items.Count) {
-                    slots[i].AddItem(inventory.items[i]);
+                if (i < inventory.uiItems.Count) {
+                    slots[i].AddItem(inventory.uiItems[i]);
                 } else {
                     slots[i].ClearSlot();
                 }
             }
-        }
-
-        IEnumerator DropItem() {
-            while (!new InputSystem().IsDropKeyPressed())
-            {
-                yield return null;
-            }
-            
-            inventory.Remove(slots[slots.Length].item);
         }
     }
 }

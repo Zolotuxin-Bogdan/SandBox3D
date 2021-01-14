@@ -4,7 +4,8 @@ using UnityEngine;
 namespace Assets.InventorySystem
 {
     public class ItemPickup : Interactable {
-        public UIItem item;
+        public UIItem item1;
+        public BaseItem item;
 
         public override void Interact()
         {
@@ -14,7 +15,7 @@ namespace Assets.InventorySystem
         }
 
         protected void PickUp() {
-            Inventory.instance.Add(item);
+            Inventory.instance.Add(item, item1);
             Destroy(gameObject);
         }
     }

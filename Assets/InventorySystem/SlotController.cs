@@ -17,7 +17,7 @@ namespace Assets.InventorySystem.Controllers
             // }
             // else 
             //     this.item = item;
-
+            this.item = item;
             icon.color = Color.red;
             //icon.sprite = item.icon;
             icon.enabled = true;

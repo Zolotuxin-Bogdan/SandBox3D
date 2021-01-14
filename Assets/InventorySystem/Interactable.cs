@@ -5,7 +5,7 @@ namespace Assets.InventorySystem
 {
     public class Interactable : MonoBehaviour {
         [Range(0, 3)]
-        [SerializeField]float pickUpRadius = 1f;
+        public float pickUpRadius = 1f;
 
         Transform player;
 
@@ -27,5 +27,7 @@ namespace Assets.InventorySystem
         public virtual void Interact() {
             Debug.Log("Interacting with " + transform.name);
         }
+
+        
     }
 }
