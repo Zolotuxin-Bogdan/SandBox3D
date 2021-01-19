@@ -22,6 +22,8 @@ namespace Assets.InventorySystem
                 Debug.Log("Inventory is already full");
                 return false;
             }
+            // print(item0);
+            // print(item1);
             var item = baseItems.Find(i => i.name == item0.name);
             if (item != null) {
                 item.amount += item1.amount;

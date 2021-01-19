@@ -11,12 +11,16 @@ namespace Assets.InventorySystem
 
         void Start() {
             player = PlayerController.instance.transform;
+            OnCreate();
         }
 
         void Update() {
-            if (Vector3.Distance(player.position, transform.position) <= pickUpRadius) {
-                Interact();
-            }
+            // if (Vector3.Distance(
+            //     new Vector3(player.position.x, 0, player.position.z),
+            //     new Vector3(transform.position.x, 0, transform.position.z)
+            //     ) <= pickUpRadius) {
+            //     Interact();
+            // }
         }
 
         void OnDrawGizmosSelected() {
@@ -28,6 +32,9 @@ namespace Assets.InventorySystem
             Debug.Log("Interacting with " + transform.name);
         }
 
+        public virtual void OnCreate() { 
+            Debug.Log("Object created"); 
+        }
         
     }
 }
