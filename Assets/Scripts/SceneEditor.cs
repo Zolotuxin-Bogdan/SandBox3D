@@ -13,7 +13,18 @@ namespace Assets.Scripts
 
         MeshProvider meshLoader;
         ResourcePack resource;
-        public SceneEditor()
+        private static SceneEditor _instance;
+        public static SceneEditor instance
+        {
+            get {
+                if (_instance == null) {
+                    _instance = new SceneEditor();
+                }
+                return _instance;
+            }
+        }
+        
+        protected SceneEditor()
         {
             meshLoader = new MeshProvider();
             resource = ResourcePackStorageProvider.Instance.LoadResourcePack();
@@ -81,32 +92,32 @@ namespace Assets.Scripts
             if (itemInfo.type == Enums.ItemType.Block) {
                 //Debug.Log(resource.Blocks.FirstOrDefault(t => t.BlockId.Equals(0)).BlockSlug);
                 var blockInfo = resource.Blocks.FirstOrDefault(t => t.BlockInfo.slug.ToLower().Equals(itemInfo.slug.ToLower()));
-                var instance = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
+                var itemInstance = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
                 
-                instance.GetComponent<Renderer>().material =
+                itemInstance.GetComponent<Renderer>().material =
                     BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
                 
                 var blockTexture = new Texture2D(48, 48, TextureFormat.RGBA32, false);
                 
                 blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
                 blockTexture.filterMode = FilterMode.Point;
-                instance.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
+                itemInstance.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
 
-                var pickup = instance.AddComponent<ItemPickup>();
+                var pickup = itemInstance.AddComponent<ItemPickup>();
                 // set pick up radius
                 // and add item information into item
                 pickup.pickUpRadius = .7f;
                 pickup.item = itemInfo;
                 
-                var animation = instance.AddComponent<ItemAnimation>();
+                var animation = itemInstance.AddComponent<ItemAnimation>();
                 // configure animation settings for item
                 animation.rotationY = .18f;
                 animation.moveY = .001f;
               
                 // set item position
                 // and set item as child for item physic
-                instance.transform.position = new Vector3(srcTransform.position.x, srcTransform.position.y + .5f, srcTransform.position.z);
-                instance.transform.SetParent(itemBox.transform);
+                itemInstance.transform.position = new Vector3(srcTransform.position.x, srcTransform.position.y + .5f, srcTransform.position.z);
+                itemInstance.transform.SetParent(itemBox.transform);
             }
             
             // set position for item physic
