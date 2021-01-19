@@ -130,12 +130,16 @@ namespace Assets.Scripts
             var collider = itemBox.AddComponent<BoxCollider>();
             collider.center = new Vector3(0, -.5f, 0);
             collider.size = new Vector3(1, 0, 1);
-
+            itemBox.transform.position = blockDto.Position;  
             try
             {
                 var resources = ResourcePackStorageProvider.Instance.LoadResourcePack();
                 var blockInfo = resources.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
-                var spawnedBlock = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName($"{blockInfo.BlockTypeName}"), blockDto.Position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+                var spawnedBlock = Object.Instantiate(
+                    BlockTypeManager.Instance.GetBlockTypeByName($"{blockInfo.BlockTypeName}"),
+                    new Vector3(blockDto.Position.x, blockDto.Position.y + .5f, blockDto.Position.z),
+                    Quaternion.Euler(new Vector3(-90, 0, 0))
+                );
                 spawnedBlock.name = blockInfo.BlockName;
                 BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
                 var blockTexture = new Texture2D(16, 16, TextureFormat.RGBA32, false);
@@ -179,10 +183,21 @@ namespace Assets.Scripts
                 }; 
                 spawnedBlock.AddComponent<Item>().item = (BaseItem)item;
 
-                spawnedBlock.transform.localPosition = blockDto.Position;
+                var pickup = spawnedBlock.AddComponent<ItemPickup>();
+                // set pick up radius
+                // and add item information into item
+                pickup.pickUpRadius = .7f;
+                pickup.item = blockInfo.BlockInfo;
+                
+                var animation = spawnedBlock.AddComponent<ItemAnimation>();
+                // configure animation settings for item
+                animation.rotationY = .18f;
+                animation.moveY = .001f;
+
                 spawnedBlock.transform.SetParent(itemBox.transform);
 
-                itemBox.transform.localPosition = blockDto.Position;    
+                itemBox.transform.localScale = new Vector3(.3f, .3f, .3f);
+                  
             }
             catch (System.Exception e)
             {

@@ -54,9 +54,10 @@ namespace Assets.InventorySystem
                 yield return null;
             else {
                 // 
-                new SceneEditor().AddItem(
-                    new Items.BaseItem{type = Scripts.Enums.ItemType.Block, slug = "item.block.cobblestone_FullSizeBlock:0"},
-                    player);
+                new SceneEditor().AddItem(new Scripts.DTO.BlockDto {BlockId = 0, Position = player.position});
+                // new SceneEditor().AddItem(
+                //     new Items.BaseItem{type = Scripts.Enums.ItemType.Block, slug = "item.block.cobblestone_FullSizeBlock:0"},
+                //     player);
                 dropping = true;
             }
             // inventory.Remove(slots[0].item);
