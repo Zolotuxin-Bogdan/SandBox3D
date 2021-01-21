@@ -6,6 +6,7 @@
         Craftable,
         Transparent,
         Unexploaded,
-        Flammable ,
+        Flammable,
+        Pouring
     }
 }
