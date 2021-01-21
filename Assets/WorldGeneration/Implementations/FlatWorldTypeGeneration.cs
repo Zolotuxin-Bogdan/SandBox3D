@@ -26,7 +26,7 @@ namespace Assets.WorldGeneration.Implementations
                     _spawnPosition.z = z;
                     blockDto = new BlockDto()
                     {
-                        BlockId = z%3,
+                        BlockId = z%3 + 1,
                         Position = _spawnPosition
                     }; ;
                     blockDtoList.Add(blockDto);

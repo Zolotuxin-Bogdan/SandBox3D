@@ -48,13 +48,13 @@ namespace Assets.Scripts
 
             var cobblestone = new Block()
             {
-                BlockId = 0,
+                BlockId = 1,
                 BlockName = "Cobblestone",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
                 BlockTexturePath = texturesDefaultPath + "cobblestone.png",
                 BlockDurability = 5,
-                BlockDropId = 0,
+                BlockDropId = 1,
                 BlockDropMaxCount = 1
             };
             cobblestone.BlockSlug =
@@ -71,24 +71,24 @@ namespace Assets.Scripts
             cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(cobblestone);
 
-            var furnance = new Block()
-            {
-                BlockId = 1,
-                BlockName = "Furnance",
-                BlockTypeName = BlockType.FullSizeBlock,
-                BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "furnance.png"
-            };
-            resourcePack.Blocks.Add(furnance);
-            var furnanceOn = new Block()
+            var furnace = new Block()
             {
                 BlockId = 2,
-                BlockName = "Furnance_On",
+                BlockName = "Furnace",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "furnance_on.png"
+                BlockTexturePath = texturesDefaultPath + "furnace.png"
             };
-            resourcePack.Blocks.Add(furnanceOn);
+            resourcePack.Blocks.Add(furnace);
+            var furnaceOn = new Block()
+            {
+                BlockId = 3,
+                BlockName = "Furnace_On",
+                BlockTypeName = BlockType.FullSizeBlock,
+                BlockMaterialType = MaterialType.FullSizeBlockMaterial,
+                BlockTexturePath = texturesDefaultPath + "furnace_on.png"
+            };
+            resourcePack.Blocks.Add(furnaceOn);
             return resourcePack;
         }
     }
