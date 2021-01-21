@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Data_Models;
+using Assets.Scripts.DTO;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -31,6 +32,11 @@ namespace Assets.Scripts
             //
             // DROP ITEM
             //
+            SceneEditor.instance.AddItem(new BlockDto()
+            {
+                BlockId = BlockDropId,
+                Position = transform.position
+            });
         }
 
         public void SetDefaultValues(Block blockInfo)

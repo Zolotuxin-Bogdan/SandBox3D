@@ -60,22 +60,13 @@ namespace Assets.Scripts
         void Move()
         {
             FirstPersonCam.transform.position = FirstPersonCamPosition.transform.position;
-            //PlayerHead.transform.rotation = Quaternion.Euler(new Vector3(_firstPersonCamera.transform.rotation.eulerAngles.x * -1, _firstPersonCamera.transform.rotation.eulerAngles.y + 180f, transform.rotation.z));
-
             var mouseDirection = _inputSystem.GetMouseXAxis();
-
             var camRotationY = FirstPersonCam.transform.rotation.eulerAngles.y;
-
-//            Debug.Log("Body: " + transform.rotation.eulerAngles.y);
-//            Debug.Log("Body Round: " + Math.Round(transform.rotation.eulerAngles.y));
-
-
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, (float)Math.Round(transform.rotation.eulerAngles.y), transform.rotation.z));
             if (mouseDirection > 0)
             {
                 if (transform.rotation.eulerAngles.y >= 310)
                 {
-                    // Debug.Log("Camera: " + camRotationY);
                     if (camRotationY <= 50 && 360 + camRotationY >= transform.rotation.eulerAngles.y + 50f)
                     {
                         if (transform.rotation.eulerAngles.y + 10 > 360)
@@ -97,9 +88,9 @@ namespace Assets.Scripts
             }
             else if (mouseDirection < 0)
             {
-                if (transform.rotation.eulerAngles.y <= 50)
+                if (transform.rotation.eulerAngles.y < 51)
                 {
-                    if (camRotationY >= 310 && 360 - camRotationY <= transform.rotation.eulerAngles.y - 50f)
+                    if (camRotationY >= 300 && camRotationY - 360 < transform.rotation.eulerAngles.y - 51f)
                     {
                         if (transform.rotation.eulerAngles.y - 10 < 0)
                         {
@@ -114,7 +105,7 @@ namespace Assets.Scripts
                         }
                     }
                 }
-                else if (camRotationY <= transform.rotation.eulerAngles.y - 50f)
+                else if (camRotationY <= transform.rotation.eulerAngles.y - 51f)
                 {
                     transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x,
                         transform.rotation.eulerAngles.y - 10, transform.rotation.z));
