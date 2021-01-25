@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.States
 {
-    public class MovingState: State
+    public class WalkingState: State
     {
         public override void Start()
         {
