@@ -13,6 +13,8 @@ namespace Assets.FSM
 
         public void SwitchTo(State state)
         {
+            if (_state == state)
+                return;
             Debug.Log($"StatesMachine: Switch to {state.GetType().Name}");
             _state = state;
             state.SetStatesMachine(this);
