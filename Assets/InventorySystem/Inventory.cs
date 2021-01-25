@@ -17,21 +17,22 @@ namespace Assets.InventorySystem
         void Awake() {
             instance = this;
         }        
-        public bool Add(BaseItem item0, UIItem item1) {
+        public bool Add(BaseItem itemInfo, UIItem uiItemInfo) {
             if (baseItems.Count >= INVENTORY_SIZE) {
                 Debug.Log("Inventory is already full");
                 return false;
             }
-            // print(item0);
-            // print(item1);
-            var item = baseItems.Find(i => i.name == item0.name);
+
+            var item = baseItems.Find(i => i.name == itemInfo.name);
+            
             if (item != null) {
-                item.amount += item1.amount;
-                uiItems[baseItems.IndexOf(item)].amount += item1.amount;
+                item.amount += itemInfo.amount;
+                uiItems[baseItems.IndexOf(item)].amount += uiItemInfo.amount;
             } else {
-                baseItems.Add(item0);
-                uiItems.Add(item1);
+                baseItems.Add(itemInfo);
+                uiItems.Add(uiItemInfo);
             }
+            
             onItemChangedCallback?.Invoke();
             return true;
         }

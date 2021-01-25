@@ -12,7 +12,6 @@ namespace Assets.InventorySystem
 
         bool delayEnd = false;
         public override void Interact() {
-            base.Interact();
             if (delayEnd)
                 PickUp();
         }

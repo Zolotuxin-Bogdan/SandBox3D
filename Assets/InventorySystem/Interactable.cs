@@ -15,12 +15,12 @@ namespace Assets.InventorySystem
         }
 
         void Update() {
-            // if (Vector3.Distance(
-            //     new Vector3(player.position.x, 0, player.position.z),
-            //     new Vector3(transform.position.x, 0, transform.position.z)
-            //     ) <= pickUpRadius) {
-            //     Interact();
-            // }
+            if (Vector3.Distance(
+                new Vector3(player.position.x, 0, player.position.z),
+                new Vector3(transform.position.x, 0, transform.position.z)
+                ) <= pickUpRadius) {
+                Interact();
+            }
         }
 
         void OnDrawGizmosSelected() {
