@@ -3,7 +3,7 @@
 namespace Assets.Scripts.States
 {
     // BehaviourTree
-    public class JumpingState: State
+    public class DyingState: State
     {
         public override void Start()
         {
