@@ -195,9 +195,21 @@ namespace Assets.Scripts
                 spawnedBlock.AddComponent<Item>().item = (BaseItem)item;
 
                 var pickup = spawnedBlock.AddComponent<ItemPickup>();
+                pickup.item = item;
+                pickup.item1 = new UIItem{ 
+                    amount = item.amount,
+                    durability = 0,  
+                    name = item.name,
+                    icon = Sprite.Create(
+                        spawnedBlock.GetComponent<Renderer>().material.mainTexture as Texture2D, 
+                        new Rect(0, 0, 30, 30), 
+                        new Vector2(0, 0)
+                    )
+                };
                 // set pick up radius
                 // and add item information into item
                 pickup.pickUpRadius = .7f;
+                pickup.pickupDelay = 2;
                 pickup.item = blockInfo.BlockInfo;
                 
                 var animation = spawnedBlock.AddComponent<ItemAnimation>();
