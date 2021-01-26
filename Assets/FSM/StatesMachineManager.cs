@@ -8,6 +8,13 @@ namespace Assets.FSM
 
         public static StatesMachineManager instance;
 
+        // Animation States
+        public readonly string IDLE_ANIMATION = "STEVE_IDLE_ANIMATION";
+        public readonly string WALK_ANIMATION = "STEVE_WALK_ANIMATION";
+        public readonly string RUN_ANIMATION = "STEVE_RUN_ANIMATION";
+
+        public GameObject Player;
+
         StatesMachine statesMachine;
         private void Awake() {
             instance = this;
