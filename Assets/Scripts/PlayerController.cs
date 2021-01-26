@@ -149,7 +149,7 @@ namespace Assets.Scripts
             //
             if (deltaZ > 0)
             {
-                StatesMachineManager.instance.SwitchState(CharacterStates.Walk);
+                PlayerStatesManager.instance.SwitchState(CharacterStates.Walk);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation,
                     Quaternion.Euler(transform.rotation.eulerAngles.x, camRotationY, transform.rotation.eulerAngles.z), 
                     200 * Time.deltaTime);
@@ -157,7 +157,7 @@ namespace Assets.Scripts
             }
             else
             {
-                StatesMachineManager.instance.SwitchState(CharacterStates.Idle);
+                PlayerStatesManager.instance.SwitchState(CharacterStates.Idle);
             }
             
             //

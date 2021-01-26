@@ -8,8 +8,8 @@ namespace Assets.Scripts.States
         private Animator _animator;
         public override void Start()
         {
-            _animator = StatesMachineManager.instance.Player.GetComponent<Animator>();
-            _animator.Play(StatesMachineManager.instance.WALK_ANIMATION);
+            _animator = PlayerStatesManager.instance.Player.GetComponent<Animator>();
+            _animator.Play(PlayerStatesManager.instance.WALK_ANIMATION);
         }
 
         public override void Close()

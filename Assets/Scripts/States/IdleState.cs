@@ -9,11 +9,11 @@ namespace Assets.Scripts.States
 
         public IdleState()
         {
-            _animator = StatesMachineManager.instance.Player.GetComponent<Animator>();
+            _animator = PlayerStatesManager.instance.Player.GetComponent<Animator>();
         }
         public override void Start()
         {
-            _animator.Play(StatesMachineManager.instance.IDLE_ANIMATION);
+            _animator.Play(PlayerStatesManager.instance.IDLE_ANIMATION);
         }
 
         public override void Close()
