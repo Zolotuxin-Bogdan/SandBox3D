@@ -75,7 +75,10 @@ namespace Assets.Scripts
                 BlockName = "Furnace",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "furnace.png"
+                BlockTexturePath = texturesDefaultPath + "furnace.png",
+                BlockDurability = 5,
+                BlockDropId = 2,
+                BlockDropMaxCount = 1
             };
             furnace.BlockSlug =
                 $"item.block.{furnace.BlockName}_{furnace.BlockTypeName}:{furnace.BlockId}";
@@ -118,7 +121,10 @@ namespace Assets.Scripts
                 BlockName = "Dirt",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "dirt.png"
+                BlockTexturePath = texturesDefaultPath + "dirt.png",
+                BlockDurability = 3,
+                BlockDropId = 4,
+                BlockDropMaxCount = 1
             };
             dirt.BlockSlug =
                 $"item.block.{dirt.BlockName}_{dirt.BlockTypeName}:{dirt.BlockId}";
@@ -139,7 +145,10 @@ namespace Assets.Scripts
                 BlockName = "Sand",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "sand.png"
+                BlockTexturePath = texturesDefaultPath + "sand.png",
+                BlockDurability = 3,
+                BlockDropId = 5,
+                BlockDropMaxCount = 1
             };
             sand.BlockSlug =
                 $"item.block.{sand.BlockName}_{sand.BlockTypeName}:{sand.BlockId}";
@@ -161,7 +170,10 @@ namespace Assets.Scripts
                 BlockName = "Oak Log",
                 BlockTypeName = BlockType.FullSizeBlock,
                 BlockMaterialType = MaterialType.FullSizeBlockMaterial,
-                BlockTexturePath = texturesDefaultPath + "oak_log.png"
+                BlockTexturePath = texturesDefaultPath + "oak_log.png",
+                BlockDurability = 4,
+                BlockDropId = 6,
+                BlockDropMaxCount = 1
             };
             oak_log.BlockSlug =
                 $"item.block.{oak_log.BlockName}_{oak_log.BlockTypeName}:{oak_log.BlockId}";
