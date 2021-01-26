@@ -77,7 +77,7 @@ namespace Assets.Scripts
             var collider = itemBox.AddComponent<BoxCollider>();
             // moving the object collider to the bottom
             // and removing the height
-            collider.center = new Vector3(0, -.5f, 0);
+            collider.center = new Vector3(0, -1.5f, 0);
             collider.size = new Vector3(1, 0, 1);
             itemBox.layer = 10;
             itemBox.transform.position = srcTransform.position;
@@ -131,7 +131,7 @@ namespace Assets.Scripts
             rig.drag = 1;
             rig.freezeRotation = true;
             var collider = itemBox.AddComponent<BoxCollider>();
-            collider.center = new Vector3(0, -.5f, 0);
+            collider.center = new Vector3(0, -1.5f, 0);
             collider.size = new Vector3(1, 0, 1);
             itemBox.transform.position = blockDto.Position;  
             try
