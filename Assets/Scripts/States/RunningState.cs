@@ -1,17 +1,20 @@
 ﻿using Assets.FSM;
+using UnityEngine;
 
 namespace Assets.Scripts.States
 {
     public class RunningState : State
     {
-        public override void Close()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        private Animator _animator;
         public override void Start()
         {
-            throw new System.NotImplementedException();
+            _animator = PlayerStatesManager.instance.Player.GetComponent<Animator>();
+            _animator.Play(PlayerStatesManager.instance.RUN_ANIMATION);
+        }
+
+        public override void Close()
+        {
+            //throw new System.NotImplementedException();
         }
     }
 }
