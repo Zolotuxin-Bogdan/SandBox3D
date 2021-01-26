@@ -15,7 +15,7 @@ namespace Assets.Scripts
         ResourcePack resource;
         public static SceneEditor instance;
         public RuntimeAnimatorController itemAnimatorController;
-        protected void Awake()
+        protected void Start()
         {
             instance = this;
             meshLoader = new MeshProvider();
@@ -202,7 +202,7 @@ namespace Assets.Scripts
                 pickup.pickupDelay = 2;
                 pickup.item = blockInfo.BlockInfo;
                 
-                spawnedBlock.GetComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
+                spawnedBlock.AddComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
 
                 spawnedBlock.transform.SetParent(itemBox.transform);
 
