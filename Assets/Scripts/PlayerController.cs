@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Assets.FSM;
+using Assets.Scripts.Enums;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -69,7 +71,7 @@ namespace Assets.Scripts
             // Rounding player model rotation to avoid non-integer values
             //
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, (float)Math.Round(transform.rotation.eulerAngles.y), transform.rotation.z));
-            
+
             //
             // Rotate player model body by camera when rotation delta between them equal 50 degrees
             //
@@ -147,10 +149,15 @@ namespace Assets.Scripts
             //
             if (deltaZ > 0)
             {
+                StatesMachineManager.instance.SwitchState(CharacterStates.Walk);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation,
                     Quaternion.Euler(transform.rotation.eulerAngles.x, camRotationY, transform.rotation.eulerAngles.z), 
                     200 * Time.deltaTime);
                 
+            }
+            else
+            {
+                StatesMachineManager.instance.SwitchState(CharacterStates.Idle);
             }
             
             //
