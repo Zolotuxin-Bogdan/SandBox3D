@@ -102,7 +102,9 @@ namespace Assets.Scripts
                 pickup.pickUpRadius = .7f;
                 pickup.item = itemInfo;
                 
-                itemInstance.AddComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
+                var animator = itemInstance.AddComponent<Animator>();
+                animator.runtimeAnimatorController = itemAnimatorController;
+                animator.applyRootMotion = true;
 
                 // set item position
                 // and set item as child for item physic
@@ -202,8 +204,9 @@ namespace Assets.Scripts
                 pickup.pickupDelay = 2;
                 pickup.item = blockInfo.BlockInfo;
                 
-                spawnedBlock.AddComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
-
+                var animator = spawnedBlock.AddComponent<Animator>();
+                animator.runtimeAnimatorController = itemAnimatorController;
+                animator.applyRootMotion = true;
                 spawnedBlock.transform.SetParent(itemBox.transform);
 
                 itemBox.transform.localScale = new Vector3(.3f, .3f, .3f);
