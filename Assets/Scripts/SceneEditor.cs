@@ -8,27 +8,20 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class SceneEditor
+    public class SceneEditor : MonoBehaviour
     {
 
         MeshProvider meshLoader;
         ResourcePack resource;
-        private static SceneEditor _instance;
-        public static SceneEditor instance
+        public static SceneEditor instance;
+        public RuntimeAnimatorController itemAnimatorController;
+        protected void Awake()
         {
-            get {
-                if (_instance == null) {
-                    _instance = new SceneEditor();
-                }
-                return _instance;
-            }
-        }
-        
-        protected SceneEditor()
-        {
+            instance = this;
             meshLoader = new MeshProvider();
             resource = ResourcePackStorageProvider.Instance.LoadResourcePack();
         }
+
         #region DEBUG
             // When player drop item
             public void AddItem(Vector3 spawnPosition) {
@@ -109,11 +102,8 @@ namespace Assets.Scripts
                 pickup.pickUpRadius = .7f;
                 pickup.item = itemInfo;
                 
-                var animation = itemInstance.AddComponent<ItemAnimation>();
-                // configure animation settings for item
-                animation.rotationY = .18f;
-                animation.moveY = .001f;
-              
+                itemInstance.AddComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
+
                 // set item position
                 // and set item as child for item physic
                 itemInstance.transform.position = new Vector3(srcTransform.position.x, srcTransform.position.y + .5f, srcTransform.position.z);
@@ -212,10 +202,7 @@ namespace Assets.Scripts
                 pickup.pickupDelay = 2;
                 pickup.item = blockInfo.BlockInfo;
                 
-                var animation = spawnedBlock.AddComponent<ItemAnimation>();
-                // configure animation settings for item
-                animation.rotationY = .18f;
-                animation.moveY = .001f;
+                spawnedBlock.GetComponent<Animator>().runtimeAnimatorController = itemAnimatorController;
 
                 spawnedBlock.transform.SetParent(itemBox.transform);
 
