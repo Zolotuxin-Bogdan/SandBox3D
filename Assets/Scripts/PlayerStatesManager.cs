@@ -1,12 +1,13 @@
+using Assets.FSM;
 using Assets.Scripts.Enums;
 using Assets.Scripts.States;
 using UnityEngine;
-    
-namespace Assets.FSM
-{
-    public class StatesMachineManager : MonoBehaviour {
 
-        public static StatesMachineManager instance;
+namespace Assets.Scripts
+{
+    public class PlayerStatesManager : MonoBehaviour {
+
+        public static PlayerStatesManager instance;
 
         // Animation States
         public readonly string IDLE_ANIMATION = "STEVE_IDLE_ANIMATION";
