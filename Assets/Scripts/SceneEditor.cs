@@ -94,7 +94,7 @@ namespace Assets.Scripts
                 
                 blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
                 blockTexture.filterMode = FilterMode.Point;
-                itemInstance.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
+                itemInstance.GetComponent<Renderer>().material.SetTexture("_BaseMap", blockTexture);
 
                 var pickup = itemInstance.AddComponent<ItemPickup>();
                 // set pick up radius
@@ -148,7 +148,7 @@ namespace Assets.Scripts
                 var blockTexture = new Texture2D(16, 16, TextureFormat.RGBA32, false);
                 blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
                 blockTexture.filterMode = FilterMode.Point;
-                spawnedBlock.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
+                spawnedBlock.GetComponent<Renderer>().material.SetTexture("_BaseMap", blockTexture);
 
                 #region NOT_IMPLEMENTED
 

@@ -34,7 +34,7 @@ namespace Assets.WorldGeneration
                 var blockTexture = new Texture2D(48, 48, TextureFormat.RGBA32, false);
                 blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
                 blockTexture.filterMode = FilterMode.Point;
-                createdBlock.GetComponent<Renderer>().material.SetTexture("_MainTex", blockTexture);
+                createdBlock.GetComponent<Renderer>().material.SetTexture("_BaseMap", blockTexture);
             }
         }
 
