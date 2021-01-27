@@ -19,6 +19,7 @@ namespace Assets.InventorySystem.Controllers
         Rect rect;
         private void Awake() {
             rect = GetComponent<RectTransform>().rect;
+            icon.enabled = false;
         }
 
         public void AddItem(UIItem item) {

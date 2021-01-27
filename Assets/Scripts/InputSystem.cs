@@ -1,19 +1,39 @@
 ﻿using System;
+using System.Collections;
 using Assets.Scripts.UserSettings;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class InputSystem
+    public class InputSystem : MonoBehaviour
     {
+        public delegate void KeyPressed();
+        public event KeyPressed OnKeyPressed; 
         MovementKeyBindings movementBindings;
         ActionKeyBindings actionBindings;
-        public InputSystem()
+
+        public InputSystem instance {get; private set;}
+        protected void Awake()
         {
+            instance = this;
             movementBindings = new MovementKeyBindings();
             actionBindings = new ActionKeyBindings();
         }
-    
+
+        private void Update() {
+            StartCoroutine(WaitKey());
+        }
+
+        private IEnumerator WaitKey()
+        {
+            while (!Input.anyKeyDown)
+            {
+                yield return null;
+            }
+
+            OnKeyPressed?.Invoke();
+        }
+
         public float GetHorizontalMovementValue()
         {
             if(Input.GetKey(movementBindings.KeyRight.keyCode))
