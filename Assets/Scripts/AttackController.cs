@@ -2,9 +2,27 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class AttackController : MonoBehaviour 
+    public class AttackController 
     {
-        private void Start() {
+        public void DoAction(string actionType) {
+            if (actionType.ToLower() == "dig")
+                Dig();
+            if (actionType.ToLower() == "combat")
+                Combat();
+            if (actionType.ToLower() == "fire")
+                Fire();
+
+        }
+
+        protected void Dig() {
+
+        }
+
+        protected void Combat() {
+
+        }
+
+        protected void Fire() {
 
         }
     }
