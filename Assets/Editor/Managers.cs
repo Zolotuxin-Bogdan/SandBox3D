@@ -7,11 +7,23 @@ namespace Assets.Editor
 {
     public class Managers: ScriptableWizard {
 
-        [SerializeField] bool resourcePackStorageProvider;
-        [SerializeField] bool blockTypeManager;
-        [SerializeField] bool blockMaterialManager;
-        [SerializeField] bool resourcePackManager;
+        [Tooltip("Resource Pack Storage Provider")]
+        [SerializeField] bool rPStorageProvider;
+
+        [Tooltip("Resource Pack Manager")]
+        [SerializeField] bool rPManager;
+
+        [Tooltip("Block Type Manager")]
+        [SerializeField] bool bTManager;
+
+        [Tooltip("Block Material Manager")]
+        [SerializeField] bool bMManager;
+
         [SerializeField] bool sceneEditor;
+        [SerializeField] bool inputSystem;
+        
+        [Tooltip("Player Storage Manager")]
+        [SerializeField] bool pSManager;
 
 
         [MenuItem("SandBox3D/ToolsManager")]
@@ -20,17 +32,25 @@ namespace Assets.Editor
         }
 
         private void OnWizardCreate() {
-            GameObject go = new GameObject("Tools");
-            if (resourcePackStorageProvider)
+            GameObject go = new GameObject("ToolsObject");
+            if (rPStorageProvider)
                 go.AddComponent<ResourcePackStorageProvider>();
-            if (resourcePackManager)
+            if (rPManager)
                 go.AddComponent<ResourcePackManager>();
-            if (blockTypeManager)
+            if (bTManager)
                 go.AddComponent<BlockTypeManager>();
-            if (blockMaterialManager)
+            if (bMManager)
                 go.AddComponent<BlockMaterialManager>();
             if (sceneEditor)
                 go.AddComponent<SceneEditor>();
+            if (pSManager)
+                go.AddComponent<PlayerStatesManager>();
+            if (inputSystem)
+                go.AddComponent<InputSystem>();
+        }
+
+        private void OnWizardUpdate() {
+            helpString = "Create gameobject with selected tools";
         }
     }
 }
