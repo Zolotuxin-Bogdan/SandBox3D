@@ -1,7 +1,7 @@
 using Assets.Scripts;
 using UnityEngine;
 
-namespace Assets.InventorySystem
+namespace InventorySystem
 {
     public class Interactable : MonoBehaviour {
         [Range(0, 3)]

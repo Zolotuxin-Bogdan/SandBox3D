@@ -1,8 +1,8 @@
 using System.Collections;
-using Assets.InventorySystem.Items;
+using InventorySystem.Items;
 using UnityEngine;
 
-namespace Assets.InventorySystem
+namespace InventorySystem
 {
     public class ItemPickup : Interactable {
         public UIItem item1;

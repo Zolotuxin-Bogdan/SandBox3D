@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Assets.InventorySystem.Events;
-using Assets.InventorySystem.Items;
+using InventorySystem.Events;
+using InventorySystem.Items;
 using UnityEngine;
 
-namespace Assets.InventorySystem
+namespace InventorySystem
 {  
     public class Inventory : MonoBehaviour 
     {

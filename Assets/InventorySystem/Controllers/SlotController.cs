@@ -1,10 +1,10 @@
-using Assets.InventorySystem.Items;
+using InventorySystem.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.InventorySystem.Controllers
+namespace InventorySystem.Controllers
 {
     public class SlotController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
         

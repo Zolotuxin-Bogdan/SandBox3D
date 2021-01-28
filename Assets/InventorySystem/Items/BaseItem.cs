@@ -2,7 +2,7 @@
 using Assets.InventorySystem.Enums;
 using Assets.Scripts.Enums;
 
-namespace Assets.InventorySystem.Items
+namespace InventorySystem.Items
 {
     [System.Serializable]
     public class BaseItem {

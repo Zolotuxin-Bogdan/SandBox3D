@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Enums;
 
-namespace Assets.InventorySystem.Items
+namespace InventorySystem.Items
 {
     public class Equipment : BaseItem
     {

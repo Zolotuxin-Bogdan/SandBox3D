@@ -1,6 +1,6 @@
 using UnityEngine;
     
-namespace Assets.InventorySystem.Items
+namespace InventorySystem.Items
 {
     public class Item : MonoBehaviour {
         public BaseItem item { get; set; }    

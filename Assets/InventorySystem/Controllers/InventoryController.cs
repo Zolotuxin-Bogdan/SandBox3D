@@ -2,7 +2,7 @@ using System.Collections;
 using Assets.Scripts;
 using UnityEngine;
 
-namespace Assets.InventorySystem.Controllers
+namespace InventorySystem.Controllers
 {
     public class InventoryController : MonoBehaviour {
         

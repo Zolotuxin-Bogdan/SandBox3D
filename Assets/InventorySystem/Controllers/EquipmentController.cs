@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Assets.InventorySystem.Items;
+using InventorySystem.Items;
 using Assets.Scripts.Enums;
 using UnityEngine;
 
-namespace Assets.InventorySystem.Controllers
+namespace InventorySystem.Controllers
 {
     public class EquipmentController : MonoBehaviour
     {

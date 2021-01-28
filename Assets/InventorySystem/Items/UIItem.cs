@@ -1,4 +1,4 @@
-namespace Assets.InventorySystem.Items
+namespace InventorySystem.Items
 {
     [System.Serializable]
     public class UIItem {
