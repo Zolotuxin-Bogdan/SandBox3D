@@ -47,9 +47,10 @@ namespace Assets.Scripts
                 pickup.item = new BaseItem();
                 pickup.item1 = new UIItem();
                 pickup.pickupDelay = 3;
-                var animation = item_.AddComponent<ItemAnimation>();
-                animation.rotationY = .18f;
-                animation.moveY = .0005f;
+                
+                var animator = item_.AddComponent<Animator>();
+                animator.runtimeAnimatorController = itemAnimatorController;
+                animator.applyRootMotion = true;
 
                 item_.transform.localPosition = spawnPosition;
                 item_.transform.SetParent(itemBox.transform);
@@ -91,7 +92,7 @@ namespace Assets.Scripts
                     BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());
                 
                 var blockTexture = new Texture2D(48, 48, TextureFormat.RGBA32, false);
-                
+                Debug.Log(blockInfo.BlockTexturePath);
                 blockTexture.LoadImage(GetTextureBytes(blockInfo.BlockTexturePath));
                 blockTexture.filterMode = FilterMode.Point;
                 itemInstance.GetComponent<Renderer>().material.SetTexture("_BaseMap", blockTexture);
@@ -138,7 +139,7 @@ namespace Assets.Scripts
             {
                 var resources = ResourcePackStorageProvider.Instance.LoadResourcePack();
                 var blockInfo = resources.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
-                var spawnedBlock = Object.Instantiate(
+                var spawnedBlock = Instantiate(
                     BlockTypeManager.Instance.GetBlockTypeByName($"{blockInfo.BlockTypeName}"),
                     new Vector3(blockDto.Position.x, blockDto.Position.y + .5f, blockDto.Position.z),
                     Quaternion.Euler(new Vector3(-90, 0, 0))
