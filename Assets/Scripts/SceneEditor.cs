@@ -13,14 +13,12 @@ namespace Assets.Scripts
     public class SceneEditor : MonoBehaviour
     {
 
-        MeshProvider meshLoader;
         ResourcePack resource;
         public static SceneEditor instance;
         public RuntimeAnimatorController itemAnimatorController;
         protected void Start()
         {
             instance = this;
-            meshLoader = new MeshProvider();
             resource = ResourcePackStorageProvider.Instance.LoadResourcePack();
         }
 

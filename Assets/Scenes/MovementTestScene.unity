@@ -4928,9 +4928,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 381269253}
+  item:
+    <amount>k__BackingField: 1
+    <durability>k__BackingField: 0
+    <name>k__BackingField: 
+    <description>k__BackingField: 
+    <icon>k__BackingField: {fileID: 0}
   tooltip: {fileID: 821209196}
   textMeshPro: {fileID: 1338226314}
   progressBar: {fileID: 1192820994}
+  rect:
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!222 &1389964982
 CanvasRenderer:
   m_ObjectHideFlags: 0
