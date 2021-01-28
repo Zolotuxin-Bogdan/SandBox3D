@@ -6,7 +6,7 @@ using Assets.Scripts;
 
 namespace Assets.Editor
 {
-    public class Managers: ScriptableWizard
+    public class ToolsManager: ScriptableWizard
     {
         [SerializeField] string objectName = "ToolsObject";
         [Header("\n")]
@@ -31,7 +31,7 @@ namespace Assets.Editor
 
         [MenuItem("SandBox3D/ToolsManager")]
         private static void MenuEntryCall() {
-            DisplayWizard<Managers>("Select Managers", "Create", "Update");
+            DisplayWizard<ToolsManager>("Select Managers", "Create", "Update");
         }
 
         private void OnWizardCreate() {
