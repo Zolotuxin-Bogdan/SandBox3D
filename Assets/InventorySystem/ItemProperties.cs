@@ -3,10 +3,6 @@
     public enum ItemProperties
     {
         Stackable, 
-        Craftable,
-        Transparent,
-        Unexploaded,
-        Flammable,
-        Pouring
+        Craftable
     }
 }

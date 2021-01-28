@@ -157,21 +157,21 @@ namespace Assets.Scripts
 
                 }
 
-                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Flammable)) {
+                /*if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Flammable)) {
 
-                }
+                }*/
 
                 if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Stackable)) {
                     
                 }
 
-                if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Transparent)) {
+                /*if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Transparent)) {
 
                 }
 
                 if (blockInfo.BlockInfo.itemProperties.Contains(ItemProperties.Unexploaded)) {
 
-                }
+                }*/
 
                 #endregion
 

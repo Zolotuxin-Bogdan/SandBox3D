@@ -2,6 +2,9 @@
 {
     public enum BlockProperties
     {
+        Transparent,
+        Unexploaded,
+        Flammable,
         Pouring,
         Liquid,
         Plant

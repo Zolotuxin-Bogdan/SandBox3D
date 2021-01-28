@@ -65,7 +65,7 @@ namespace Assets.Scripts
                 name = cobblestone.BlockName,
                 slug = cobblestone.BlockSlug
             };
-            cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            cobblestone.BlockProperties.Add(BlockProperties.Flammable);
             cobblestone.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(cobblestone);
 
@@ -90,7 +90,7 @@ namespace Assets.Scripts
                 slug = furnace.BlockSlug
             };
             furnace.BlockInfo.itemProperties.Add(ItemProperties.Craftable);
-            furnace.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            furnace.BlockProperties.Add(BlockProperties.Flammable);
             furnace.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(furnace);
 
@@ -111,7 +111,7 @@ namespace Assets.Scripts
                 name = furnaceOn.BlockName,
                 slug = furnaceOn.BlockSlug
             };
-            furnaceOn.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            furnaceOn.BlockProperties.Add(BlockProperties.Flammable);
             furnaceOn.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(furnaceOn);
 
@@ -135,7 +135,7 @@ namespace Assets.Scripts
                 name = dirt.BlockName,
                 slug = dirt.BlockSlug
             };
-            dirt.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            dirt.BlockProperties.Add(BlockProperties.Flammable);
             dirt.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(dirt);
 
@@ -159,8 +159,8 @@ namespace Assets.Scripts
                 name = sand.BlockName,
                 slug = sand.BlockSlug
             };
-            sand.BlockInfo.itemProperties.Add(ItemProperties.Pouring);
-            sand.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            sand.BlockProperties.Add(BlockProperties.Pouring);
+            sand.BlockProperties.Add(BlockProperties.Flammable);
             sand.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(sand);
 
@@ -184,7 +184,7 @@ namespace Assets.Scripts
                 name = oak_log.BlockName,
                 slug = oak_log.BlockSlug
             };
-            oak_log.BlockInfo.itemProperties.Add(ItemProperties.Flammable);
+            oak_log.BlockProperties.Add(BlockProperties.Flammable);
             oak_log.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(oak_log);
 

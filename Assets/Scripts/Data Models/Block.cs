@@ -1,4 +1,5 @@
-﻿using Assets.InventorySystem.Items;
+﻿using System.Collections.Generic;
+using Assets.InventorySystem.Items;
 using Assets.Scripts.Enums;
 
 namespace Assets.Scripts.Data_Models
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Data_Models
         public int BlockDigRate { get; set; }
         public int BlockDropId { get; set; }
         public int BlockDropMaxCount { get; set; }
+        public HashSet<BlockProperties> BlockProperties { get; set; }
         public BaseItem BlockInfo { get; set; }
     }
 }
