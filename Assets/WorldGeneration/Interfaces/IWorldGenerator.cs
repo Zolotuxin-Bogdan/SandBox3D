@@ -3,7 +3,7 @@ using Assets.Scripts.DTO;
 
 namespace Assets.WorldGeneration.Interfaces
 {
-    public interface IGenerator
+    public interface IWorldGenerator
     {
         List<BlockDto> GetBlocksDto();
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.WorldGeneration.Implementations
 {
-    public class FlatWorldTypeGeneration : IGenerator
+    public class FlatWorldTypeGeneration : IWorldGenerator
     {
         private readonly int _worldSize;
         private Vector3 _spawnPosition = new Vector3(0, 0, 0);

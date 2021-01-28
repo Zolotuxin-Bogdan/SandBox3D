@@ -4,7 +4,7 @@ using Assets.WorldGeneration.Interfaces;
 
 namespace Assets.WorldGeneration.Implementations
 {
-    public class PerlinNoiseGeneration : IGenerator
+    public class PerlinNoiseGeneration : IWorldGenerator
     {
         public List<BlockDto> GetBlocksDto()
         {
