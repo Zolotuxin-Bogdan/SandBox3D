@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - PlayerModel
-  - 
-  - 
+  - Item
+  - HotBarItem
   - 
   - 
   - 

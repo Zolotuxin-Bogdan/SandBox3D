@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.InventorySystem.Controllers;
+using Assets.InventorySystem.Items;
 using UnityEngine;
 
 namespace Assets.InventorySystem
@@ -8,23 +9,53 @@ namespace Assets.InventorySystem
     public class HotBarController : MonoBehaviour
     {
         [SerializeField] GameObject slot;
-        [SerializeField] SlotController[] slots;
-        [SerializeField] readonly int SLOTS_COUNT;
+        SlotController[] slots;
+        List<BaseItem> items;
 
-        protected void Awake() {
-            
+        private void Start()
+        {
+            items = new List<BaseItem>();
+            BuildContent();
         }
 
-        protected void BuildContent() {
-            for (int i = 0; i < SLOTS_COUNT; i++)
+        private void BuildContent()
+        {
+            for (var i = 0; i < 9; i++)
             {
                 Instantiate(slot, transform).SetActive(true);
             }
+
             slots = GetComponentsInChildren<SlotController>();
         }
 
-        protected void UpdateUI() {
 
+        public void AddItem(BaseItem item, UIItem uiItem)
+        {
+            if (item == null) return;
+            if (uiItem == null) return;
+            if (!items.Exists(i => i.name == item.name))
+            {
+                items.Add(item);
+                slots[items.IndexOf(item)].AddItem(uiItem);
+            } else
+            {
+                items.Find(i => i.name == item.name).amount += item.amount;
+                uiItem.amount += slots[items.IndexOf(item)].item.amount;
+                slots[items.IndexOf(item)].AddItem(uiItem);
+
+            }
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (items[i] == null)
+                {
+                    slots[i].ClearSlot();
+                }
+            }
         }
     }
 }

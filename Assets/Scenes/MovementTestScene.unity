@@ -2970,10 +2970,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004936249}
-  - component: {fileID: 1004936248}
   - component: {fileID: 1004936252}
   - component: {fileID: 1004936251}
   - component: {fileID: 1004936250}
+  - component: {fileID: 1004936248}
   m_Layer: 0
   m_Name: ResoursePackTool
   m_TagString: Untagged
@@ -3020,8 +3020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7567313609f435248ba39587a9567de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextureDefaultPath: "C:\\Users\\tdp4t\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439
-    \u0441\u0442\u043E\u043B\\\u0423\u0447\u0451\u0431\u0430\\GitHub\\SandBox3D/texturepacks/Default/"
+  TextureDefaultPath: C:\Users\m_eremeev\Desktop\SandBox3D/texturepacks/Default/
 --- !u!114 &1004936251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,7 +5055,6 @@ GameObject:
   - component: {fileID: 1488781514}
   - component: {fileID: 1488781513}
   - component: {fileID: 1488781512}
-  - component: {fileID: 1488781517}
   m_Layer: 10
   m_Name: ITEM (1)
   m_TagString: Untagged
@@ -5153,20 +5151,6 @@ Transform:
   m_Father: {fileID: 2076516431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1488781517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488781511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43a296494645414a9ca36ab45a64dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationY: 0.18
-  moveY: 0.0005
 --- !u!1 &1491803460
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,20 +6067,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 35a80ef6c7c1cfa409f76daae64bf2a4, type: 3}
   m_PrefabInstance: {fileID: 1744493416}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1674350298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674350295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43a296494645414a9ca36ab45a64dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationY: 0.18
-  moveY: 0.0005
 --- !u!114 &1674350300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6463,8 +6433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 1389964979}
-  parent: {fileID: 1708103477}
-  slots: []
 --- !u!1 &1720221214
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,7 +6445,6 @@ GameObject:
   - component: {fileID: 1720221218}
   - component: {fileID: 1720221217}
   - component: {fileID: 1720221215}
-  - component: {fileID: 1720221220}
   - component: {fileID: 1720221216}
   m_Layer: 10
   m_Name: ITEM
@@ -6581,20 +6548,6 @@ Transform:
   m_Father: {fileID: 938960499}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1720221220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720221214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43a296494645414a9ca36ab45a64dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationY: 0.18
-  moveY: 0.0005
 --- !u!1 &1734552056
 GameObject:
   m_ObjectHideFlags: 0
