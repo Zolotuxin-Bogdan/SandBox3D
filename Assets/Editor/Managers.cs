@@ -22,7 +22,7 @@ namespace Assets.Editor
         [SerializeField] bool sceneEditor;
         [SerializeField] bool inputSystem;
         
-        [Tooltip("Player Storage Manager")]
+        [Tooltip("Player States Manager")]
         [SerializeField] bool pSManager;
 
 
