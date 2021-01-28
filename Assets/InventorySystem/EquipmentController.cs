@@ -9,22 +9,16 @@ namespace Assets.InventorySystem
     {
         [SerializeField] GameObject slot;
         [SerializeField] SlotController[] slots;
-        [SerializeField] readonly int SLOTS_COUNT;
 
-        protected void Awake() {
-            
+        void Start() {
+            BuildContent();
         }
-
         protected void BuildContent() {
-            for (int i = 0; i < SLOTS_COUNT; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Instantiate(slot, transform).SetActive(true);
             }
             slots = GetComponentsInChildren<SlotController>();
-        }
-
-        protected void UpdateUI() {
-
         }
     }
 }

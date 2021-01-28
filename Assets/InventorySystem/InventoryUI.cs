@@ -20,7 +20,7 @@ namespace Assets.InventorySystem
         void Start() {
             inventory = Inventory.instance;
             inventory.onItemChangedCallback += UpdateUI;
-            input = new InputSystem();
+            input = InputSystem.instance;
             for (int i = 0; i < inventory.INVENTORY_SIZE; i++)
             {
                 var newSlot = Instantiate(slot, parent);

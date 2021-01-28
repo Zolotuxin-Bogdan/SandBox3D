@@ -3989,7 +3989,7 @@ GameObject:
   - component: {fileID: 1206681970}
   - component: {fileID: 1206681974}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: InventoryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4261,6 +4261,7 @@ GameObject:
   - component: {fileID: 1278097261}
   - component: {fileID: 1278097260}
   - component: {fileID: 1278097262}
+  - component: {fileID: 1278097263}
   m_Layer: 0
   m_Name: SpawnSystem
   m_TagString: Untagged
@@ -4308,6 +4309,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1864339096}
+--- !u!114 &1278097263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278097259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9150129bbc2333b46ac1c9ded74b4bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1291044847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,7 +4751,7 @@ GameObject:
   - component: {fileID: 1389964982}
   - component: {fileID: 1389964980}
   m_Layer: 5
-  m_Name: InventoryItem
+  m_Name: ItemSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6334,6 +6347,7 @@ GameObject:
   - component: {fileID: 1708103480}
   - component: {fileID: 1708103479}
   - component: {fileID: 1708103478}
+  - component: {fileID: 1708103482}
   m_Layer: 5
   m_Name: Equipment
   m_TagString: Untagged
@@ -6436,6 +6450,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708103476}
   m_CullTransparentMesh: 0
+--- !u!114 &1708103482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708103476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560d0a0d52465294fb397c6135ac1fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: {fileID: 1389964979}
+  parent: {fileID: 1708103477}
+  slots: []
 --- !u!1 &1720221214
 GameObject:
   m_ObjectHideFlags: 0
