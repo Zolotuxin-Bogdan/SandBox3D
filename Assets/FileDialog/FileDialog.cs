@@ -13,50 +13,31 @@ using UnityEngine;
  *
  * Simple example:
  *
- *  //another code
  *  
- * DirectoryBrowser explorer;
- * bool drawExplorer;
- * public string path;
- * public Texture2D directoryIcon;
-   
- * private void SomeButtonCallback()
- * {
- *    drawExplorer = true;
+ * FileDialog fileDialog;
+ * Texture2D texture2D;
+ *
+ * void Start() {
+ *     fileDialog = new FileDialog(
+ *          title: "FileDialog capture",
+ *          screenRect: new Rect(300, 100, 800, 800)
+ *          callback: Handler
+ *     );
+ *     fileDialog.DirectoryIcon = texture2D;
  * }
-   
- * private void OnGUI()
- * {
- *    if (explorer != null)
- *        explorer.OnGUI();
- *    else
- *        OnGUIMain();
- * }
-   
- * private void OnGUIMain()
- * {
- *     if (drawExplorer)
- *     {
- *         explorer = new DirectoryBrowser(
- *             "Choose folder...",
- *             new Rect(100, 100, 600, 500),
- *             FileSelectCallback
- *         );
- *     }
- * }
-   
- * private void FileSelectCallback(string path)
- * {
- *     explorer = null;
- *     this.path = path;
+ * 
+ * void Handler(string path) {}
+ * 
+ * void OnGUI() {
+ *     fileDialog.Draw();
  * }
  *
  */
 
 
-namespace Assets.Scripts.UI
+namespace Assets.FileDialog
 {
-    public class DirectoryBrowser
+    public class FileDialog
     {
         public delegate void FinishedCallback(string path);
         protected string currentDirectory;
@@ -97,20 +78,26 @@ namespace Assets.Scripts.UI
         protected FinishedCallback callback;
 
         /// <summary>
-        /// DirectoryBrowser constructor
+        /// 
         /// </summary>
-        /// <param name="title">window title</param>
-        /// <param name="screenRect">window rect</param>
-        /// <param name="callback">callback listener</param>
-        public DirectoryBrowser(string title, Rect screenRect, FinishedCallback callback)
+        /// <param name="title">FileDialog capture</param>
+        /// <param name="screenRect">FileDialog screen position</param>
+        /// <param name="callback">path handler</param>
+        public FileDialog(string title, Rect screenRect, FinishedCallback callback)
         {
             this.title = title;
             this.screenRect = screenRect;
             this.callback = callback;
             SwitchDirectory(Directory.GetCurrentDirectory());
         }
-
-        public DirectoryBrowser(string title, Rect screenRect, FinishedCallback callback, string currentDirectory)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title">FileDialog capture</param>
+        /// <param name="screenRect">FileDialog screen position</param>
+        /// <param name="callback">path handler</param>
+        /// <param name="currentDirectory">path to browsed directory</param>
+        public FileDialog(string title, Rect screenRect, FinishedCallback callback, string currentDirectory)
         {
             this.title = title;
             this.screenRect = screenRect;
@@ -147,8 +134,10 @@ namespace Assets.Scripts.UI
             directoriesWithIcons = bufferList.ToArray();
             bufferList.Clear();
         }
-    
-        public void OnGUI() 
+        /// <summary>
+        /// Draw and build FileDialog window
+        /// </summary>
+        public void Draw() 
         {
             string parentDirectoryName = null;
             GUI.skin.window.alignment = TextAnchor.UpperLeft;

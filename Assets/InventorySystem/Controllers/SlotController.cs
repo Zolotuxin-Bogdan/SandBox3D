@@ -1,9 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using Assets.InventorySystem.Items;
 using TMPro;
-using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Assets.InventorySystem.Controllers
 {

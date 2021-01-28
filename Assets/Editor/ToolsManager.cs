@@ -9,7 +9,9 @@ namespace Assets.Editor
     public class ToolsManager: ScriptableWizard
     {
         [SerializeField] string objectName = "ToolsObject";
+        
         [Header("\n")]
+        
         [Tooltip("Resource Pack Storage Provider")]
         [SerializeField] bool rPStorageProvider;
 

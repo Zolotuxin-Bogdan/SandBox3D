@@ -6,6 +6,8 @@ namespace Assets.Scripts
 {
     public class AttackController 
     {
+        public float delay { get; set; }
+
         public void DoAction(ActionType action) {
             switch (action)
             {

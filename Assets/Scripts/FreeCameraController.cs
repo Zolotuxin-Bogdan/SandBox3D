@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class CameraManager : MonoBehaviour 
+    public class FreeCameraController : MonoBehaviour 
     {
         [Header("Camera Positioning")]
         public Vector2 cameraOffset = new Vector2(10f, 14f);

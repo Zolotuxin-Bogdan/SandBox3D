@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using Assets.InventorySystem.Controllers;
 using Assets.InventorySystem.Items;
 using UnityEngine;
 
-namespace Assets.InventorySystem
+namespace Assets.InventorySystem.Controllers
 {
     public class HotBarController : MonoBehaviour
     {

@@ -6,7 +6,7 @@ namespace Assets.FileDialog
 {
     public class DebugController : MonoBehaviour
     {
-        DirectoryBrowser explorer;
+        FileDialog explorer;
         bool drawExplorer;
         public string path;
         public Texture2D directoryIcon;
@@ -25,7 +25,7 @@ namespace Assets.FileDialog
         private void OnGUI()
         {
             if (explorer != null)
-                explorer.OnGUI();
+                explorer.Draw();
             else
                 OnGUIMain();
         }
@@ -34,7 +34,7 @@ namespace Assets.FileDialog
         {
             if (drawExplorer)
             {
-                explorer = new DirectoryBrowser(
+                explorer = new FileDialog(
                     "Choose folder...",
                     new Rect(300, 100, 800, 600),
                     FileSelectCallback

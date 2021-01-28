@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Assets.InventorySystem;
+using Assets.InventorySystem.Enums;
 using Assets.InventorySystem.Items;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.DTO;
@@ -86,7 +88,7 @@ namespace Assets.Scripts
             if (itemInfo.type == Enums.ItemType.Block) {
                 //Debug.Log(resource.Blocks.FirstOrDefault(t => t.BlockId.Equals(0)).BlockSlug);
                 var blockInfo = resource.Blocks.FirstOrDefault(t => t.BlockInfo.slug.ToLower().Equals(itemInfo.slug.ToLower()));
-                var itemInstance = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
+                var itemInstance = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
                 
                 itemInstance.GetComponent<Renderer>().material =
                     BlockMaterialManager.Instance.GetBlockMaterialByName(blockInfo.BlockMaterialType.ToString());

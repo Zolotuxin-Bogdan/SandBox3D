@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using Assets.InventorySystem.Controllers;
-using UnityEngine;
-using Assets.Scripts;
 using System.Collections;
+using Assets.Scripts;
+using UnityEngine;
 
-namespace Assets.InventorySystem
+namespace Assets.InventorySystem.Controllers
 {
-    public class InventoryUI : MonoBehaviour {
+    public class InventoryController : MonoBehaviour {
         
         public Transform parent;
         

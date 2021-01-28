@@ -1,4 +1,4 @@
-﻿namespace Assets.InventorySystem
+﻿namespace Assets.InventorySystem.Enums
 {
     public enum ItemProperties
     {
