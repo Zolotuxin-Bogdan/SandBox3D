@@ -8,7 +8,8 @@ namespace Assets.Scripts
     public class InputSystem : MonoBehaviour
     {
         public delegate void KeyPressed();
-        public event KeyPressed OnKeyPressed; 
+        public event KeyPressed OnKeyPressed;
+        public event KeyPressed OnLeftMouseButtonClicked;
         MovementKeyBindings movementBindings;
         ActionKeyBindings actionBindings;
 
@@ -31,6 +32,10 @@ namespace Assets.Scripts
                 yield return null;
             }
 
+            if (Input.GetMouseButton(1))
+            {
+                OnLeftMouseButtonClicked?.Invoke();
+            }
             OnKeyPressed?.Invoke();
         }
 
@@ -101,6 +106,16 @@ namespace Assets.Scripts
         public bool IsUseKeyPressed()
         {
             return Input.GetKey(actionBindings.UseKey.keyCode);
+        }
+
+        public bool IsInventoryKeyPressed()
+        {
+            return Input.GetKey(actionBindings.InventoryKey.keyCode);
+        }
+
+        public bool IsOpenSettingsKeyPressed()
+        {
+            return Input.GetKey(KeyCode.Escape);
         }
     }
 }
