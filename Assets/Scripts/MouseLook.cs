@@ -21,7 +21,7 @@ namespace Assets.Scripts
         {
             isInvertMouse = false;//settings.GetSettings().invertMouse;
             Cursor.visible = isCursorVisible;
-            _inputSystem = new InputSystem();
+            _inputSystem = InputSystem.instance;
             Rigidbody body = GetComponent<Rigidbody>();
             if (body != null)
                 body.freezeRotation = true;

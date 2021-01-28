@@ -26,7 +26,7 @@ namespace Assets.Scripts
         CharacterController controller;
         private void Awake() {
             cam = GetComponentInChildren<Camera>();
-            inputSystem = new InputSystem();
+            inputSystem = InputSystem.instance;
             Cursor.lockState = CursorLockMode.Locked;
             controller = GetComponentInChildren<CharacterController>();
             zoomStrategy = cam.orthographic ?(IZoomStrategy) new OrthographicZoomStrategy(cam, startingZoom) : new PerspectiveZoomStrategy(cam, cameraOffset, startingZoom);

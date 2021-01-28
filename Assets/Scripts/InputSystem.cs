@@ -12,7 +12,7 @@ namespace Assets.Scripts
         MovementKeyBindings movementBindings;
         ActionKeyBindings actionBindings;
 
-        public InputSystem instance {get; private set;}
+        public static InputSystem instance {get; private set;}
         protected void Awake()
         {
             instance = this;
