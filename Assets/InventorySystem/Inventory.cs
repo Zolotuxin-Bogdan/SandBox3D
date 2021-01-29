@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using InventorySystem.Events;
 using InventorySystem.Items;
@@ -17,6 +18,7 @@ namespace InventorySystem
             instance = this;
         }        
         public bool Add(BaseItem itemInfo, UIItem uiItemInfo) {
+
             if (baseItems.Count >= INVENTORY_SIZE) {
                 Debug.Log("inventory overflow");
                 return false;
@@ -27,15 +29,11 @@ namespace InventorySystem
                 Debug.Log("base item isn't set");
                 return false;
             }
-            else
+            if (itemInfo.name == null)
             {
-                if (itemInfo.name == null)
-                {
-                    Debug.Log("item name isn't set");
-                    return false;
-                }
+                Debug.Log("item name isn't set");
+                return false;
             }
-
             if (uiItemInfo == null)
             {
                 Debug.Log("ui item isn't set");

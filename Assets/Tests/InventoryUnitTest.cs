@@ -15,27 +15,19 @@ namespace Tests
         [Test]
         public void TestOverflowInventoryValidation()
         {
-            try
+            GameObject go = new GameObject("TestInventory");
+            go.AddComponent<Inventory>();
+            Inventory inventory = Inventory.instance;
+            for (int i = 0; i < inventory.INVENTORY_SIZE + 1; i++)
             {
-                GameObject go = new GameObject("TestInventory");
-                go.AddComponent<Inventory>();
-                Inventory inventory = Inventory.instance;
-                for (int i = 0; i < inventory.INVENTORY_SIZE + 1; i++)
-                {
-                    inventory.Add(new BaseItem { name = $"{i}" }, new UIItem());
-                }
-                
-                Debug.Log("checking items count...");
-                Assert.Less(inventory.baseItems.Count, inventory.INVENTORY_SIZE + 1);
-                
-                Debug.Log("checking correct method closing...");
-                Assert.False(inventory.Add(new BaseItem { name = "item" }, new UIItem()));
+                inventory.Add(new BaseItem { name = $"{i}" }, new UIItem());
             }
-            catch (Exception e)
-            {
-                Debug.Log($"test failed, output: {e}");
-                throw;
-            }
+            
+            Debug.Log("checking items count...");
+            Assert.Less(inventory.baseItems.Count, inventory.INVENTORY_SIZE + 1);
+            
+            Debug.Log("checking correct method closing...");
+            Assert.False(inventory.Add(new BaseItem { name = "item" }, new UIItem()));
         }
 
         [Test]
