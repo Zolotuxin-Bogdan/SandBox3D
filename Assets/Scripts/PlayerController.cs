@@ -23,7 +23,7 @@ namespace Assets.Scripts
         private float _verticalSpeed = 0;
         private bool isDigReady = true;
 
-        private InputSystem _inputSystem;
+        private InputSystem.InputSystem _inputSystem;
         private CharacterController _characterController;
         private Camera _firstPersonCamera;
         private GameObject _lastGameObject;
@@ -37,7 +37,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            _inputSystem = InputSystem.instance;
+            _inputSystem = InputSystem.InputSystem.instance;
             _characterController = GetComponent<CharacterController>();
             _firstPersonCamera = FirstPersonCam.GetComponent<Camera>();
             _lastGameObject = new GameObject();

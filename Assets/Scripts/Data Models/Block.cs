@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.InventorySystem.Items;
+using InventorySystem.Items;
 using Assets.Scripts.Enums;
 
 namespace Assets.Scripts.Data_Models

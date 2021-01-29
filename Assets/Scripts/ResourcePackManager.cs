@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Assets.InventorySystem;
-using Assets.InventorySystem.Enums;
+using InventorySystem;
+using InventorySystem.Enums;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.Enums;
 using UnityEngine;

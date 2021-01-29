@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Assets.InventorySystem;
-using Assets.InventorySystem.Enums;
-using Assets.InventorySystem.Items;
+using InventorySystem;
+using InventorySystem.Enums;
+using InventorySystem.Items;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.DTO;
 using Assets.StorageSystem.StorageProviders;
@@ -83,7 +83,7 @@ namespace Assets.Scripts
             itemBox.layer = 10;
             itemBox.transform.position = srcTransform.position;
             // Initialize item object
-            if (itemInfo.type == Enums.ItemType.Block) {
+            if (itemInfo.type == ItemType.Block) {
                 //Debug.Log(resource.Blocks.FirstOrDefault(t => t.BlockId.Equals(0)).BlockSlug);
                 var blockInfo = resource.Blocks.FirstOrDefault(t => t.BlockInfo.slug.ToLower().Equals(itemInfo.slug.ToLower()));
                 var itemInstance = Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()));
@@ -180,7 +180,7 @@ namespace Assets.Scripts
                     amount = 1, 
                     gravity = false,
                     luminosity = false,
-                    type = Enums.ItemType.Block,
+                    type = ItemType.Block,
                     id = blockInfo.BlockId,
                     name = blockInfo.BlockName, 
                     slug = blockInfo.BlockInfo.slug

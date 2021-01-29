@@ -14,14 +14,14 @@ namespace Assets.Scripts
         public SettingsManager settings;
 
         private float _rotationX = 0;
-        private InputSystem _inputSystem;
+        private InputSystem.InputSystem _inputSystem;
         private bool isInvertMouse;
 
         void Start()
         {
             isInvertMouse = false;//settings.GetSettings().invertMouse;
             Cursor.visible = isCursorVisible;
-            _inputSystem = InputSystem.instance;
+            _inputSystem = InputSystem.InputSystem.instance;
             Rigidbody body = GetComponent<Rigidbody>();
             if (body != null)
                 body.freezeRotation = true;

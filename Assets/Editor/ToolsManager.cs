@@ -57,7 +57,7 @@ namespace Assets.Editor
                 go.AddComponent<PlayerStatesManager>();
 
             if (inputSystem)
-                go.AddComponent<InputSystem>();
+                go.AddComponent<InputSystem.InputSystem>();
         }
 
         private void OnWizardUpdate() {
@@ -95,8 +95,8 @@ namespace Assets.Editor
                             gameObject.AddComponent<PlayerStatesManager>();
 
                     if (inputSystem)
-                        if (gameObject.GetComponent<InputSystem>() == null)
-                            gameObject.AddComponent<InputSystem>();
+                        if (gameObject.GetComponent<InputSystem.InputSystem>() == null)
+                            gameObject.AddComponent<InputSystem.InputSystem>();
                 } else
                 {
                     EditorUtility.DisplayDialog("Warning", "This GameObject not found on scene", "Close");

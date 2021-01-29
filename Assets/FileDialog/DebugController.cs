@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.FileDialog

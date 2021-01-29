@@ -1063,7 +1063,6 @@ GameObject:
   - component: {fileID: 274649952}
   - component: {fileID: 274649955}
   - component: {fileID: 274649954}
-  - component: {fileID: 274649953}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -1097,22 +1096,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 377.17615, y: 350.87576}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &274649953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274649951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae0ed01fa2c63e4493a516b2112894d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1734552057}
-  player: {fileID: 1252531870}
-  slots: []
-  slot: {fileID: 1389964979}
 --- !u!114 &274649954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4218,7 +4201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2137067348}
-  player: {fileID: 1252531870}
+  player: {fileID: 1864339102}
   slots: []
   slot: {fileID: 1389964979}
 --- !u!1 &1222924943
@@ -4924,24 +4907,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1389964979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59357b9a802b714cb20b3cf35180073, type: 3}
+  m_Script: {fileID: 11500000, guid: 37792169772b5ae45a5257008562b348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 381269253}
-  item:
-    <amount>k__BackingField: 1
-    <durability>k__BackingField: 0
-    <name>k__BackingField: 
-    <description>k__BackingField: 
-    <icon>k__BackingField: {fileID: 0}
   tooltip: {fileID: 821209196}
   textMeshPro: {fileID: 1338226314}
   progressBar: {fileID: 1192820994}
-  rect:
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!222 &1389964982
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5272,10 +5244,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488781511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae34edebbbc21d46b7071933287b196, type: 3}
+  m_Script: {fileID: 11500000, guid: b2f76fb08e7413f4fa66864960a7d26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRadius: 0.7
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1488781513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5879,10 +5852,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568152919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae34edebbbc21d46b7071933287b196, type: 3}
+  m_Script: {fileID: 11500000, guid: b2f76fb08e7413f4fa66864960a7d26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRadius: 0.7
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1568152921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6277,10 +6251,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1674350295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae34edebbbc21d46b7071933287b196, type: 3}
+  m_Script: {fileID: 11500000, guid: b2f76fb08e7413f4fa66864960a7d26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRadius: 0.7
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1685906436
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,7 +6605,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708103476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560d0a0d52465294fb397c6135ac1fa9, type: 3}
+  m_Script: {fileID: 11500000, guid: dedb398d7f9532d4c850f8ed1fa0d380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 1389964979}
@@ -6663,10 +6638,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1720221214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae34edebbbc21d46b7071933287b196, type: 3}
+  m_Script: {fileID: 11500000, guid: b2f76fb08e7413f4fa66864960a7d26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRadius: 0.7
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &1720221216
 Animator:
   serializedVersion: 3

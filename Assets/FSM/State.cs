@@ -1,6 +1,4 @@
-﻿using Assets.Scripts;
-
-namespace Assets.FSM
+﻿namespace Assets.FSM
 {
     public abstract class State
     {

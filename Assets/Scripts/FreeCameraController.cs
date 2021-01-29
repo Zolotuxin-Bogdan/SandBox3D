@@ -22,11 +22,11 @@ namespace Assets.Scripts
         IZoomStrategy zoomStrategy;
         float frameZoom;
         Camera cam;
-        InputSystem inputSystem;
+        InputSystem.InputSystem inputSystem;
         CharacterController controller;
         private void Awake() {
             cam = GetComponentInChildren<Camera>();
-            inputSystem = InputSystem.instance;
+            inputSystem = InputSystem.InputSystem.instance;
             Cursor.lockState = CursorLockMode.Locked;
             controller = GetComponentInChildren<CharacterController>();
             zoomStrategy = cam.orthographic ?(IZoomStrategy) new OrthographicZoomStrategy(cam, startingZoom) : new PerspectiveZoomStrategy(cam, cameraOffset, startingZoom);
