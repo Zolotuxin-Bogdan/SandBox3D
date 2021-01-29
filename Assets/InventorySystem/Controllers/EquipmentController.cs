@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using InventorySystem.Enums;
 using InventorySystem.Items;
-using Assets.Scripts.Enums;
 using UnityEngine;
 
 namespace InventorySystem.Controllers

@@ -55,8 +55,8 @@ namespace InventorySystem.Controllers
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (item != null) {
-                if (item.name != null && item.name != "") {
-                    if (item.description != null && item.description != "") {
+                if (!string.IsNullOrEmpty(item.name)) {
+                    if (!string.IsNullOrEmpty(item.description)) {
                         tooltip.GetComponent<RectTransform>().position = 
                             new Vector2(
                                 Input.mousePosition.x + 70, 
@@ -87,10 +87,8 @@ namespace InventorySystem.Controllers
                         var labels = tooltip.GetComponentsInChildren<TextMeshProUGUI>();
                         labels[0].text = item.name;
                         labels[1].text = null;
-                    
-                        var size = tooltip.GetComponent<RectTransform>().sizeDelta;
-                        size = new Vector2(item.name.Length * 7.6f, 20);
-                        tooltip.GetComponent<RectTransform>().sizeDelta = size;
+
+                        tooltip.GetComponent<RectTransform>().sizeDelta = new Vector2(item.name.Length * 7.6f, 20);
                     }
                     tooltip.SetActive(true);
                 }

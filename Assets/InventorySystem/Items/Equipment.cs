@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enums;
+﻿using InventorySystem.Enums;
 
 namespace InventorySystem.Items
 {

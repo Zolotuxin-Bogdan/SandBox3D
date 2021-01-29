@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Scripts;
+using Assets.InputSystem;
 using UnityEngine;
 
 namespace InventorySystem.Controllers
@@ -17,7 +17,7 @@ namespace InventorySystem.Controllers
         InputSystem input;
         void Start() {
             inventory = Inventory.instance;
-            inventory.onItemChangedCallback += UpdateUI;
+            inventory.OnItemChangedCallback += UpdateUI;
             input = InputSystem.instance;
             for (int i = 0; i < inventory.INVENTORY_SIZE; i++)
             {
@@ -52,7 +52,7 @@ namespace InventorySystem.Controllers
                 yield return null;
             else {
                 // 
-                SceneEditor.instance.AddItem(new Scripts.DTO.BlockDto {BlockId = 1, Position = player.position});
+                //SceneEditor.instance.AddItem(new Scripts.DTO.BlockDto {BlockId = 1, Position = player.position});
                 // new SceneEditor().AddItem(
                 //     new Items.BaseItem{type = Scripts.Enums.ItemType.Block, slug = "item.block.cobblestone_FullSizeBlock:0"},
                 //     player);
