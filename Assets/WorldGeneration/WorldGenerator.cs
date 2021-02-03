@@ -21,7 +21,8 @@ namespace Assets.WorldGeneration
         }
         public void GenerateWorld()
         {
-            var blockDtoList = new FlatWorldTypeGeneration(WorldSize).GetBlocksDto();
+            //var blockDtoList = new FlatWorldTypeGeneration(WorldSize).GetBlocksDto();
+            var blockDtoList = new PerlinNoiseGeneration().GetBlocksDto();
             foreach (var blockDto in blockDtoList)
             {
                 var blockInfo = ResourcePack.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
