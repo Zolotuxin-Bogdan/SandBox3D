@@ -26,6 +26,7 @@ namespace Assets.Editor
 
         [SerializeField] bool sceneEditor;
         [SerializeField] bool inputSystem;
+        [SerializeField] bool settingsManager;
         
         [Tooltip("Player States Manager")]
         [SerializeField] bool pSManager;
@@ -58,6 +59,8 @@ namespace Assets.Editor
 
             if (inputSystem)
                 go.AddComponent<InputSystem.InputSystem>();
+            if (settingsManager)
+                go.AddComponent<SettingsManager>();
         }
 
         private void OnWizardUpdate() {
@@ -97,6 +100,9 @@ namespace Assets.Editor
                     if (inputSystem)
                         if (gameObject.GetComponent<InputSystem.InputSystem>() == null)
                             gameObject.AddComponent<InputSystem.InputSystem>();
+                    if (settingsManager)
+                        if (gameObject.GetComponent<SettingsManager>() == null)
+                            gameObject.AddComponent<SettingsManager>();
                 } else
                 {
                     EditorUtility.DisplayDialog("Warning", "This GameObject not found on scene", "Close");
