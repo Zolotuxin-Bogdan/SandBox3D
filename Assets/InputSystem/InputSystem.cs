@@ -115,5 +115,15 @@ namespace Assets.InputSystem
         {
             return Input.GetKey(KeyCode.Escape);
         }
+
+        public bool IsConsoleKeyPressed()
+        {
+            return Input.GetKey(actionBindings.ConsoleKey.keyCode);
+        }
+
+        public bool IsConfirmKeyPressed()
+        {
+            return Input.GetKey(KeyCode.Return);
+        }
     }
 }
