@@ -104,19 +104,16 @@ namespace Assets.Scripts.UI
 
         private void UpdateBiomeBlend(float arg0)
         {
-            var value = Converter.FromIdToString<BiomeBlend>((int)arg0);
-            if (arg0 < 1)
-                biomeBlend.GetComponentInChildren<TextMeshProUGUI>().text = $"Biome Blend: OFF ({value})";
-            else
-                biomeBlend.GetComponentInChildren<TextMeshProUGUI>().text = $"Biome Blend: {value}";
+            var value = (BiomeBlend)((int)arg0);
+            biomeBlend.GetComponentInChildren<TextMeshProUGUI>().text = arg0 < 1 ? $"Biome Blend: OFF ({value})" : $"Biome Blend: {value}";
             settingsManager.GetSettings().graphic.biomeBlend = value;
         }
 
         private void UpdateResolution(float arg0)
         {
-            var value = ((int x, int y))resolutions.resTuple.GetValue((int)arg0);
-            resolution.GetComponentInChildren<TextMeshProUGUI>().text = $"Resolution: {value.x}x{value.y}";
-            settingsManager.GetSettings().screenResolution = new Vector2(value.x, value.y);
+            var (x, y) = ((int x, int y))resolutions.resTuple.GetValue((int)arg0);
+            resolution.GetComponentInChildren<TextMeshProUGUI>().text = $"Resolution: {x}x{y}";
+            settingsManager.GetSettings().screenResolution = new Vector2(x, y);
         }
 
         private void UpdateEntityShadows()

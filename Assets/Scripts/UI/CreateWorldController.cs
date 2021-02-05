@@ -10,6 +10,7 @@ namespace Assets.Scripts.UI
     {
         public Button cancel;
         public Button create;
+        public Button worldType;
         public TextMeshProUGUI worldName;
         public TMP_InputField inputField;
         public bool isRecreate = false;
@@ -18,11 +19,17 @@ namespace Assets.Scripts.UI
         {
             cancel.onClick.AddListener(CancelCallback);
             create.onClick.AddListener(CreateCallback);
+            worldType.onClick.AddListener(WorldTypeCallback);
             inputField.onValueChanged.AddListener(InputFieldCallback);
             if (isRecreate)
             {
                 inputField.text = $"Copy of {parentWorldName}";    
             }
+        }
+
+        private void WorldTypeCallback()
+        {
+            var wType = worldType.GetComponentInChildren<TextMeshProUGUI>().text;
         }
 
         private void CancelCallback()

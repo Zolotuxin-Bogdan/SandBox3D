@@ -11,12 +11,6 @@ namespace Assets.Scripts.UI
         public TextMeshProUGUI loadState;
         public string worldName;
 
-        string[] states = 
-        {
-            "Load World",
-            "Build Terrain"
-        };
-
         void Start()
         {
             StartCoroutine(LoadWorld());
@@ -24,13 +18,11 @@ namespace Assets.Scripts.UI
 
         private IEnumerator LoadWorld()
         {
+            loadState.text = "Loading world";
+
             while (true)
             {
-                loadState.text = states[0];
-                //worldloader.LoadWorld(worldName);
-                loadState.text = states[1];
-                gameObject.AddComponent<WorldGenerator>().GenerateWorld();
-                action.Invoke();
+
             }
         }
 
