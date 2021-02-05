@@ -6,15 +6,16 @@ namespace Assets.Scripts
 {
     public class SettingsManager: MonoBehaviour
     {
-        [Header("Save/Load Controls")]
+        [Header("Settings Controls")]
         public string relativePath = "\\config\\";
-        
-        string file;
-        GameSettings settings;
-        Storage settingsStorage;
-        private void Awake() 
+        [SerializeField] string file = "settings.json";
+        [SerializeField] GameSettings settings;
+        [SerializeField] Storage settingsStorage;
+
+        public static SettingsManager Instance;
+        private void Awake()
         {
-            file = "settings.json";
+            Instance = this;
             settingsStorage = new Storage();
             TryLoadSettings();
         }

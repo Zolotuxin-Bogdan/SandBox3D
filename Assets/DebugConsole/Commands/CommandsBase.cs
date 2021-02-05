@@ -8,7 +8,7 @@ namespace Assets.DebugConsole.Commands
     {
         protected static CommandsBase _Instance;
 
-        public static CommandsBase Instance => _Instance ??= new CommandsBase();
+        public static CommandsBase Instance => _Instance != null ? _Instance : _Instance = new CommandsBase();
         private CommandsBase() { }
 
         protected Dictionary<string, ICommand> CommandsDictionary =
@@ -57,7 +57,7 @@ namespace Assets.DebugConsole.Commands
             }
             else
             {
-                throw new NoSuchCommandException("Command " + command + " not found.", command);
+                throw new NoSuchCommandException("Command \"" + command + "\" not found.", command);
             }
         }
 

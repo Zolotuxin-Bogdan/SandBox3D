@@ -39,7 +39,7 @@ namespace Assets.DebugConsole
         {
             var parts = input.Split(' ');
             var command = parts[0];
-            CommandsBase.Instance.ExecuteCommand(command, parts.Skip(1).ToArray());
+            Gui.Log(CommandsBase.Instance.ExecuteCommand(command, parts.Skip(1).ToArray()));
         }
     }
 }

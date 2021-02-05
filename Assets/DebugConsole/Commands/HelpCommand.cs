@@ -26,11 +26,11 @@ namespace Assets.DebugConsole.Commands
             commandList.Append("<b>Available commands</b>\n");
             foreach (var command in commands)
             {
-                commandList.Append(string.Format("    <b>/{0}</b> - /{1}\n", command.Usage, command.Description));
+                commandList.Append(string.Format("    <b>/{0}</b> - {1}\n", command.Usage, command.Description));
             }
 
             commandList.Append(
-                "To display details about a specific command, type '/help' followed by the command name");
+                "To display details about a specific command,\n type '/help' followed by the command name");
             return commandList.ToString();
         }
 
