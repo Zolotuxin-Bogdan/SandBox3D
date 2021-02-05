@@ -15,7 +15,7 @@ namespace Assets.WorldGeneration.Implementations
         public float OffsetX = 100f;
         public float OffsetY = 100f;
 
-        public int MaxHeightmapHeight = 64;
+        public int MaxHeightmapHeight = 32;
         public int WorldBaseHeight = 10;
 
         public PerlinNoiseGeneration()
@@ -60,9 +60,9 @@ namespace Assets.WorldGeneration.Implementations
         {
             var blockDtoList = new List<BlockDto>();
             var texture = GenerateTexture();
-            for (var x = 0; x < 50; x++)
+            for (var x = 0; x < 30; x++)
             {
-                for (var y = 0; y < 50; y++)
+                for (var y = 0; y < 30; y++)
                 {
                     var grayScale = GetGrayScale(texture, x, y);
                     var blockHeight = Mathf.FloorToInt(grayScale * MaxHeightmapHeight); // + WorldBaseHeight;

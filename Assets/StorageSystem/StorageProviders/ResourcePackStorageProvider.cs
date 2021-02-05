@@ -23,11 +23,10 @@ namespace Assets.StorageSystem.StorageProviders
             {
                 Instance = this;
             }
-        }
-        void Start()
-        {
+
             ResourcePackPath = Directory.GetCurrentDirectory() + "\\ResourcePacks" + "\\DefaultResourcePack.rpk";
         }
+
         public void CreateResourcePack()
         {
             var resourcePack = ResourcePackManager.Instance.CreateResourcePack();

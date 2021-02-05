@@ -23,11 +23,11 @@ namespace Assets.WorldGeneration
         void Awake()
         {
             if (Instance == null)
-            { 
-                Instance = this; 
+            {
+                Instance = this;
             }
             else if (Instance == this)
-            { 
+            {
                 Destroy(gameObject);
             }
         }
@@ -54,6 +54,7 @@ namespace Assets.WorldGeneration
                 if (!isExistInScene)
                 {
                     _blockInstanceGenerator.CreateBlockInstance(neighbor.Value);
+                    _activeBlocks.Add(neighbor.Value);
                 }
             }
         }
@@ -77,30 +78,29 @@ namespace Assets.WorldGeneration
         {
             return new Dictionary<BlockNeighbor, BlockDto>
             {
-                {BlockNeighbor.Right, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x - 1, blockDto.Position.y, blockDto.Position.z)
-                })},
-                {BlockNeighbor.Left, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x + 1, blockDto.Position.y, blockDto.Position.z)
-                })},
-                {BlockNeighbor.Up, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x, blockDto.Position.y + 1, blockDto.Position.z)
-                })},
-                {BlockNeighbor.Down, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x, blockDto.Position.y - 1, blockDto.Position.z)
-                })},
-                {BlockNeighbor.Forward, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x, blockDto.Position.y, blockDto.Position.z + 1)
-                })},
-                {BlockNeighbor.Backward, _allBlocks.FirstOrDefault(t => t == new BlockDto()
-                {
-                    Position = new Vector3(blockDto.Position.x, blockDto.Position.y, blockDto.Position.z - 1)
-                })}
+                {BlockNeighbor.Right, _allBlocks.FirstOrDefault(t =>
+                    t.Position == new Vector3(blockDto.Position.x - 1, blockDto.Position.y, blockDto.Position.z)
+                    )},
+
+                {BlockNeighbor.Left, _allBlocks.FirstOrDefault(t =>
+                    t.Position == new Vector3(blockDto.Position.x + 1, blockDto.Position.y, blockDto.Position.z)
+                    )},
+
+                {BlockNeighbor.Up, _allBlocks.FirstOrDefault(t => 
+                    t.Position == new Vector3(blockDto.Position.x, blockDto.Position.y + 1, blockDto.Position.z)
+                    )},
+
+                {BlockNeighbor.Down, _allBlocks.FirstOrDefault(t => 
+                    t.Position == new Vector3(blockDto.Position.x, blockDto.Position.y - 1, blockDto.Position.z)
+                    )},
+
+                {BlockNeighbor.Forward, _allBlocks.FirstOrDefault(t => 
+                    t.Position == new Vector3(blockDto.Position.x, blockDto.Position.y, blockDto.Position.z + 1)
+                )},
+
+                {BlockNeighbor.Backward, _allBlocks.FirstOrDefault(t => 
+                    t.Position == new Vector3(blockDto.Position.x, blockDto.Position.y, blockDto.Position.z - 1)
+                )}
             };
         }
 
