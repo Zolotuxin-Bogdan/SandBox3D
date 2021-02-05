@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Data_Models;
+﻿using System;
+using Assets.Scripts.Data_Models;
 using Assets.Scripts.DTO;
+using Assets.WorldGeneration;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -29,14 +31,17 @@ namespace Assets.Scripts
         private void OnBlockDestroy()
         {
             Destroy(gameObject);
-            //
-            // DROP ITEM
-            //
-            SceneEditor.instance.AddItem(new BlockDto()
+            var currentBlockDto = new BlockDto()
             {
                 BlockId = BlockDropId,
                 Position = transform.position
-            });
+            };
+            //
+            // DROP ITEM
+            //
+            SceneEditor.instance.AddItem(currentBlockDto);
+
+            BlockInstanceManager.Instance.CreateSurroundBlocksIfPossible(currentBlockDto);
         }
 
         public void SetDefaultValues(Block blockInfo)

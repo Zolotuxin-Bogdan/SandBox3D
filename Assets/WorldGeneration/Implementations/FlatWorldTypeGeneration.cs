@@ -7,13 +7,8 @@ namespace Assets.WorldGeneration.Implementations
 {
     public class FlatWorldTypeGeneration : IWorldGenerator
     {
-        private readonly int _worldSize;
+        private readonly int _worldSize = 100;
         private Vector3 _spawnPosition = new Vector3(0, 0, 0);
-
-        public FlatWorldTypeGeneration(int worldSize)
-        {
-            _worldSize = worldSize;
-        }
 
         public List<BlockDto> GetBlocksDto()
         {
