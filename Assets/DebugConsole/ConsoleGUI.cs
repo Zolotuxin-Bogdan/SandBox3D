@@ -28,8 +28,7 @@ namespace Assets.DebugConsole
             ChatHeight = SettingsManager.Instance.GetSettings().multiplayer.focusedHeight;
             MessageWidth = SettingsManager.Instance.GetSettings().multiplayer.width; 
             MessageHeight = SettingsManager.Instance.GetSettings().multiplayer.unfocusedHeight / 3f;
-            
-            Debug.Log($"ch:{ChatHeight};cw:{ChatWidth};mw{MessageWidth};mh:{MessageHeight}");
+
             uGUI.GetComponent<RectTransform>().sizeDelta = new Vector2(ChatWidth, ChatHeight * 2f);
             input.GetComponent<RectTransform>().sizeDelta = new Vector2(MessageWidth, MessageHeight);
             output.GetComponent<RectTransform>().sizeDelta = new Vector2(ChatWidth, ChatHeight + MessageHeight * 2f);
@@ -41,18 +40,18 @@ namespace Assets.DebugConsole
 
         public void OpenConsole()
         {
-            Cursor.visible = true;
             uGUI.SetActive(true);
+            Cursor.visible = true;
             input.enabled = true;
             input.Select();
         }
 
         public void CloseConsole()
         {
-            uGUI.SetActive(false);
             Cursor.visible = false;
             input.text = string.Empty;
             input.enabled = false;
+            uGUI.SetActive(false);
         }
 
 
@@ -64,14 +63,16 @@ namespace Assets.DebugConsole
                 string command = new string(message.Skip(1).ToArray());
                 OnSubmitCommand?.Invoke(command);
                 var formattedText = this.message.Split('\n');
-                foreach (var str in formattedText)
+                foreach (var textLine in formattedText)
                 {
+                    print(textLine.Length);
+                    print(ChatWidth / 12);
                     var msg = new GameObject("Message");
                     msg.AddComponent<RectTransform>();
 
                     var font = msg.AddComponent<TextMeshProUGUI>(); 
-                    font.fontSize = 16f;
-                    font.text = str;
+                    font.fontSize = 12f;
+                    font.text = textLine;
                     msg.transform.SetParent(output.content.transform);
                 }
             }
@@ -81,20 +82,16 @@ namespace Assets.DebugConsole
                 msg.AddComponent<RectTransform>();
 
                 var font = msg.AddComponent<TextMeshProUGUI>();
-                font.fontSize = 16f; 
+                font.fontSize = 12f; 
                 font.text = $"[{Nickname}]: {message}";
                 msg.transform.SetParent(output.content.transform);
             }
-        }
 
-        private static void ShowSingleMessage(string message)
-        {
-            throw new NotImplementedException();
+            input.text = "";
         }
 
         public void Log(string message)
         {
-            Debug.Log(message);
             this.message = message;
         }
 

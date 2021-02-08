@@ -8,7 +8,6 @@ namespace Assets.DebugConsole
     public class ConsoleController : MonoBehaviour
     {
         public ConsoleGUI Gui;
-        public bool CloseOnEscape = false;
         protected InputSystem.InputSystem inputSystem;
 
         private void Start()
@@ -31,7 +30,7 @@ namespace Assets.DebugConsole
         {
             if (inputSystem.IsConsoleKeyPressed())
                 Gui.OpenConsole();
-            if (inputSystem.IsOpenSettingsKeyPressed() && CloseOnEscape)
+            if (inputSystem.IsOpenSettingsKeyPressed())
                 Gui.CloseConsole();
         }
 

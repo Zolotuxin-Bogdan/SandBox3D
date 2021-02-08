@@ -23,20 +23,20 @@ namespace Assets.DebugConsole.Commands
         {
             var commands = CommandsBase.Instance.Commands;
             commandList.Clear();
-            commandList.Append("<b>Available commands</b>\n");
+            commandList.Append("\t\t    <b><color=green>Available commands</color></b>\n");
             foreach (var command in commands)
             {
                 commandList.Append(string.Format("    <b>/{0}</b> - {1}\n", command.Usage, command.Description));
             }
 
             commandList.Append(
-                "To display details about a specific command,\n type '/help' followed by the command name");
+                "\n<color=yellow>To display details about a specific command,type '/help' followed by the command name</color>");
             return commandList.ToString();
         }
 
         protected string DisplayCommandDetails(string commandName)
         {
-            string formatting = "<b>/{0}</b>  \n<b>Description:</b> {1}";
+            string formatting = "<b>/{0}</b>  -   {1}";
             try
             {
                 var command = CommandsBase.Instance.GetCommand(commandName);
@@ -44,7 +44,7 @@ namespace Assets.DebugConsole.Commands
             }
             catch (NoSuchCommandException e)
             {
-                return string.Format("Declaration about {0} not found. Is it valid command?", e.Command);
+                return string.Format("Declaration about '{0}' not found. Is it valid command?", e.Command);
             }
         } 
     }
