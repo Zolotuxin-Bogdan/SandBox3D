@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Assets.DebugConsole.Commands;
+using Assets.Console.Commands;
 using UnityEngine;
 
-namespace Assets.DebugConsole
+namespace Assets.Console
 {
     [RequireComponent(typeof(ConsoleController))]
     public class ConsoleController : MonoBehaviour

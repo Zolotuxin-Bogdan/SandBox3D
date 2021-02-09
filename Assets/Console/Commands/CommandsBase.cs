@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.DebugConsole.Commands
+namespace Assets.Console.Commands
 {
     public class CommandsBase
     {

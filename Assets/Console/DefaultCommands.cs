@@ -1,7 +1,7 @@
-﻿using Assets.DebugConsole.Commands;
+﻿using Assets.Console.Commands;
 using UnityEngine;
 
-namespace Assets.DebugConsole
+namespace Assets.Console
 {
     public class DefaultCommands : MonoBehaviour
     {

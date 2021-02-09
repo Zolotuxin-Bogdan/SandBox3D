@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 using System.Linq;
 using Assets.Scripts;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.DebugConsole
+namespace Assets.Console
 {
     public class ConsoleGUI : MonoBehaviour
     {
@@ -74,6 +72,7 @@ namespace Assets.DebugConsole
                     font.fontSize = 12f;
                     font.text = textLine;
                     msg.transform.SetParent(output.content.transform);
+                    SnapTo(msg.GetComponent<RectTransform>());
                 }
             }
             else
@@ -85,10 +84,20 @@ namespace Assets.DebugConsole
                 font.fontSize = 12f; 
                 font.text = $"[{Nickname}]: {message}";
                 msg.transform.SetParent(output.content.transform);
+                SnapTo(msg.GetComponent<RectTransform>());
             }
-
             input.text = "";
         }
+
+        public void SnapTo(RectTransform target)
+        {
+            Canvas.ForceUpdateCanvases();
+
+            output.GetComponent<RectTransform>().anchoredPosition =
+                (Vector2) output.transform.InverseTransformPoint(output.GetComponent<RectTransform>().position)
+                - (Vector2) output.transform.InverseTransformPoint(target.position);
+        }
+
 
         public void Log(string message)
         {

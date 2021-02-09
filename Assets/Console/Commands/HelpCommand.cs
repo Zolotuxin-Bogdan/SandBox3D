@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace Assets.DebugConsole.Commands
+namespace Assets.Console.Commands
 {
     public class HelpCommand : ICommand
     {

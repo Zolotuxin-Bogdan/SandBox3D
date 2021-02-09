@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Assets.DebugConsole
+namespace Assets.Console
 {
     /// <summary>
     /// An exception thrown when attempting to retrieve a command that does not exist.

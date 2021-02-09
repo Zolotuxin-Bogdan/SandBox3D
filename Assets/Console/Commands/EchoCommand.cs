@@ -1,4 +1,4 @@
-﻿namespace Assets.DebugConsole.Commands
+﻿namespace Assets.Console.Commands
 {
     public class EchoCommand : ICommand
     {
