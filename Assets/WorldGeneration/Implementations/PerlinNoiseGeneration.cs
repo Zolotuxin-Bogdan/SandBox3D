@@ -15,13 +15,13 @@ namespace Assets.WorldGeneration.Implementations
         public float OffsetX = 100f;
         public float OffsetY = 100f;
 
-        public int MaxHeightmapHeight = 32;
+        public int MaxHeightmapHeight = 16;
         public int WorldBaseHeight = 10;
 
         public PerlinNoiseGeneration()
         {
-            OffsetX = Random.Range(0, 99999);
-            OffsetY = Random.Range(0, 99999);
+            //OffsetX = Random.Range(0, 99999);
+            //OffsetY = Random.Range(0, 99999);
         }
 
         Texture2D GenerateTexture()
@@ -68,14 +68,14 @@ namespace Assets.WorldGeneration.Implementations
                     var blockHeight = Mathf.FloorToInt(grayScale * MaxHeightmapHeight); // + WorldBaseHeight;
                     blockDtoList.Add(new BlockDto()
                     {
-                        BlockId = 1,
+                        BlockId = 7,
                         Position = new Vector3(x, blockHeight, y)
                     });
                     for (var i = 0; i < blockHeight; i++)
                     {
                         blockDtoList.Add(new BlockDto()
                         {
-                            BlockId = 1,
+                            BlockId = 7,
                             Position = new Vector3(x, i, y)
                         });
                     }

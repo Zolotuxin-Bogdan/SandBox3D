@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.DTO;
@@ -19,6 +20,8 @@ namespace Assets.WorldGeneration
 
         private List<BlockDto> _allBlocks = new List<BlockDto>();
         private readonly List<BlockDto> _activeBlocks = new List<BlockDto>();
+
+        private IEnumerator _generateWorldCoroutine;
 
         void Awake()
         {
@@ -106,10 +109,23 @@ namespace Assets.WorldGeneration
 
         public void GenerateWorld(IWorldGenerator generator)
         {
+            _generateWorldCoroutine = GenerateWorldCoroutine(generator);
+            StartCoroutine(_generateWorldCoroutine);
+        }
+
+        private IEnumerator GenerateWorldCoroutine(IWorldGenerator generator)
+        {
             _allBlocks = generator.GetBlocksDto();
+            var i = 0;
             foreach (var block in _allBlocks)
             {
                 CreateBlockIfPossible(block);
+                i++;
+                if (i >= 30)
+                {
+                    i = 0;
+                    yield return null;
+                }
             }
         }
     }
