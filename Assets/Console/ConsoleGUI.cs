@@ -63,41 +63,26 @@ namespace Assets.Console
                 var formattedText = this.message.Split('\n');
                 foreach (var textLine in formattedText)
                 {
-                    print(textLine.Length);
-                    print(ChatWidth / 12);
                     var msg = new GameObject("Message");
-                    msg.AddComponent<RectTransform>();
-
+                    var rect = msg.AddComponent<RectTransform>();
+                    rect.sizeDelta = new Vector2(rect.sizeDelta.x, output.content.sizeDelta.y);
                     var font = msg.AddComponent<TextMeshProUGUI>(); 
                     font.fontSize = 12f;
                     font.text = textLine;
                     msg.transform.SetParent(output.content.transform);
-                    SnapTo(msg.GetComponent<RectTransform>());
                 }
             }
             else
             {
                 var msg = new GameObject("Message");
                 msg.AddComponent<RectTransform>();
-
                 var font = msg.AddComponent<TextMeshProUGUI>();
                 font.fontSize = 12f; 
                 font.text = $"[{Nickname}]: {message}";
                 msg.transform.SetParent(output.content.transform);
-                SnapTo(msg.GetComponent<RectTransform>());
             }
             input.text = "";
         }
-
-        public void SnapTo(RectTransform target)
-        {
-            Canvas.ForceUpdateCanvases();
-
-            output.GetComponent<RectTransform>().anchoredPosition =
-                (Vector2) output.transform.InverseTransformPoint(output.GetComponent<RectTransform>().position)
-                - (Vector2) output.transform.InverseTransformPoint(target.position);
-        }
-
 
         public void Log(string message)
         {

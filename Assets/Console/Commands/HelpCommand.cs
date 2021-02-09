@@ -29,7 +29,7 @@ namespace Assets.Console.Commands
             }
 
             commandList.Append(
-                "\n<color=yellow>To display details about a specific command,type '/help' followed by the command name</color>");
+                "<color=yellow>To display details about a specific command,type '/help' followed by the command name</color>");
             return commandList.ToString();
         }
 
