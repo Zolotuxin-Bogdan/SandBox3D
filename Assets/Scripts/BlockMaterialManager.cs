@@ -12,6 +12,8 @@ namespace Assets.Scripts
         // Material Types
         //
         public Material FullSizeBlockMaterial;
+        public Material AlphaChannelsMaterial;
+        public Material TransparentMaterial;
 
         private Dictionary<string, Material> _materialDictionary = new Dictionary<string, Material>();
         void Awake()
@@ -28,6 +30,9 @@ namespace Assets.Scripts
         void Start()
         {
             _materialDictionary.Add(MaterialType.FullSizeBlockMaterial.ToString(), FullSizeBlockMaterial);
+            _materialDictionary.Add(MaterialType.AlphaChannelsMaterial.ToString(), AlphaChannelsMaterial);
+            _materialDictionary.Add(MaterialType.Transparentmaterial.ToString(), TransparentMaterial);
+
         }
         public Material GetBlockMaterialByName(string typeName)
         {

@@ -189,6 +189,31 @@ namespace Assets.Scripts
             oak_log.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
             resourcePack.Blocks.Add(oak_log);
 
+            var leaves = new Block()
+            {
+                BlockId = 7,
+                BlockName = "Oak Leaves",
+                BlockTypeName = BlockType.FullSizeBlock,
+                BlockMaterialType = MaterialType.AlphaChannelsMaterial,
+                BlockTexturePath = texturesDefaultPath + "leaves.png",
+                BlockDurability = 1,
+                BlockDropId = 7,
+                BlockDropMaxCount = 1
+            };
+            leaves.BlockSlug =
+                $"item.block.{leaves.BlockName}_{leaves.BlockTypeName}:{leaves.BlockId}";
+            leaves.BlockInfo = new InventorySystem.Items.Block
+            {
+                type = ItemType.Block,
+                id = leaves.BlockId,
+                name = leaves.BlockName,
+                slug = leaves.BlockSlug
+            };
+            leaves.BlockProperties.Add(BlockProperties.Flammable);
+            leaves.BlockProperties.Add(BlockProperties.Transparent);
+            leaves.BlockInfo.itemProperties.Add(ItemProperties.Stackable);
+            resourcePack.Blocks.Add(leaves);
+
             return resourcePack;
         }
     }

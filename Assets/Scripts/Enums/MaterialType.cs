@@ -2,6 +2,8 @@
 {
     public enum MaterialType
     {
-        FullSizeBlockMaterial
+        FullSizeBlockMaterial,
+        AlphaChannelsMaterial,
+        Transparentmaterial
     }
 }

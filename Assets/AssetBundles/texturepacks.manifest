@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3728544325
+CRC: 1785026664
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 37a6945869f07fb72e26d8d601d6afc1
+    Hash: 405b37c1f4618f4fdca248fab06b72e4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 525b72fdacf3aef7d65f355ad8f17a96
@@ -12,6 +12,7 @@ ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 Assets:
+- Assets/texturepacks/Default/leaves.png
 - Assets/texturepacks/Default/dirt.png
 - Assets/texturepacks/Default/oak_log.png
 - Assets/texturepacks/Default/sand.png
