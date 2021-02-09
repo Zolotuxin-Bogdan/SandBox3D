@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using Assets.StorageSystem.StorageProviders;
 using Assets.Scripts;
+using Assets.WorldGeneration;
 
 namespace Assets.Editor
 {
@@ -31,6 +32,8 @@ namespace Assets.Editor
         [Tooltip("Player States Manager")]
         [SerializeField] bool pSManager;
 
+        [Tooltip("Block Instance Manager")]
+        [SerializeField] bool bIManager;
 
         [MenuItem("SandBox3D/ToolsManager")]
         private static void MenuEntryCall() {
@@ -61,6 +64,8 @@ namespace Assets.Editor
                 go.AddComponent<InputSystem.InputSystem>();
             if (settingsManager)
                 go.AddComponent<SettingsManager>();
+            if (bIManager)
+                go.AddComponent<BlockInstanceManager>();
         }
 
         private void OnWizardUpdate() {
@@ -103,6 +108,9 @@ namespace Assets.Editor
                     if (settingsManager)
                         if (gameObject.GetComponent<SettingsManager>() == null)
                             gameObject.AddComponent<SettingsManager>();
+                    if (bIManager)
+                        if (gameObject.GetComponent<BlockInstanceManager>() == null)
+                            gameObject.AddComponent<BlockInstanceManager>();
                 } else
                 {
                     EditorUtility.DisplayDialog("Warning", "This GameObject not found on scene", "Close");
