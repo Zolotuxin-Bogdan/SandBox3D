@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.Scripts.Enums;
 using Assets.WorldGeneration;
 using TMPro;
 using UnityEngine;
@@ -8,22 +9,9 @@ namespace Assets.Scripts.UI
 {
     public class WorldLoadingController : MonoBehaviour
     {
-        public TextMeshProUGUI loadState;
-        public string worldName;
-
-        void Start()
-        {
-            StartCoroutine(LoadWorld());
-        }
-
-        private IEnumerator LoadWorld()
-        {
-            loadState.text = "Loading world";
-
-            while (true)
-            {
-
-            }
+        public void LoadWorld(WorldGenerationType generationType){
+            BlockInstanceManager.Instance.OnWorldGenerated += () => {action.Invoke();};
+            BlockInstanceManager.Instance.GenerateWorld(WorldGeneratorFactory.GetWorldGenerator(generationType));
         }
 
         protected UnityAction action;

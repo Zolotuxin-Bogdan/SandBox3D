@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI
         public TMP_InputField inputField;
         public bool isRecreate = false;
         public string parentWorldName;
-        protected WorldGenerationType generationType;
+        public WorldGenerationType generationType;
         void Start()
         {
             generationType = WorldGenerationType.Perlin;
@@ -56,8 +56,7 @@ namespace Assets.Scripts.UI
 
         private void CreateCallback()
         {
-            //action.Invoke(CreateWorldEvents.OnCreateClicked);
-            BlockInstanceManager.Instance.GenerateWorld(WorldGeneratorFactory.GetWorldGenerator(generationType));
+            action.Invoke(CreateWorldEvents.OnCreateClicked);
         }
 
         private void InputFieldCallback(string arg0)
