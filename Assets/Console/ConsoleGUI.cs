@@ -17,7 +17,7 @@ namespace Assets.Console
         public float ChatHeight { get; private set; }
         public float MessageWidth { get; private set; }
         public float MessageHeight { get; private set; }
-        public string Nickname = "Player";
+        public string Username = "Player";
 
         protected string message;
         private void Start()
@@ -33,6 +33,7 @@ namespace Assets.Console
             output.content.GetComponent<RectTransform>().sizeDelta = new Vector2(ChatWidth, ChatHeight);
 
             input.onSubmit.AddListener(AddMessage);
+            input.richText = false;
             uGUI.SetActive(false);
         }
 
@@ -65,21 +66,22 @@ namespace Assets.Console
                 {
                     var msg = new GameObject("Message");
                     var rect = msg.AddComponent<RectTransform>();
-                    rect.sizeDelta = new Vector2(rect.sizeDelta.x, output.content.sizeDelta.y);
                     var font = msg.AddComponent<TextMeshProUGUI>(); 
                     font.fontSize = 12f;
                     font.text = textLine;
                     msg.transform.SetParent(output.content.transform);
+                    rect.sizeDelta = new Vector2(rect.sizeDelta.x * 1.4f, rect.sizeDelta.y / 1.4f);
                 }
             }
             else
             {
                 var msg = new GameObject("Message");
-                msg.AddComponent<RectTransform>();
+                var rect = msg.AddComponent<RectTransform>();
                 var font = msg.AddComponent<TextMeshProUGUI>();
                 font.fontSize = 12f; 
-                font.text = $"[{Nickname}]: {message}";
+                font.text = $"[{Username}]: {message}";
                 msg.transform.SetParent(output.content.transform);
+                rect.sizeDelta = new Vector2(rect.sizeDelta.x * 1.4f, rect.sizeDelta.y / 1.4f);
             }
             input.text = "";
         }
