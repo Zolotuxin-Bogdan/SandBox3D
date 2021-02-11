@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.DTO;
 using Assets.WorldGeneration.Interfaces;
 using UnityEngine;
@@ -10,21 +11,22 @@ namespace Assets.WorldGeneration.Implementations
         public int PerlinTextureWidth = 256;
         public int PerlinTextureHeight = 256;
 
-        public float Scale = 5f;
+        public float Scale = 3f;
 
         public float OffsetX = 100f;
         public float OffsetY = 100f;
 
-        public int MaxHeightmapHeight = 16;
+        public int MaxHeightMapHeight = 48;
         public int WorldBaseHeight = 10;
+        public int WorldSize = 50;
 
         public PerlinNoiseGeneration()
         {
-            //OffsetX = Random.Range(0, 99999);
-            //OffsetY = Random.Range(0, 99999);
+            OffsetX = UnityEngine.Random.Range(0, 99999);
+            OffsetY = UnityEngine.Random.Range(0, 99999);
         }
 
-        Texture2D GenerateTexture()
+        public Texture2D GenerateTexture()
         {
             Texture2D texture = new Texture2D(PerlinTextureWidth, PerlinTextureHeight);
 
@@ -43,10 +45,12 @@ namespace Assets.WorldGeneration.Implementations
 
         Color CalculateColor(int x, int y)
         {
-            float xCoord = (float)x / PerlinTextureWidth * Scale + OffsetX;
-            float yCoord = (float)y / PerlinTextureHeight * Scale + OffsetY;
+            var xCoord = (float)x / PerlinTextureWidth * Scale + OffsetX;
+            var yCoord = (float)y / PerlinTextureHeight * Scale + OffsetY;
 
-            float sample = Mathf.PerlinNoise(xCoord, yCoord);
+            var sample = Mathf.PerlinNoise(xCoord, yCoord)
+                         + Convert.ToSingle(0.5 * Mathf.PerlinNoise(2 * xCoord, 2 * yCoord))
+                         + Convert.ToSingle(0.25 * Mathf.PerlinNoise(4 * xCoord, 4 * yCoord));
             return new Color(sample, sample, sample);
         }
 
@@ -60,28 +64,31 @@ namespace Assets.WorldGeneration.Implementations
         {
             var blockDtoList = new List<BlockDto>();
             var texture = GenerateTexture();
-            for (var x = 0; x < 30; x++)
+            for (var x = 0; x < WorldSize; x++)
             {
-                for (var y = 0; y < 30; y++)
+                for (var y = 0; y < WorldSize; y++)
                 {
                     var grayScale = GetGrayScale(texture, x, y);
-                    var blockHeight = Mathf.FloorToInt(grayScale * MaxHeightmapHeight); // + WorldBaseHeight;
+                    var blockHeight = Mathf.FloorToInt(grayScale * MaxHeightMapHeight); // + WorldBaseHeight;
                     blockDtoList.Add(new BlockDto()
                     {
-                        BlockId = 7,
+                        BlockId = 1,
                         Position = new Vector3(x, blockHeight, y)
                     });
-                    for (var i = 0; i < blockHeight; i++)
+                    //
+                    // Fill all space from up to down
+                    //
+                    /*for (var i = 0; i < blockHeight; i++)
                     {
                         blockDtoList.Add(new BlockDto()
                         {
-                            BlockId = 7,
+                            BlockId = 1,
                             Position = new Vector3(x, i, y)
                         });
-                    }
+                    }*/
                 }
             }
-            
+
             return blockDtoList;
         }
 

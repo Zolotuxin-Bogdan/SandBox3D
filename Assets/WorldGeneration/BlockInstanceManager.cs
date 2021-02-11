@@ -14,14 +14,14 @@ namespace Assets.WorldGeneration
     {
         public static BlockInstanceManager Instance { get; private set; }
 
+        public event System.Action OnWorldGenerated; 
+
         private BlockInstanceGenerator _blockInstanceGenerator;
 
         private ResourcePack _resourcePack;
 
         private List<BlockDto> _allBlocks = new List<BlockDto>();
         private readonly List<BlockDto> _activeBlocks = new List<BlockDto>();
-
-        private IEnumerator _generateWorldCoroutine;
 
         void Awake()
         {
@@ -109,8 +109,7 @@ namespace Assets.WorldGeneration
 
         public void GenerateWorld(IWorldGenerator generator)
         {
-            _generateWorldCoroutine = GenerateWorldCoroutine(generator);
-            StartCoroutine(_generateWorldCoroutine);
+            StartCoroutine(GenerateWorldCoroutine(generator));
         }
 
         private IEnumerator GenerateWorldCoroutine(IWorldGenerator generator)
@@ -127,6 +126,12 @@ namespace Assets.WorldGeneration
                     yield return null;
                 }
             }
+            OnWorldGenerated?.Invoke();
+        }
+
+        public void Combine()
+        {
+            _blockInstanceGenerator.Combine();
         }
     }
 }

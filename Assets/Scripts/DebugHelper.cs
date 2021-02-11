@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class DebugHelper : MonoBehaviour
 {
+
+    public GameObject perlinPanel;
+    private BlockInstanceManager inst;
+
+    void Start()
+    {
+        var generator = new PerlinNoiseGeneration();
+        var perlinTexture = generator.GenerateTexture();
+        var renderer = perlinPanel.GetComponent<Renderer>();
+        renderer.material.SetTexture("_BaseMap", perlinTexture);
+        inst = BlockInstanceManager.Instance;
+    }
+
     public void GenerateWorld()
     {
-        var inst = BlockInstanceManager.Instance;
         inst.GenerateWorld(new PerlinNoiseGeneration());
+    }
+
+    public void Combine()
+    {
+        inst.Combine();
     }
 }
