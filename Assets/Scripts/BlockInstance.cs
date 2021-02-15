@@ -39,7 +39,7 @@ namespace Assets.Scripts
             //
             // DROP ITEM
             //
-            SceneEditor.instance.AddItem(currentBlockDto);
+            ItemSpawner.instance.AddItem(currentBlockDto);
 
             BlockInstanceManager.Instance.CreateSurroundBlocksIfPossible(currentBlockDto);
         }

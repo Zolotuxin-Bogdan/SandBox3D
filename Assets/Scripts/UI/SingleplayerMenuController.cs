@@ -33,6 +33,8 @@ namespace Assets.Scripts.UI
 
         private void RefreshWorldsList()
         {
+            if (!Directory.Exists(Application.dataPath + "\\saves\\"))
+                Directory.CreateDirectory(Application.dataPath + "\\saves\\");
             var saves = Directory.GetDirectories(Application.dataPath + "\\saves\\");
             for (int i = 0; i < saves.Length; i++)
             {

@@ -37,8 +37,6 @@ public class DayNightSystem : MonoBehaviour
     {
         var rotationX = (currentTime * 360f) - celestialBodiesPos;
         var rotationX1 = (currentTime * 360f) + celestialBodiesPos;
-        print(rotationX);
-        print(rotationX1);
         sun.transform.localRotation = Quaternion.Euler(rotationX, 170, 0);
         if ((180 - rotationX) < 0)
             moon.transform.localRotation = Quaternion.Euler(360 + ((180 - rotationX) * -1), 170, 0);
