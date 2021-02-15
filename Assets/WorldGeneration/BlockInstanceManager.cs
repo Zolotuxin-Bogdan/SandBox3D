@@ -14,7 +14,8 @@ namespace Assets.WorldGeneration
     {
         public static BlockInstanceManager Instance { get; private set; }
 
-        public event System.Action OnWorldGenerated; 
+        public event System.Action OnWorldGenerated;
+        public event System.Action<int> LoadingProgress; 
 
         private BlockInstanceGenerator _blockInstanceGenerator;
 
@@ -22,6 +23,8 @@ namespace Assets.WorldGeneration
 
         private List<BlockDto> _allBlocks = new List<BlockDto>();
         private readonly List<BlockDto> _activeBlocks = new List<BlockDto>();
+
+        private const int BLOCKS_PER_FRAME = 30;
 
         void Awake()
         {
@@ -115,14 +118,18 @@ namespace Assets.WorldGeneration
         private IEnumerator GenerateWorldCoroutine(IWorldGenerator generator)
         {
             _allBlocks = generator.GetBlocksDto();
-            var i = 0;
+            var blockCountInFrame = 0;
             foreach (var block in _allBlocks)
             {
                 CreateBlockIfPossible(block);
-                i++;
-                if (i >= 30)
+                blockCountInFrame++;
+                if (blockCountInFrame >= BLOCKS_PER_FRAME)
                 {
-                    i = 0;
+                    var currentIndex = _allBlocks.IndexOf(block);
+                    var loadingProgress = currentIndex * 100 / _allBlocks.Count;
+                    Debug.Log(loadingProgress);
+                    LoadingProgress?.Invoke(loadingProgress);
+                    blockCountInFrame = 0;
                     yield return null;
                 }
             }
