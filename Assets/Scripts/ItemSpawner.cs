@@ -10,11 +10,11 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class SceneEditor : MonoBehaviour
+    public class ItemSpawner : MonoBehaviour
     {
 
         ResourcePack resource;
-        public static SceneEditor instance;
+        public static ItemSpawner instance;
         public RuntimeAnimatorController itemAnimatorController;
         protected void Start()
         {
