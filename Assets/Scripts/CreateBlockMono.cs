@@ -9,7 +9,7 @@ namespace Assets.Scripts
     {
         void Start()
         {
-            new BlockInstanceGenerator(ResourcePackManager.Instance.CreateResourcePack()).CreateBlockInstance(new BlockDto{Position = Vector3.zero, BlockId = 7});
+            
         }
     }
 }

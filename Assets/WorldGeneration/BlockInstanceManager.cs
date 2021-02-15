@@ -127,7 +127,6 @@ namespace Assets.WorldGeneration
                 {
                     var currentIndex = _allBlocks.IndexOf(block);
                     var loadingProgress = currentIndex * 100 / _allBlocks.Count;
-                    Debug.Log(loadingProgress);
                     LoadingProgress?.Invoke(loadingProgress);
                     blockCountInFrame = 0;
                     yield return null;
