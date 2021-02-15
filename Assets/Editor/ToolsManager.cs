@@ -55,7 +55,7 @@ namespace Assets.Editor
                 go.AddComponent<BlockMaterialManager>();
 
             if (sceneEditor)
-                go.AddComponent<SceneEditor>();
+                go.AddComponent<ItemSpawner>();
 
             if (pSManager)
                 go.AddComponent<PlayerStatesManager>();
@@ -95,8 +95,8 @@ namespace Assets.Editor
                             gameObject.AddComponent<BlockMaterialManager>();
 
                     if (sceneEditor)
-                        if (gameObject.GetComponent<SceneEditor>() == null)
-                            gameObject.AddComponent<SceneEditor>();
+                        if (gameObject.GetComponent<ItemSpawner>() == null)
+                            gameObject.AddComponent<ItemSpawner>();
 
                     if (pSManager)
                         if (gameObject.GetComponent<PlayerStatesManager>() == null)

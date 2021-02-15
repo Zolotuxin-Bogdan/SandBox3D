@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Scripts.Enums;
-using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Handlers
 {
     public class MenuHandler : MonoBehaviour
     {
-        [SerializeField] GameObject MenuGUI;
-        [SerializeField] GameObject SingleplayerMenuGUI;
-        [SerializeField] GameObject MultiplayerMenuGUI;
-        [SerializeField] GameObject CreateWorldGUI;
-        [SerializeField] GameObject LoadWorldGUI;
+        public GameObject MenuGUI;
+        public GameObject SingleplayerMenuGUI;
+        public GameObject MultiplayerMenuGUI;
+        public GameObject CreateWorldGUI;
+        public GameObject LoadWorldGUI;
+        public GameObject SettingsCanvas;
+        public GameObject Background;
 
         MenuController menuController;
         SingleplayerMenuController singleplayerMenuController;
         MultiplayerMenuController multiplayerMenuController;
         CreateWorldController createWorldController;
         WorldLoadingController loadWorldController;
+        SettingsHandler settingsHandler;
 
         // Start is called before the first frame update
         void Start()
@@ -28,9 +28,12 @@ namespace Assets.Scripts.UI.Handlers
             HandlersInitialization();
 
             MenuGUI.SetActive(true);
+            Background.SetActive(true);
             SingleplayerMenuGUI.SetActive(false);
             MultiplayerMenuGUI.SetActive(false);
             CreateWorldGUI.SetActive(false);
+            LoadWorldGUI.SetActive(false);
+            SettingsCanvas.SetActive(false);
         }
 
         #region Initialization 
@@ -40,6 +43,7 @@ namespace Assets.Scripts.UI.Handlers
             multiplayerMenuController = MultiplayerMenuGUI.GetComponent<MultiplayerMenuController>();
             createWorldController = CreateWorldGUI.GetComponent<CreateWorldController>();
             loadWorldController = LoadWorldGUI.GetComponent<WorldLoadingController>();
+            settingsHandler = SettingsCanvas.GetComponent<SettingsHandler>();
         }
 
         protected void HandlersInitialization(){
@@ -56,6 +60,7 @@ namespace Assets.Scripts.UI.Handlers
         private void LoadWorldCallbackHandler()
         {
             LoadWorldGUI.SetActive(false);
+            MenuGUI.SetActive(false);
         }
 
         private void CreateWorldCallbackHandler(CreateWorldEvents arg0)
@@ -70,6 +75,7 @@ namespace Assets.Scripts.UI.Handlers
                     CreateWorldGUI.SetActive(false);
                     LoadWorldGUI.SetActive(true);
                     loadWorldController.LoadWorld(createWorldController.generationType);
+                    Background.SetActive(false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(arg0), arg0, nameof(arg0));
@@ -115,8 +121,9 @@ namespace Assets.Scripts.UI.Handlers
                     MultiplayerMenuGUI.SetActive(true);
                     break;
                 case MenuEvents.OnSettingsClicked:
-                    //Menu.SetActive(false);
-                    //Settins.SetActive(true);
+                    SettingsCanvas.SetActive(true);
+                    settingsHandler.Settings.SetActive(true);
+                    settingsHandler.Background.SetActive(true);
                     break;
                 case MenuEvents.OnSinglePlayerClicked:
                     MenuGUI.SetActive(false);
