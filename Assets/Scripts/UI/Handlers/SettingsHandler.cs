@@ -17,6 +17,7 @@ namespace Assets.Scripts.UI.Handlers
         public SettingsManager SettingsManager;
 
         SettingsController settingsController;
+        InputSystem.InputSystem inputSystem = InputSystem.InputSystem.instance;
         ControlsController controlsController;
         SnooperSettingsController snooperSettingsController;
         TexturePackController texturePackController;
@@ -25,6 +26,7 @@ namespace Assets.Scripts.UI.Handlers
         //Unity Start Message
         void Start()
         {
+            inputSystem.OnKeyPressed += KOnKeyPressed;
             settingsController = Settings.GetComponent<SettingsController>();//
             controlsController = Controls.GetComponent<ControlsController>();//
             snooperSettingsController = SnooperSettings.GetComponent<SnooperSettingsController>();//
@@ -39,6 +41,7 @@ namespace Assets.Scripts.UI.Handlers
             languageController.AddListener(LanguageControllerHandler);
             videoSettingsController.AddListener(VideoSettingsControllerHandler);
 
+            Cursor.visible = true;
             Settings.SetActive(false);
             Background.SetActive(false);
             Controls.SetActive(false);
@@ -47,6 +50,14 @@ namespace Assets.Scripts.UI.Handlers
             Language.SetActive(false);
             MultiplayerSettings.SetActive(false);
             VideoSettings.SetActive(false);
+        }
+
+        private void KOnKeyPressed()
+        {
+            if (inputSystem.IsOpenSettingsKeyPressed())
+            {
+                Settings.SetActive(true);
+            }
         }
 
         void SettingsControllerHandler(SettingsEvent @event)

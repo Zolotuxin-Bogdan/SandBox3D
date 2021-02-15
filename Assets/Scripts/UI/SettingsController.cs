@@ -58,7 +58,6 @@ namespace Assets.Scripts.UI
         ////////////////////Events///////////////////
         void Submit()
         {
-
             _action.Invoke(SettingsEvent.DoneClicked);
         }
 

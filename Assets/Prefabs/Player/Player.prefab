@@ -505,7 +505,7 @@ MonoBehaviour:
   Gravity: -9.8
   PlayerHead: {fileID: 6358995908736523034}
   FirstPersonCamPosition: {fileID: 6367145652394019031}
-  FirstPersonCam: {fileID: 0}
+  FirstPersonCam: {fileID: 236604883577396432, guid: 1876845cd9c8f554a8be045265b3d192, type: 3}
 --- !u!1 &6358995908736523034
 GameObject:
   m_ObjectHideFlags: 0

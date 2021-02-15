@@ -27,6 +27,7 @@ namespace Assets.Scripts.UI.Handlers
             ScriptsInitialization();
             HandlersInitialization();
 
+            Cursor.visible = true;
             MenuGUI.SetActive(true);
             Background.SetActive(true);
             SingleplayerMenuGUI.SetActive(false);

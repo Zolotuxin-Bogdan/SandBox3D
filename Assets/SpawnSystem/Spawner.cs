@@ -7,7 +7,7 @@ namespace Assets.SpawnSystem
     {
         [Header("Spawn Controls")]
         public Vector3 spawnPoint;
-        public GameObject objectPrefab;
+        public GameObject[] Prefabs;
 
         private void Start() 
         {
@@ -15,7 +15,10 @@ namespace Assets.SpawnSystem
         }
         private void SpawnObject()
         {
-            Instantiate(objectPrefab, spawnPoint, Quaternion.identity);
+            foreach (var prefab in Prefabs)
+            {
+                Instantiate(prefab, spawnPoint, Quaternion.identity);
+            }
         }
     }
 }
