@@ -18,7 +18,7 @@ namespace Assets.WorldGeneration.Implementations
 
         public int MaxHeightMapHeight = 48;
         public int WorldBaseHeight = 10;
-        public int WorldSize = 50;
+        public int WorldSize = 100;
 
         public PerlinNoiseGeneration()
         {
