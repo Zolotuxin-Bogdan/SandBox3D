@@ -22,7 +22,10 @@ namespace Assets.WorldGeneration
         }
         public void CreateBlockInstance(BlockDto blockDto)
         {
+            Debug.Log($"[DEBUG]: {blockDto}");
+            Debug.Log($"[DEBUG]: {_resourcePack}");
             var blockInfo = _resourcePack.Blocks.FirstOrDefault(t => t.BlockId.Equals(blockDto.BlockId));
+            Debug.Log($"[DEBUG]: {blockInfo}");
             var createdBlock = Object.Instantiate(BlockTypeManager.Instance.GetBlockTypeByName(blockInfo.BlockTypeName.ToString()), blockDto.Position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             createdBlock.name = blockInfo.BlockName;
             createdBlock.AddComponent<BoxCollider>();

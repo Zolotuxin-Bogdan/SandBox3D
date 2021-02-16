@@ -24,10 +24,11 @@ namespace Assets.Scripts
             {
                 Instance = this;
             }
+            _typeDictionary.Add(BlockType.FullSizeBlock.ToString(), FullSizeBlock);
         }
         void Start()
         {
-            _typeDictionary.Add(BlockType.FullSizeBlock.ToString(), FullSizeBlock);
+            
         }
         public GameObject GetBlockTypeByName(string typeName)
         {

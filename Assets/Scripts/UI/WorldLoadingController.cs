@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using Assets.Scripts.Enums;
 using Assets.SpawnSystem;
 using Assets.WorldGeneration;
@@ -17,7 +18,8 @@ namespace Assets.Scripts.UI
         public GameObject Player;
         public GameObject PlayerCamera;
 
-        public void LoadWorld(WorldGenerationType generationType){
+        public void LoadWorld(WorldGenerationType generationType)
+        {
             BlockInstanceManager.Instance.LoadingProgress += OnLoadingProgress;
             BlockInstanceManager.Instance.OnWorldGenerated += OnWorldGenerated;
             BlockInstanceManager.Instance.GenerateWorld(WorldGeneratorFactory.GetWorldGenerator(generationType));
@@ -28,13 +30,12 @@ namespace Assets.Scripts.UI
             action.Invoke();
             var obj = new GameObject("Global Spawner");
             var PlayerSpawner = obj.AddComponent<Spawner>();
+
             PlayerSpawner.spawnPoint = new Vector3(0, 50, 0);
             PlayerSpawner.Prefabs = new [] {Player, PlayerCamera};
             var SpawnedObjects = PlayerSpawner.SpawnObject();
             SpawnedObjects[0].GetComponent<PlayerController>().FirstPersonCam = SpawnedObjects[1].GetComponent<Camera>();
             SpawnedObjects[1].GetComponent<MouseLook>().settings = SettingsManager.Instance;
-            BlockInstanceManager.Instance.LoadingProgress -= OnLoadingProgress;
-            BlockInstanceManager.Instance.OnWorldGenerated -= OnWorldGenerated;
         }
 
         private void OnLoadingProgress(int loadingProgress)
