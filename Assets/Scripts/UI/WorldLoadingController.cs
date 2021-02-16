@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts.Enums;
+using Assets.SpawnSystem;
 using Assets.WorldGeneration;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Assets.Scripts.UI
 
         public Slider LoadingProgress;
         public TextMeshProUGUI LoadingProgressText;
+        public GameObject Player;
+        public GameObject PlayerCamera;
 
         public void LoadWorld(WorldGenerationType generationType){
             BlockInstanceManager.Instance.LoadingProgress += OnLoadingProgress;
@@ -23,6 +26,13 @@ namespace Assets.Scripts.UI
         private void OnWorldGenerated()
         {
             action.Invoke();
+            var obj = new GameObject("Global Spawner");
+            var PlayerSpawner = obj.AddComponent<Spawner>();
+            PlayerSpawner.spawnPoint = new Vector3(0, 50, 0);
+            PlayerSpawner.Prefabs = new [] {Player, PlayerCamera};
+            var SpawnedObjects = PlayerSpawner.SpawnObject();
+            SpawnedObjects[0].GetComponent<PlayerController>().FirstPersonCam = SpawnedObjects[1].GetComponent<Camera>();
+            SpawnedObjects[1].GetComponent<MouseLook>().settings = SettingsManager.Instance;
             BlockInstanceManager.Instance.LoadingProgress -= OnLoadingProgress;
             BlockInstanceManager.Instance.OnWorldGenerated -= OnWorldGenerated;
         }

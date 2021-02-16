@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Assets.Scripts.Enums;
 using UnityEngine;
 
@@ -14,10 +15,13 @@ namespace Assets.Scripts.UI.Handlers
         public GameObject MultiplayerSettings;
         public GameObject VideoSettings;
         public GameObject Background;
+        public GameObject MenuCanvas;
+        public GameObject ConsoleCanvas;
+        public GameObject InventoryCanvas;
         public SettingsManager SettingsManager;
 
         SettingsController settingsController;
-        InputSystem.InputSystem inputSystem = InputSystem.InputSystem.instance;
+        InputSystem.InputSystem inputSystem;
         ControlsController controlsController;
         SnooperSettingsController snooperSettingsController;
         TexturePackController texturePackController;
@@ -26,7 +30,8 @@ namespace Assets.Scripts.UI.Handlers
         //Unity Start Message
         void Start()
         {
-            inputSystem.OnKeyPressed += KOnKeyPressed;
+			inputSystem = InputSystem.InputSystem.instance;
+            inputSystem.OnKeyPressed += OnKeyPressed;
             settingsController = Settings.GetComponent<SettingsController>();//
             controlsController = Controls.GetComponent<ControlsController>();//
             snooperSettingsController = SnooperSettings.GetComponent<SnooperSettingsController>();//
@@ -52,11 +57,11 @@ namespace Assets.Scripts.UI.Handlers
             VideoSettings.SetActive(false);
         }
 
-        private void KOnKeyPressed()
+        private void OnKeyPressed()
         {
             if (inputSystem.IsOpenSettingsKeyPressed())
             {
-                Settings.SetActive(true);
+                Settings.SetActive(!Settings.activeSelf);
             }
         }
 

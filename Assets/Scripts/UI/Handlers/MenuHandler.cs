@@ -20,7 +20,6 @@ namespace Assets.Scripts.UI.Handlers
         CreateWorldController createWorldController;
         WorldLoadingController loadWorldController;
         SettingsHandler settingsHandler;
-
         // Start is called before the first frame update
         void Start()
         {
@@ -34,7 +33,6 @@ namespace Assets.Scripts.UI.Handlers
             MultiplayerMenuGUI.SetActive(false);
             CreateWorldGUI.SetActive(false);
             LoadWorldGUI.SetActive(false);
-            SettingsCanvas.SetActive(false);
         }
 
         #region Initialization 

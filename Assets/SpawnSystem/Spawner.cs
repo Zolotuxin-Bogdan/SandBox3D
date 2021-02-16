@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Assets.SpawnSystem
@@ -9,16 +10,18 @@ namespace Assets.SpawnSystem
         public Vector3 spawnPoint;
         public GameObject[] Prefabs;
 
-        private void Start() 
+        public GameObject[] SpawnObject()
         {
-            SpawnObject();
-        }
-        private void SpawnObject()
-        {
+            var createdObjects = new List<GameObject>();
+
             foreach (var prefab in Prefabs)
             {
-                Instantiate(prefab, spawnPoint, Quaternion.identity);
+                var obj = Instantiate(prefab, spawnPoint, Quaternion.identity);
+                obj.name = prefab.name;
+                createdObjects.Add(obj);
             }
+
+            return createdObjects.ToArray();
         }
     }
 }

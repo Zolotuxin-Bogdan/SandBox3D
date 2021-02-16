@@ -12,6 +12,9 @@ namespace Assets.Console
         [SerializeField] TMP_InputField input;
         [SerializeField] GameObject uGUI;
         [SerializeField] ScrollRect output;
+        [SerializeField] GameObject MenuCanvas;
+        [SerializeField] GameObject SettingsCanvas;
+        [SerializeField] GameObject InventoryCanvas;
 
         public float ChatWidth { get; private set; } 
         public float ChatHeight { get; private set; }

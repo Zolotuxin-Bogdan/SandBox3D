@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
-  JumpHeight: 5
+  JumpHeight: 8
   Gravity: -9.8
   PlayerHead: {fileID: 6358995908736523034}
   FirstPersonCamPosition: {fileID: 6367145652394019031}
