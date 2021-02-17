@@ -24,7 +24,8 @@ namespace Assets.StorageSystem.StorageProviders
                 Instance = this;
             }
 
-            ResourcePackPath = Directory.GetCurrentDirectory() + "\\ResourcePacks" + "\\DefaultResourcePack.rpk";
+            ResourcePackPath = "C:\\Users\\m_eremeev\\Desktop\\SandBox\\ResourcePacks\\DefaultResourcePack.rpk";
+            //ResourcePackPath = Directory.GetCurrentDirectory() + "\\ResourcePacks" + "\\DefaultResourcePack.rpk";
         }
 
         public void CreateResourcePack()

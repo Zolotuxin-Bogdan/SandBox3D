@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.DTO;
@@ -68,7 +69,6 @@ namespace Assets.WorldGeneration
         private void CreateBlockIfPossible(BlockDto blockDto)
         {
             var neighborsDict = GetBlockNeighbors(blockDto);
-
             foreach (var neighbor in neighborsDict)
             {
                 if (neighbor.Value == null)

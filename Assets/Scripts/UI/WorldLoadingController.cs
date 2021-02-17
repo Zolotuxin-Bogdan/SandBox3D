@@ -17,6 +17,7 @@ namespace Assets.Scripts.UI
         public TextMeshProUGUI LoadingProgressText;
         public GameObject Player;
         public GameObject PlayerCamera;
+        public GameObject SceneCamera;
 
         public void LoadWorld(WorldGenerationType generationType)
         {
@@ -36,6 +37,7 @@ namespace Assets.Scripts.UI
             var SpawnedObjects = PlayerSpawner.SpawnObject();
             SpawnedObjects[0].GetComponent<PlayerController>().FirstPersonCam = SpawnedObjects[1].GetComponent<Camera>();
             SpawnedObjects[1].GetComponent<MouseLook>().settings = SettingsManager.Instance;
+            SceneCamera.SetActive(false);
         }
 
         private void OnLoadingProgress(int loadingProgress)

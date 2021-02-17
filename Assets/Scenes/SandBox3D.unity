@@ -36816,6 +36816,7 @@ MonoBehaviour:
   LoadingProgressText: {fileID: 377052556}
   Player: {fileID: 6097254791383629200, guid: 5ec555b5beee502438733b0c50d2f9f6, type: 3}
   PlayerCamera: {fileID: 236604883577396437, guid: 1876845cd9c8f554a8be045265b3d192, type: 3}
+  SceneCamera: {fileID: 63072985}
 --- !u!1 &2022850107
 GameObject:
   m_ObjectHideFlags: 0
