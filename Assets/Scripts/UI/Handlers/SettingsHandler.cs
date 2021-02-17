@@ -63,6 +63,8 @@ namespace Assets.Scripts.UI.Handlers
             if (inputSystem.IsOpenSettingsKeyPressed())
             {
                 Settings.SetActive(!Settings.activeSelf);
+                Background.SetActive(!Background.activeSelf);
+                Cursor.visible = true;
             }
         }
 
