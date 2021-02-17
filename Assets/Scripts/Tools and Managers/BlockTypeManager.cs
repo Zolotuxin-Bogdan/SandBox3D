@@ -2,7 +2,7 @@
 using Assets.Scripts.Enums;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Tools_and_Managers
 {
     public class BlockTypeManager : MonoBehaviour
     {

@@ -1,12 +1,11 @@
 ﻿using System.IO;
-using InventorySystem;
-using InventorySystem.Enums;
 using Assets.Scripts.Data_Models;
 using Assets.Scripts.Enums;
+using InventorySystem.Enums;
 using UnityEngine;
 using Block = Assets.Scripts.Data_Models.Block;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Tools_and_Managers
 {
     public class ResourcePackManager : MonoBehaviour
     {

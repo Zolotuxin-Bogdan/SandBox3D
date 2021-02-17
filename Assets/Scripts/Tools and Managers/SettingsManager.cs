@@ -2,7 +2,7 @@
 using Assets.StorageSystem;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Tools_and_Managers
 {
     public class SettingsManager: MonoBehaviour
     {

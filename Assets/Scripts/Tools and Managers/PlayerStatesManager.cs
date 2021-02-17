@@ -3,7 +3,7 @@ using Assets.Scripts.Enums;
 using Assets.Scripts.States;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Tools_and_Managers
 {
     public class PlayerStatesManager : MonoBehaviour {
 
