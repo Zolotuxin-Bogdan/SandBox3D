@@ -10,12 +10,13 @@ namespace Assets.Console
 {
     public class ConsoleGUI : MonoBehaviour
     {
-        [SerializeField] TMP_InputField input;
-        [SerializeField] GameObject uGUI;
-        [SerializeField] ScrollRect output;
-        [SerializeField] GameObject MenuCanvas;
-        [SerializeField] GameObject SettingsCanvas;
-        [SerializeField] GameObject InventoryCanvas;
+        public TMP_InputField input;
+        public GameObject uGUI;
+        public ScrollRect output;
+        public GameObject MenuCanvas;
+        public GameObject SettingsCanvas;
+        public GameObject InventoryCanvas;
+        public GameObject settings;
 
         public float ChatWidth { get; private set; } 
         public float ChatHeight { get; private set; }
@@ -51,10 +52,13 @@ namespace Assets.Console
 
         public void CloseConsole()
         {
-            Cursor.visible = false;
-            input.text = string.Empty;
-            input.enabled = false;
-            uGUI.SetActive(false);
+            if (!settings.activeSelf)
+            {
+                Cursor.visible = false;
+                input.text = string.Empty;
+                input.enabled = false;
+                uGUI.SetActive(false);
+            }
         }
 
 

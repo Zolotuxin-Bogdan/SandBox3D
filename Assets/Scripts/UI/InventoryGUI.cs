@@ -4,7 +4,8 @@ namespace Assets.Scripts.UI
 {
     public class InventoryGUI : MonoBehaviour
     {
-        [SerializeField] GameObject content;
+        public GameObject content;
+        public GameObject settings;
         protected InputSystem.InputSystem inputSystem = InputSystem.InputSystem.instance;
 
         void Start()
@@ -24,8 +25,11 @@ namespace Assets.Scripts.UI
             if (inputSystem.IsOpenSettingsKeyPressed()
                 || inputSystem.IsInventoryKeyPressed())
             {
-                content.SetActive(false);
-                Cursor.visible = false;
+                if (!settings.activeSelf)
+                {
+                    content.SetActive(false);
+                    Cursor.visible = false;
+                }
             }
         }
     }

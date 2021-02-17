@@ -8,6 +8,7 @@
         MultiplayerSettingsClicked,
         VideoSettingsClicked,
         ControlsClicked,
-        DoneClicked
+        DoneClicked,
+        MenuClicked
     }
 }

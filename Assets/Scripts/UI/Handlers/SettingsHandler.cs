@@ -28,6 +28,7 @@ namespace Assets.Scripts.UI.Handlers
         TexturePackController texturePackController;
         LanguageController languageController;
         VideoSettingsController videoSettingsController;
+        MenuHandler menuHandler;
         //Unity Start Message
         void Start()
         {
@@ -39,6 +40,7 @@ namespace Assets.Scripts.UI.Handlers
             texturePackController = TexturePack.GetComponent<TexturePackController>();//
             languageController = Language.GetComponent<LanguageController>();//
             videoSettingsController = VideoSettings.GetComponent<VideoSettingsController>();//
+            menuHandler = MenuCanvas.GetComponent<MenuHandler>();
 
             settingsController.AddListener(SettingsControllerHandler);
             controlsController.AddListener(ControlsControllerHandler);
@@ -62,8 +64,8 @@ namespace Assets.Scripts.UI.Handlers
         {
             if (inputSystem.IsOpenSettingsKeyPressed())
             {
-                Settings.SetActive(!Settings.activeSelf);
-                Background.SetActive(!Background.activeSelf);
+                Settings.SetActive(true);
+                Background.SetActive(true);
                 Cursor.visible = true;
             }
         }
@@ -100,6 +102,12 @@ namespace Assets.Scripts.UI.Handlers
                     Settings.SetActive(false);
                     SettingsManager.SaveSettings();
                     Background.SetActive(false);
+                    break;
+                case SettingsEvent.MenuClicked:
+                    Settings.SetActive(false);
+                    Background.SetActive(false);
+                    menuHandler.MenuGUI.SetActive(true);
+                    menuHandler.Background.SetActive(true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event), @event, null);

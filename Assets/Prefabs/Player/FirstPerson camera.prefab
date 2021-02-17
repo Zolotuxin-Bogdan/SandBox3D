@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Axes: 0
-  SensitivityHor: 9
-  SensitivityVert: 9
+  SensitivityHor: 4
+  SensitivityVert: 5
   MinimumVert: -90
   MaximumVert: 90
   isCursorVisible: 0

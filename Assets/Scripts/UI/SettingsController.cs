@@ -22,6 +22,7 @@ namespace Assets.Scripts.UI
         public Button MultiplayerSettingsButton;
         public Button VideoSettingsButton;
         public Button ControlsButton;
+        public Button MenuButton;
 
         //////////////////////////////////////////////
         ///////////////Switch buttons////////////////
@@ -39,6 +40,7 @@ namespace Assets.Scripts.UI
         ////////////////Unity Messages///////////////
         void Start() {
             DoneButton.onClick.AddListener(Submit);
+            MenuButton.onClick.AddListener(MenuButtonClickHandler);
             TexturePackButton.onClick.AddListener(ShowTexturePackWin);
             SnooperSettingsButton.onClick.AddListener(ShowSnooperSettingsWin);
             LanguageButton.onClick.AddListener(ShowLanguageWin);
@@ -55,8 +57,14 @@ namespace Assets.Scripts.UI
             SensitivityValueSlider.onValueChanged.AddListener(UpdateSensitivityValue);
             FovValueSlider.onValueChanged.AddListener(UpdateFovValue);
         }
+
         //////////////////////////////////////////////
         ////////////////////Events///////////////////
+        private void MenuButtonClickHandler()
+        {
+            _action.Invoke(SettingsEvent.MenuClicked);
+        }
+
         void Submit()
         {
             _action.Invoke(SettingsEvent.DoneClicked);
