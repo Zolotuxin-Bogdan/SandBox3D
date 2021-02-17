@@ -1,6 +1,6 @@
 <XML>
 	<Bundle>
-		<Textures>/Assets/AssetBundles/texturepacks</Textures>
+		<Textures>/Resources/AssetBundles/texturepacks</Textures>
 	</Bundle>
 	<Configuration>
 		<Path>
