@@ -19,8 +19,12 @@ namespace Assets.Shaders.ObjectOutline
         private int _downSample;
         private Material _blurMaterial;
 
-        public BlurRenderPass(Material blurMaterial, int downSample, int passesCount)
+
+        public BlurRenderPass(RenderTargetIdentifier source, RenderTargetHandle destination, Material blurMaterial, int downSample, int passesCount)
         {
+            _source = source;
+            _destination = destination;
+
             _blurMaterial = blurMaterial;
             _downSample = downSample;
             _passesCount = passesCount;
@@ -37,14 +41,14 @@ namespace Assets.Shaders.ObjectOutline
 
             cmd.GetTemporaryRT(_tmpBlurRTId1, blurTextureDesc, FilterMode.Bilinear);
             cmd.GetTemporaryRT(_tmpBlurRTId2, blurTextureDesc, FilterMode.Bilinear);
-
             cmd.GetTemporaryRT(_destination.id, blurTextureDesc, FilterMode.Bilinear);
+
             ConfigureTarget(_destination.Identifier());
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            var cmd = CommandBufferPool.Get("BlurRenderPass");
+            var cmd = CommandBufferPool.Get("BlurPass");
 
             if (_passesCount > 0)
             {
@@ -60,6 +64,7 @@ namespace Assets.Shaders.ObjectOutline
             }
             else
                 cmd.Blit(_source, _destination.Identifier());
+
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }

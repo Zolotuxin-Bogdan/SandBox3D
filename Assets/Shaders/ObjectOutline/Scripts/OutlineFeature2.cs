@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Assets.Shaders.ObjectOutline
 {
-    public class OutlineFeature : ScriptableRendererFeature
+    /*public class OutlineFeature : ScriptableRendererFeature
     {
         [SerializeField] private string _renderTextureName;
         [SerializeField] private RenderSettings _renderSettings;
@@ -61,5 +61,5 @@ namespace Assets.Shaders.ObjectOutline
             renderer.EnqueuePass(_blurPass);
             renderer.EnqueuePass(_outlinePass);
         }
-    }
+    }*/
 }
