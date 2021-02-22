@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
-using Assets.FSM;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts
 {
     public class PlayerController : MonoBehaviour
     {
         private const double FIFTY_DEGREE = 50.001;
+
+        private const int DEFAULT_LAYER = 0;
+        private const int OUTLINE_LAYER = 11;
 
         public float Speed = 6.0f;
         public float JumpHeight = 20.0f;
@@ -48,19 +49,36 @@ namespace Assets.Scripts
         void Update()
         {
             Move();
-            if (_inputSystem.IsAttackKeyPressed())
+            if (Physics.Raycast(FirstPersonCam.transform.position, FirstPersonCam.transform.forward, out var hit, 3))
             {
-                Dig();
-            }
-            else if (_inputSystem.IsAttackKeyReleased())
-            {
-                if (_lastGameObject != null)
+                if (_lastGameObject != hit.collider.gameObject && _lastGameObject)
                 {
-                    _lastGameObject.GetComponent<BlockInstance>().RestoreMaxDurability();
+                    if (_lastGameObject.layer != DEFAULT_LAYER)
+                    {
+                        _lastGameObject.layer = DEFAULT_LAYER;
+                    }
                 }
-                //isDigReady = true;
-            }
+                hit.collider.gameObject.layer = OUTLINE_LAYER;
 
+                if (_inputSystem.IsAttackKeyPressed())
+                {
+                    Dig(hit);
+                }
+                else if (_inputSystem.IsAttackKeyReleased())
+                {
+                    if (_lastGameObject != null)
+                    {
+                        _lastGameObject.GetComponent<BlockInstance>().RestoreMaxDurability();
+                    }
+                    //isDigReady = true;
+                }
+
+                _lastGameObject = hit.collider.gameObject;
+            }
+            else if (_lastGameObject != null)
+            {
+                _lastGameObject.layer = DEFAULT_LAYER;
+            }
         }
 
         void Move()
@@ -104,7 +122,7 @@ namespace Assets.Scripts
 
                 }
             }
-            
+
             //
             // When Left rotation
             //
@@ -134,18 +152,18 @@ namespace Assets.Scripts
 
                 }
             }
-            
+
             //
             // Follow player model head by camera direction
             //
             PlayerHead.transform.rotation = Quaternion.Euler(new Vector3(_firstPersonCamera.transform.rotation.eulerAngles.x * -1, _firstPersonCamera.transform.rotation.eulerAngles.y + 180f, transform.rotation.z));
-            
+
             //
             // User move input
             //
             var deltaX = _inputSystem.GetHorizontalMovementValue() * Speed;
             var deltaZ = _inputSystem.GetVerticalMovementValue() * Speed;
-            
+
             //
             // Follow player model by camera direction
             //
@@ -153,15 +171,15 @@ namespace Assets.Scripts
             {
                 PlayerStatesManager.instance.SwitchState(CharacterStates.Walk);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                    Quaternion.Euler(transform.rotation.eulerAngles.x, camRotationY, transform.rotation.eulerAngles.z), 
+                    Quaternion.Euler(transform.rotation.eulerAngles.x, camRotationY, transform.rotation.eulerAngles.z),
                     200 * Time.deltaTime);
-                
+
             }
             else
             {
                 PlayerStatesManager.instance.SwitchState(CharacterStates.Idle);
             }
-            
+
             //
             // Player movement
             //
@@ -183,27 +201,16 @@ namespace Assets.Scripts
 
 
 
-        void Dig()
+        void Dig(RaycastHit hit)
         {
             if (!isDigReady) return;
             StartCoroutine(DigCoolDown(1));
-            if (Physics.Raycast(FirstPersonCam.transform.position, FirstPersonCam.transform.forward, out var hit, 3))
+            if (_lastGameObject != hit.collider.gameObject && _lastGameObject)
             {
-
-                //Debug.DrawLine(FirstPersonCam.transform.position, hit.point, Color.red);
-                if (_lastGameObject != hit.collider.gameObject && _lastGameObject)
-                {
-                    _lastGameObject.GetComponent<BlockInstance>().RestoreMaxDurability();
-                }
-
-                hit.collider.gameObject.GetComponent<BlockInstance>().RemoveDurability(1);
-                Debug.Log(hit.collider.gameObject.GetComponent<BlockInstance>().BlockDurability);
-
-
-                _lastGameObject = hit.collider.gameObject;
-
+                _lastGameObject.GetComponent<BlockInstance>().RestoreMaxDurability();
             }
 
+            hit.collider.gameObject.GetComponent<BlockInstance>().RemoveDurability(1);
         }
 
         IEnumerator DigCoolDown(float waitTime)
