@@ -28,4 +28,9 @@ public class DebugHelper : MonoBehaviour
     {
         inst.Combine();
     }
+
+    public void GenerateTree()
+    {
+        inst.GenerateTree(new StaticTree(), new Vector3(1, 1, 1));
+    }
 }

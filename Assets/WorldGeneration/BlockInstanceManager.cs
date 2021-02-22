@@ -8,6 +8,7 @@ using Assets.Scripts.Enums;
 using Assets.StorageSystem.StorageProviders;
 using Assets.WorldGeneration.Interfaces;
 using UnityEngine;
+using Tree = Assets.WorldGeneration.Implementations.Tree;
 
 namespace Assets.WorldGeneration
 {
@@ -80,6 +81,14 @@ namespace Assets.WorldGeneration
             }
         }
 
+        private void CreateBlock(BlockDto blockDto)
+        {
+            _blockInstanceGenerator.CreateBlockInstance(blockDto);
+            _activeBlocks.Add(blockDto);
+            _allBlocks.Add(blockDto);
+        }
+
+
         private Dictionary<BlockNeighbor, BlockDto> GetBlockNeighbors(BlockDto blockDto)
         {
             return new Dictionary<BlockNeighbor, BlockDto>
@@ -138,6 +147,17 @@ namespace Assets.WorldGeneration
         public void Combine()
         {
             _blockInstanceGenerator.Combine();
+        }
+
+
+
+        public void GenerateTree(Tree tree, Vector3 position)
+        {
+           var treeMap = tree.GenerateDtoList(position);
+           foreach (var blockDto in treeMap)
+           {
+               CreateBlock(blockDto);
+           }
         }
     }
 }
