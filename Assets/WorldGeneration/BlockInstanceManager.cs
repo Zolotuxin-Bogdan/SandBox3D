@@ -80,7 +80,7 @@ namespace Assets.WorldGeneration
                 }
             }
         }
-
+        
         private void CreateBlock(BlockDto blockDto)
         {
             _blockInstanceGenerator.CreateBlockInstance(blockDto);
@@ -148,8 +148,6 @@ namespace Assets.WorldGeneration
         {
             _blockInstanceGenerator.Combine();
         }
-
-
 
         public void GenerateTree(Tree tree, Vector3 position)
         {
