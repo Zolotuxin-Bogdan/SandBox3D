@@ -38,7 +38,7 @@ public class DebugHelper : MonoBehaviour
         treesMap.transform.position = new Vector3(perlinPanel.transform.position.x * 1.5f,
             perlinPanel.transform.position.y, perlinPanel.transform.position.z);
         var generator = new BlueNoiseGeneration(width, height);
-        var texture = generator.NoiseGen();
+        var texture = generator.GenerateBlueNoise();
         var renderer = treesMap.GetComponent<Renderer>();
         renderer.material.SetTexture("_BaseMap", texture);
     }

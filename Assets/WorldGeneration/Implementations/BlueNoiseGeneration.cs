@@ -10,7 +10,7 @@ namespace Assets.WorldGeneration.Implementations
         private readonly int _mapWidth;
         private readonly int _mapHeight;
 
-        private const int DENSITY = 4;
+        private const int DENSITY = 10;
 
         public BlueNoiseGeneration(int mapWidth, int mapHeight)
         {
@@ -18,12 +18,13 @@ namespace Assets.WorldGeneration.Implementations
             _mapHeight = mapHeight;
         }
 
-        public Texture2D NoiseGen()
+        public Texture2D GenerateBlueNoise()
         {
             // Generate base noise for extracting blue noise
-            var sample = GenerateBlueNoise();
+            var sample = GenerateNoise();
             // Create blue noise texture
             Texture2D texture = new Texture2D(_mapWidth, _mapHeight);
+            Debug.Log(texture.GetPixel(0, 0).grayscale);
             List<Vector2> pixels = new List<Vector2>();
             // Set texture default frequency to minimal
             /*
@@ -70,7 +71,7 @@ namespace Assets.WorldGeneration.Implementations
             return texture;
         }
 
-        public Texture2D GenerateBlueNoise()
+        private Texture2D GenerateNoise()
         {
             Texture2D texture = new Texture2D(_mapWidth, _mapHeight);
 
@@ -95,6 +96,31 @@ namespace Assets.WorldGeneration.Implementations
 
             texture.Apply();
             return texture;
+        }
+
+        private float GetGrayScale(Texture2D texture, int x, int y)
+        {
+            return texture.GetPixel(x, y).grayscale;
+        }
+
+        public List<BlockDto[]> GetBlocksDto()
+        {
+            List<BlockDto[]> blockDtoList = new List<BlockDto[]>();
+            var texture = GenerateBlueNoise();
+            for (var x = 0; x < 100; x++)
+            {
+                for (var y = 0; y < 100; y++)
+                {
+                    var greyScale = GetGrayScale(texture, x, y);
+                    if (greyScale < 0.5f)
+                    {
+                        var blockHeight = Mathf.FloorToInt(greyScale * 48);
+                        blockDtoList.Add(new StaticTree().GenerateDtoList(new Vector3(x, blockHeight, y)).ToArray());
+                    }
+                }
+            }
+
+            return blockDtoList;
         }
     }
 }
