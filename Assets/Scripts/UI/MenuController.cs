@@ -1,15 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Text;
 using Assets.Scripts.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.UI
 {
     public class MenuController : MonoBehaviour
     {
-        public TextMeshProUGUI randomText;    
+        public TextMeshProUGUI randomText;
+        public TextMeshProUGUI single;
         public Image logo;
         public Button singleplayer;
         public Button multiplayer;
@@ -21,6 +25,9 @@ namespace Assets.Scripts.UI
         private void Start()
         {
             singleplayer.onClick.AddListener(SingleplayerCallback);
+            single.text = LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.single_player.ToString());
+            //singleplayer.GetComponentInChildren<TextMeshProUGUI>().text = single.text;
+
             multiplayer.onClick.AddListener(MultiplayerCallback);
             settings.onClick.AddListener(SettingsCallback);
             quit.onClick.AddListener(CloseGame);

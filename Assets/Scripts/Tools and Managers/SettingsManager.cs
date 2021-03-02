@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UserSettings;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.UserSettings;
 using Assets.StorageSystem;
 using UnityEngine;
 
