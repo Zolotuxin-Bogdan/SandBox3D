@@ -14,6 +14,8 @@ namespace Assets.Scripts.UI
         public GameObject Item;
         public ScrollRect LanguageList;
         public Button Done;
+        public Button ForceUnicodeFont;
+        public TextMeshProUGUI Label;
 
         private void Start() {
             Done.onClick.AddListener(Submit);
