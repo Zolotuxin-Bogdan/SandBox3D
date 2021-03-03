@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Assets.Serializer;
+using Newtonsoft.Json;
 
 namespace Assets.StorageSystem
 {
@@ -30,10 +31,9 @@ namespace Assets.StorageSystem
             {
                 throw new FileNotFoundException();
             }
-            using (var sr = new StreamReader(path))
+            using (var sr = File.OpenText(path))
             {
-                var dataFromFile = sr.ReadLine();
-                return Deserializer.DeserializeJson<T>(dataFromFile);
+                return Deserializer.DeserializeJson<T>(sr);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Assets.LocalizationSystem;
 using Assets.Scripts.Enums;
 using TMPro;
