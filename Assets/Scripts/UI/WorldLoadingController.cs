@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Enums;
+﻿using Assets.LocalizationSystem;
+using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using Assets.SpawnSystem;
 using Assets.WorldGeneration;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class WorldLoadingController : MonoBehaviour
+    public class WorldLoadingController : MonoBehaviour, ILocalization
     {
 
         public Slider LoadingProgress;
@@ -17,6 +18,15 @@ namespace Assets.Scripts.UI
         public GameObject Player;
         public GameObject PlayerCamera;
         public GameObject SceneCamera;
+
+
+        public static WorldLoadingController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
 
         public void LoadWorld(WorldGenerationType generationType)
         {
@@ -49,6 +59,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

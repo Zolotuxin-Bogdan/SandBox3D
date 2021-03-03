@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Enums;
+﻿using Assets.LocalizationSystem;
+using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class SettingsController: MonoBehaviour
+    public class SettingsController: MonoBehaviour, ILocalization
     {
         Difficulty gameDifficulty;
         
@@ -189,6 +190,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction<SettingsEvent> action)
         {
             _action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

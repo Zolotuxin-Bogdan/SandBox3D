@@ -1,4 +1,5 @@
 using System;
+using Assets.LocalizationSystem;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using TMPro;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class LanguageController: MonoBehaviour
+    public class LanguageController: MonoBehaviour, ILocalization
     {
         public SettingsManager settings;
         public GameObject Item;
@@ -16,6 +17,15 @@ namespace Assets.Scripts.UI
         public Button Done;
         public Button ForceUnicodeFont;
         public TextMeshProUGUI LanguageLabel;
+
+
+        public static LanguageController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
 
         private void Start() {
             Done.onClick.AddListener(Submit);
@@ -51,6 +61,11 @@ namespace Assets.Scripts.UI
                 currentLanguageListItem.SetActive(true);
                 currentLanguageListItem.transform.parent = LanguageList.content.transform;
             }
+        }
+
+        public void SetLocalization()
+        {
+            throw new NotImplementedException();
         }
     }
 }

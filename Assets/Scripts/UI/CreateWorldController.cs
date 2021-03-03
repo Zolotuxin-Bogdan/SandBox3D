@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Enums;
+﻿using Assets.LocalizationSystem;
+using Assets.Scripts.Enums;
 using Assets.WorldGeneration;
 using TMPro;
 using UnityEngine;
@@ -8,45 +9,53 @@ using WorldGenerationType = Assets.Scripts.Enums.WorldGenerationType;
 
 namespace Assets.Scripts.UI
 {
-    public class CreateWorldController : MonoBehaviour
+    public class CreateWorldController : MonoBehaviour, ILocalization
     {
-        public Button cancel;
-        public Button create;
-        public Button worldType;
-        public TextMeshProUGUI worldName;
-        public TMP_InputField inputField;
-        public bool isRecreate = false;
-        public string parentWorldName;
-        public WorldGenerationType generationType;
+        public Button Cancel;
+        public Button Create;
+        public Button WorldType;
+        public Button CreateWorldLabel;
+        public TextMeshProUGUI WorldName;
+        public TMP_InputField InputField;
+        public bool Recreate = false;
+        public string ParentWorldName;
+        public WorldGenerationType GenerationType;
+
+        public static CreateWorldController Instance;
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         void Start()
         {
-            generationType = WorldGenerationType.Perlin;
+            GenerationType = WorldGenerationType.Perlin;
 
-            cancel.onClick.AddListener(CancelCallback);
-            create.onClick.AddListener(CreateCallback);
-            worldType.onClick.AddListener(WorldTypeCallback);
-            inputField.onValueChanged.AddListener(InputFieldCallback);
-            worldType.GetComponentInChildren<TextMeshProUGUI>().text = "World Type: Primitive Realistic";
-            if (isRecreate)
+            Cancel.onClick.AddListener(CancelCallback);
+            Create.onClick.AddListener(CreateCallback);
+            WorldType.onClick.AddListener(WorldTypeCallback);
+            InputField.onValueChanged.AddListener(InputFieldCallback);
+            WorldType.GetComponentInChildren<TextMeshProUGUI>().text = "World Type: Primitive Realistic";
+            if (Recreate)
             {
-                inputField.text = $"Copy of {parentWorldName}";    
+                InputField.text = $"Copy of {ParentWorldName}";    
             }
         }
 
         private void WorldTypeCallback()
         {
-            var wType = worldType.GetComponentInChildren<TextMeshProUGUI>().text;
+            var wType = WorldType.GetComponentInChildren<TextMeshProUGUI>().text;
             if (wType.Contains("Primitive Realistic"))
             {
                 wType = "World Type: Flat";
-                generationType = WorldGenerationType.Flat;
+                GenerationType = WorldGenerationType.Flat;
             }
             else if (wType.Contains("Flat"))
             {
                 wType = "World Type: Primitive Realistic";
-                generationType = WorldGenerationType.Perlin;
+                GenerationType = WorldGenerationType.Perlin;
             }
-            worldType.GetComponentInChildren<TextMeshProUGUI>().text = wType;
+            WorldType.GetComponentInChildren<TextMeshProUGUI>().text = wType;
         }
 
         private void CancelCallback()
@@ -62,15 +71,26 @@ namespace Assets.Scripts.UI
         private void InputFieldCallback(string arg0)
         {
             if (arg0 == "")
-                worldName.text = "Will be saved in: World";
+                WorldName.text = "Will be saved in: World";
             else
-                worldName.text = "Will be saved in: " + arg0;
+                WorldName.text = "Will be saved in: " + arg0;
         }
 
         protected UnityAction<CreateWorldEvents> action;
+
+        public CreateWorldController(Button create)
+        {
+            Create = create;
+        }
+
         public void AddListener(UnityAction<CreateWorldEvents> action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

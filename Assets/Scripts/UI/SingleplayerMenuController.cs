@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Assets.LocalizationSystem;
 using Assets.Scripts.Enums;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class SingleplayerMenuController : MonoBehaviour
+    public class SingleplayerMenuController : MonoBehaviour, ILocalization
     {
         public Button createNewWorld;
         public Button playSelectedWorld;
@@ -100,6 +101,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction<SingleplayerMenuEvents> action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new NotImplementedException();
         }
     }
 }

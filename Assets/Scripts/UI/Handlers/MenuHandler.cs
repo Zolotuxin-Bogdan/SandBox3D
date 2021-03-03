@@ -73,7 +73,7 @@ namespace Assets.Scripts.UI.Handlers
                 case CreateWorldEvents.OnCreateClicked:
                     CreateWorldGUI.SetActive(false);
                     LoadWorldGUI.SetActive(true);
-                    loadWorldController.LoadWorld(createWorldController.generationType);
+                    loadWorldController.LoadWorld(createWorldController.GenerationType);
                     Background.SetActive(false);
                     break;
                 default:

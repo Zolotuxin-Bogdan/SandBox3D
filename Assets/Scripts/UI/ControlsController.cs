@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.InputSystem;
+using Assets.LocalizationSystem;
 using Assets.Scripts.UserSettings;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class ControlsController: MonoBehaviour
+    public class ControlsController: MonoBehaviour, ILocalization
     {
         public GameObject Item;
         public ScrollRect ControlsList;
@@ -21,6 +22,13 @@ namespace Assets.Scripts.UI
         bool waitingKey;
         KeyBind selectedKey;
         TextMeshProUGUI labelOfSelectedKey;
+
+        public static ControlsController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start() {
             keysCollection = new List<KeyboardBindings>();
@@ -102,6 +110,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new NotImplementedException();
         }
     }
 }

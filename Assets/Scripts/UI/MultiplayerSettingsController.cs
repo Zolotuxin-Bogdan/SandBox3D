@@ -1,4 +1,5 @@
 using System;
+using Assets.LocalizationSystem;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using TMPro;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class MultiplayerSettingsController: MonoBehaviour
+    public class MultiplayerSettingsController: MonoBehaviour, ILocalization
     {
         public SettingsManager settings;
         [Header("Buttons")]
@@ -168,6 +169,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new NotImplementedException();
         }
     }
 }

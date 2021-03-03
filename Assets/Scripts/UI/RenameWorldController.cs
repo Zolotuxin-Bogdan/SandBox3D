@@ -1,11 +1,12 @@
-﻿using TMPro;
+﻿using Assets.LocalizationSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class RenameWorldController : MonoBehaviour
+    public class RenameWorldController : MonoBehaviour, ILocalization
     {
         public Button renameWorld;
         public Button cancel;
@@ -36,6 +37,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

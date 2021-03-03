@@ -15893,14 +15893,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa4fcd8fb62ae5418cc39b4f6e3066e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cancel: {fileID: 1712923507}
-  create: {fileID: 619028937}
-  worldType: {fileID: 1885680957}
-  worldName: {fileID: 208807057}
-  inputField: {fileID: 1619120346}
-  isRecreate: 0
-  parentWorldName: 
-  generationType: 0
+  Cancel: {fileID: 0}
+  Create: {fileID: 0}
+  WorldType: {fileID: 0}
+  CreateWorldLabel: {fileID: 0}
+  WorldName: {fileID: 0}
+  InputField: {fileID: 0}
+  Recreate: 0
+  ParentWorldName: 
+  GenerationType: 0
 --- !u!1 &930150827
 GameObject:
   m_ObjectHideFlags: 0
@@ -29214,6 +29215,8 @@ MonoBehaviour:
   Item: {fileID: 495759680}
   LanguageList: {fileID: 67335086}
   Done: {fileID: 229019467}
+  ForceUnicodeFont: {fileID: 0}
+  LanguageLabel: {fileID: 0}
 --- !u!1 &1654453429
 GameObject:
   m_ObjectHideFlags: 0

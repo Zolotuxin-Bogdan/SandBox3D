@@ -1,4 +1,5 @@
-﻿using Assets.Network;
+﻿using Assets.LocalizationSystem;
+using Assets.Network;
 using Assets.Scripts.Enums;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class MultiplayerMenuController : MonoBehaviour
+    public class MultiplayerMenuController : MonoBehaviour, ILocalization
     {
         public Button addServer;
         public Button directConnect;
@@ -102,5 +103,9 @@ namespace Assets.Scripts.UI
             this.action = action;
         }
 
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

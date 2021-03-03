@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Assets.LocalizationSystem;
 using Assets.Scripts.Tools_and_Managers;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,7 @@ using Button = UnityEngine.UI.Button;
 
 namespace Assets.Scripts.UI
 {
-    public class TexturePackController: MonoBehaviour
+    public class TexturePackController: MonoBehaviour, ILocalization
     {
         public SettingsManager settings;
         
@@ -83,6 +84,11 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
