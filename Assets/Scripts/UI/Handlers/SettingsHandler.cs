@@ -99,9 +99,9 @@ namespace Assets.Scripts.UI.Handlers
                     Controls.SetActive(true);
                     break;
                 case SettingsEvent.DoneClicked:
+                    Background.SetActive(false);
                     Settings.SetActive(false);
                     SettingsManager.SaveSettings();
-                    Background.SetActive(false);
                     break;
                 case SettingsEvent.MenuClicked:
                     Settings.SetActive(false);
