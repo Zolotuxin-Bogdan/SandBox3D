@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI
         public ScrollRect LanguageList;
         public Button Done;
         public Button ForceUnicodeFont;
-        public TextMeshProUGUI Label;
+        public TextMeshProUGUI LanguageLabel;
 
         private void Start() {
             Done.onClick.AddListener(Submit);
