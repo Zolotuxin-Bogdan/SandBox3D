@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
+using Assets.LocalizationSystem;
 using Assets.Scripts.Enums;
 using TMPro;
 using UnityEngine;
@@ -10,10 +10,10 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.UI
 {
-    public class MenuController : MonoBehaviour
+    public class MenuController : MonoBehaviour, ILocalization
     {
         public TextMeshProUGUI randomText;
-        public TextMeshProUGUI single;
+        //public TextMeshProUGUI single;
         public Image logo;
         public Button singleplayer;
         public Button multiplayer;
@@ -21,13 +21,17 @@ namespace Assets.Scripts.UI
         public Button quit;
 
         string[] phrases = new string[] {"Hotter then the sun!", "Minecraft in 3D?", "You reading this text!", "To be ill is not cool", "I will definitely survive!"};
-    
+
+        public static MenuController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             singleplayer.onClick.AddListener(SingleplayerCallback);
-            single.text = LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.single_player.ToString());
-            //singleplayer.GetComponentInChildren<TextMeshProUGUI>().text = single.text;
-
             multiplayer.onClick.AddListener(MultiplayerCallback);
             settings.onClick.AddListener(SettingsCallback);
             quit.onClick.AddListener(CloseGame);
@@ -93,6 +97,18 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction<MenuEvents> action)
         {
             this.action = action;
+        }
+
+        public void SetLocalization()
+        {
+            singleplayer.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.single_player.ToString());
+            multiplayer.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.multi_player.ToString());
+            settings.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.options.ToString());
+            quit.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.quit_game.ToString());
         }
     }
 }
