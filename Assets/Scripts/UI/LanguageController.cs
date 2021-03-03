@@ -14,44 +14,12 @@ namespace Assets.Scripts.UI
         public GameObject Item;
         public ScrollRect LanguageList;
         public Button Done;
-        
-        string[] languages;
-        int selectedLanguage = -1;
+
         private void Start() {
             Done.onClick.AddListener(Submit);
-            GenerateLanguageList();
+            InitLanguageList();
         }
-
-        private void GenerateLanguageList()
-        {
-            languages = System.Enum.GetNames(typeof(Languages));
-            ShowLanguages();
-        }
-
-        private void ShowLanguages()
-        {
-            for (int i = 0; i < languages.Length; i++)
-            {
-                if (i == selectedLanguage)
-                    continue;
-                CreateLanguageItem(i, languages[i], LanguageList.content.transform);
-            }
-        }
-
-        private void CreateLanguageItem(int index, string text, Transform parent)
-        {
-            var newitem = Instantiate(Item);
-            newitem.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            newitem.GetComponent<Button>().onClick.AddListener(
-                () => {
-                    selectedLanguage = index;
-                    settings.GetSettings().language = (Languages)System.Enum.GetValues(typeof(Languages)).GetValue(index);
-                }
-            );
-            newitem.SetActive(true);
-            newitem.transform.SetParent(parent);
-        }
-
+        
         private void Submit()
         {
             action.Invoke();
@@ -61,6 +29,26 @@ namespace Assets.Scripts.UI
         public void AddListener(UnityAction action)
         {
             this.action = action;
+        }
+
+        private void InitLanguageList()
+        {
+            foreach (Languages language in Enum.GetValues(typeof(Languages)))
+            {
+                var currentLanguageListItem = Instantiate(Item);
+                currentLanguageListItem.GetComponentInChildren<TextMeshProUGUI>().text = language.ToString();
+                currentLanguageListItem.GetComponent<Button>().onClick.AddListener(
+                    () =>
+                    {
+                        SettingsManager.Instance.GetSettings().language = language;
+                        SettingsManager.Instance.SaveSettings();
+                        LocalizationManager.UpdateLocalization();
+                        LocalizationSystem.LocalizationSystem.ChangeCurrentLanguage(language);
+                    }
+                );
+                currentLanguageListItem.SetActive(true);
+                currentLanguageListItem.transform.parent = LanguageList.content.transform;
+            }
         }
     }
 }
