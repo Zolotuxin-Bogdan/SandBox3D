@@ -37,7 +37,7 @@ namespace Assets.WorldGeneration.Implementations
                     texture.SetPixel(x, y, Color.black);
                 }
             }*/
-            // Write higher frequency to texture
+            // Write higher frequency to texture 
             for (var yCoord = 0; yCoord < _mapHeight; yCoord++)
             {
                 for (var xCoord = 0; xCoord < _mapWidth; xCoord++)
