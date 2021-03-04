@@ -15,6 +15,7 @@ namespace Assets.Scripts.UI
 
         public Slider LoadingProgress;
         public TextMeshProUGUI LoadingProgressText;
+        public TextMeshProUGUI LoadingLabel;
         public GameObject Player;
         public GameObject PlayerCamera;
         public GameObject SceneCamera;
@@ -63,7 +64,8 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new System.NotImplementedException();
+            LoadingLabel.text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.loading.ToString());
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Assets.LocalizationSystem;
+using Assets.Scripts.Enums;
 using Assets.Scripts.Tools_and_Managers;
 using TMPro;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.UI
         
         public Button Done;
         public Button RefreshList;
+        public TextMeshProUGUI TexturePackLabel;
         
         public ScrollRect AvailableTexturePacks;
         public ScrollRect SelectedTexturePacks;
@@ -27,6 +29,14 @@ namespace Assets.Scripts.UI
         string[] directories; 
         List<string> loadedDirectories;
         string selectedDirectory = "";
+
+        public static TexturePackController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start() {
             Done.onClick.AddListener(Submit);
             RefreshList.onClick.AddListener(Refresh);
@@ -88,7 +98,11 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new System.NotImplementedException();
+            Done.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.done.ToString());
+            RefreshList.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.refresh_list.ToString());
+            TexturePackLabel.text = LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.texture_pack.ToString());
         }
     }
 }

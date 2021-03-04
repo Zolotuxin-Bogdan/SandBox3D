@@ -26,6 +26,21 @@ namespace Assets.Scripts.UI
         public Slider FocusedHeight;
         public Slider Width;
 
+
+        private string _chatState;
+        private string _webLinks;
+        private string _promptOnLinks;
+        private string _colors;
+        private string _showCape;
+        private string _on;
+        private string _off;
+        public static MultiplayerSettingsController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start() 
         {
             ChatState.onClick.AddListener(UpdateChatState);
@@ -41,7 +56,7 @@ namespace Assets.Scripts.UI
             FocusedHeight.onValueChanged.AddListener(UpdateFocusedHeight);
             Width.onValueChanged.AddListener(UpdateWidth);
         }
-
+        #region CALLBACKS
         private void Submit()
         {
             action.Invoke();
@@ -52,17 +67,17 @@ namespace Assets.Scripts.UI
             var text = ChatState.GetComponentInChildren<TextMeshProUGUI>().text;
             if (text.Contains("Shown"))
             {
-                text = "Chat: Commands Only";
+                text = $"{_chatState}: Commands Only";
                 settings.GetSettings().multiplayer.displayState = ChatDisplayStates.CommandsOnly;
             }
             else if (text.Contains("Commands Only"))
             {
-                text = "Chat: Hidden";
+                text = $"{_chatState}: Hidden";
                 settings.GetSettings().multiplayer.displayState = ChatDisplayStates.Hidden;
             }
             else if (text.Contains("Hidden"))
             {
-                text = "Chat: Shown";
+                text = $"{_chatState}: Shown";
                 settings.GetSettings().multiplayer.displayState = ChatDisplayStates.Shown;
             }
             ChatState.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -71,14 +86,14 @@ namespace Assets.Scripts.UI
         private void UpdateWebLinks()
         {
             var text = WebLinks.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains("ON"))
+            if (text.Contains(_on.ToUpper()))
             {
-                text = "Web Links: OFF";
+                text = $"{_webLinks}: {_off.ToUpper()}";
                 settings.GetSettings().multiplayer.allowWebLinks = false;
             }
-            else if (text.Contains("OFF"))
+            else if (text.Contains(_off.ToUpper()))
             {
-                text = "Web Links: ON";
+                text = $"{_webLinks}: {_on.ToUpper()}";
                 settings.GetSettings().multiplayer.allowWebLinks = true;
             }
             WebLinks.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -87,14 +102,14 @@ namespace Assets.Scripts.UI
         private void UpdatePromptOnLinks()
         {
             var text = PromptOnLinks.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains("ON"))
+            if (text.Contains(_on.ToUpper()))
             {
-                text = "Prompt on Links: OFF";
+                text = $"{_promptOnLinks}: {_off.ToUpper()}";
                 settings.GetSettings().multiplayer.allowPromptOnLinks = false;
             }
-            else if (text.Contains("OFF"))
+            else if (text.Contains(_off.ToUpper()))
             {
-                text = "Prompt on Links: ON";
+                text = $"{_promptOnLinks}: {_on.ToUpper()}";
                 settings.GetSettings().multiplayer.allowPromptOnLinks = true;
             }
             PromptOnLinks.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -103,14 +118,14 @@ namespace Assets.Scripts.UI
         private void UpdateColors()
         {
             var text = Colors.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains("ON"))
+            if (text.Contains(_on.ToUpper()))
             {
-                text = "Colors: OFF";
+                text = $"{_colors}: {_off.ToUpper()}";
                 settings.GetSettings().multiplayer.allowColorsInChat = false;
             }
-            else if (text.Contains("OFF"))
+            else if (text.Contains(_off.ToUpper()))
             {
-                text = "Colors: ON";
+                text = $"{_colors}: {_on.ToUpper()}";
                 settings.GetSettings().multiplayer.allowColorsInChat = true;
             }
             Colors.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -119,14 +134,14 @@ namespace Assets.Scripts.UI
         private void UpdateShowCape()
         {
             var text = ShowCape.GetComponentInChildren<TextMeshProUGUI>().text;
-            if (text.Contains("ON"))
+            if (text.Contains(_on.ToUpper()))
             {
-                text = "Show Cape: OFF";
+                text = $"{_showCape}: {_off.ToUpper()}";
                 settings.GetSettings().multiplayer.allowCape = false;
             }
-            else if (text.Contains("OFF"))
+            else if (text.Contains(_off.ToUpper()))
             {
-                text = "Show Cape: ON";
+                text = $"{_showCape}: {_on.ToUpper()}";
                 settings.GetSettings().multiplayer.allowCape = true;
             }
             Colors.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -164,7 +179,7 @@ namespace Assets.Scripts.UI
             Width.GetComponentInChildren<TextMeshProUGUI>().text = $"Width: {arg0}%";
             settings.GetSettings().multiplayer.width = (int)arg0;
         }
-
+        #endregion
         private UnityAction action;
         public void AddListener(UnityAction action)
         {
@@ -173,7 +188,31 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new NotImplementedException();
+            _off = LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.off.ToString());
+            _on = LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.on.ToString());
+
+            _chatState =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.chat_state.ToString());
+            ChatState.GetComponentInChildren<TextMeshProUGUI>().text = _chatState + ": Shown";
+            
+            _webLinks = 
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.web_links.ToString());
+            WebLinks.GetComponentInChildren<TextMeshProUGUI>().text = $"{_webLinks}: {_on.ToUpper()}";
+            
+            _promptOnLinks =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.prompt_on_links.ToString());
+            PromptOnLinks.GetComponentInChildren<TextMeshProUGUI>().text = $"{_promptOnLinks}: {_on.ToUpper()}";
+
+            _colors =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.colors.ToString());
+            Colors.GetComponentInChildren<TextMeshProUGUI>().text = $"{_colors}: {_on.ToUpper()}";
+
+            _showCape =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.show_cape.ToString());
+            ShowCape.GetComponentInChildren<TextMeshProUGUI>().text = $"{_showCape}: {_on.ToUpper()}";
+
+            Done.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.done.ToString());
         }
     }
 }

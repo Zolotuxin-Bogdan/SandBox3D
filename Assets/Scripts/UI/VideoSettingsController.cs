@@ -37,6 +37,14 @@ namespace Assets.Scripts.UI
         Resolutions resolutions;
         int scale;
         //Unity Start Message
+
+        public static VideoSettingsController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         void Start()
         {
             resolutions = new Resolutions();
@@ -61,7 +69,8 @@ namespace Assets.Scripts.UI
             mipmapLevels.onValueChanged.AddListener(UpdateMipmapLevels);
             scale = settingsManager.GetSettings().graphic.guiScale;
         }
-
+        
+        #region CALLBACKS
         private void Submit()
         {
             action.Invoke();
@@ -281,6 +290,7 @@ namespace Assets.Scripts.UI
             guiScale.GetComponentInChildren<TextMeshProUGUI>().text = $"GUI Scale: {scale}";
             settingsManager.GetSettings().graphic.guiScale = scale;
         }
+        #endregion
 
         private UnityAction action;
         public void AddListener(UnityAction action)
@@ -290,7 +300,28 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new System.NotImplementedException();
+            graphics.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.graphics.ToString());
+            smoothLighting.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.smooth_lighting.ToString());
+            useVSync.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.use_vsync.ToString());
+            guiScale.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.gui_scale.ToString());
+            fullscreen.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.fullscreen.ToString());
+            viewBobbing.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.view_bobbing.ToString());
+            attackIndicator.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.attack_indicator.ToString());
+            clouds.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.clouds.ToString());
+            particles.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.particles.ToString());
+            entityShadows.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.entity_shadows.ToString());
+            done.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.done.ToString());
         }
     }
 }

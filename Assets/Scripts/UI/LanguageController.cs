@@ -65,7 +65,12 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new NotImplementedException();
+            Done.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.done.ToString());
+            ForceUnicodeFont.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.force_unicode_font.ToString());
+            LanguageLabel.text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.language.ToString());
         }
     }
 }

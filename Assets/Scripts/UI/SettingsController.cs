@@ -39,6 +39,14 @@ namespace Assets.Scripts.UI
         public Slider FovValueSlider;
         //////////////////////////////////////////////
         ////////////////Unity Messages///////////////
+
+        public static SettingsController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         void Start() {
             DoneButton.onClick.AddListener(Submit);
             MenuButton.onClick.AddListener(MenuButtonClickHandler);
@@ -61,6 +69,7 @@ namespace Assets.Scripts.UI
 
         //////////////////////////////////////////////
         ////////////////////Events///////////////////
+        #region CALLBACKS
         private void MenuButtonClickHandler()
         {
             _action.Invoke(SettingsEvent.MenuClicked);
@@ -183,6 +192,7 @@ namespace Assets.Scripts.UI
             FovValueSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"FOV: {value}";
             settingsManager.GetSettings().fov = (int)value;
         }
+        #endregion
         //////////////////////////////////////////////
         ////////////////////Action///////////////////
         UnityAction<SettingsEvent> _action;
@@ -194,7 +204,24 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new System.NotImplementedException();
+           DoneButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.done.ToString());
+           TexturePackButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.texture_pack.ToString());
+           SnooperSettingsButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.snooper_settings.ToString());
+           LanguageButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.language.ToString());
+           MultiplayerSettingsButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.multiplayer_settings.ToString());
+           VideoSettingsButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.video_settings.ToString());
+           ControlsButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.controls.ToString());
+           MenuButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.menu.ToString());
+           /*SwitchTouchscreenModeButton.GetComponentInChildren<TextMeshProUGUI>().text =
+               LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys..ToString());*/
         }
     }
 }

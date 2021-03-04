@@ -17,10 +17,19 @@ namespace Assets.Scripts.UI
         public Button reCreate;
         public Button rename;
         public Button delete;
+        public TextMeshProUGUI SingleplayerLabel;
         public ScrollRect worlds;
         public GameObject item;
 
         int selectedWorld = -1;
+
+        public static SingleplayerMenuController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         void Start()
         {
             createNewWorld.onClick.AddListener(CreateWorldCallback);
@@ -58,6 +67,7 @@ namespace Assets.Scripts.UI
             );
         }
 
+        #region CALLBACKS
         private void DeleteCallback()
         {
             if (selectedWorld > -1)
@@ -88,7 +98,7 @@ namespace Assets.Scripts.UI
         {
             action.Invoke(SingleplayerMenuEvents.OnCreateWorldClicked);
         }
-
+        #endregion
         public string GetSelectedWorldName()
         {
             if (selectedWorld > -1)
@@ -105,7 +115,20 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new NotImplementedException();
+            createNewWorld.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.create_new_world.ToString());
+            playSelectedWorld.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.play_selected_world.ToString());
+            cancel.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.cancel.ToString());
+            reCreate.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.re_create.ToString());
+            rename.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.rename.ToString());
+            delete.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.delete.ToString());
+            SingleplayerLabel.text = .GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.single_player.ToString());
         }
     }
 }

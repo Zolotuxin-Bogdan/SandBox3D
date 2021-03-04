@@ -19,6 +19,14 @@ namespace Assets.Scripts.UI
         public Button edit;
         public ScrollRect servers;
 
+        public static MultiplayerMenuController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+
         int selectedServer = -1;
         private void Start() {
             addServer.onClick.AddListener(AddServerCallback);

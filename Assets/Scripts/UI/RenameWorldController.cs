@@ -1,4 +1,5 @@
 ﻿using Assets.LocalizationSystem;
+using Assets.Scripts.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,14 @@ namespace Assets.Scripts.UI
         public TMP_InputField worldName;
 
         public string sourceWorldName;
+
+        public static RenameWorldController Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         void Start()
         {
             renameWorld.onClick.AddListener(RenameWorldCallback);
@@ -41,7 +50,12 @@ namespace Assets.Scripts.UI
 
         public void SetLocalization()
         {
-            throw new System.NotImplementedException();
+            cancel.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.cancel.ToString());
+            /*renameWorld.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.rename_world.ToString());*/
+            worldName.GetComponentInChildren<TextMeshProUGUI>().text =
+                LocalizationSystem.LocalizationSystem.GetLocalizedValue(LocalizationKeys.world_name.ToString());
         }
     }
 }
